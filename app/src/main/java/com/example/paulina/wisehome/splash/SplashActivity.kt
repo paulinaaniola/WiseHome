@@ -5,7 +5,7 @@ import android.os.Handler
 import com.example.paulina.wisehome.R
 import com.example.paulina.wisehome.base.BaseActivity
 import com.example.paulina.wisehome.base.BasePresenter
-import com.example.paulina.wisehome.rooms.RoomsActivity
+import com.patientcard.access.AccessActivity
 import easymvp.annotation.ActivityView
 import easymvp.annotation.Presenter
 
@@ -25,7 +25,7 @@ class SplashActivity : BaseActivity(), SplashView {
     }
 
     override fun openAccessActivity() {
-        startActivity(Intent(this, RoomsActivity::class.java))
+        startActivity(Intent(this, AccessActivity::class.java))
         finish()
     }
 }
