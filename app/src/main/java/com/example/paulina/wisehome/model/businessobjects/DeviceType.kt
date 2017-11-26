@@ -2,7 +2,7 @@ package com.example.paulina.wisehome.model.businessobjects
 
 
 
-enum class DeviceGroupType {
+enum class DeviceType {
     LIGHTS,
     BLINDS,
     ALARM_SENSORS,

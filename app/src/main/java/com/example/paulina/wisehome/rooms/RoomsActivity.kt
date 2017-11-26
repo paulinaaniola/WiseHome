@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.toolbar.*
 @ActivityView(layout = R.layout.activity_rooms, presenter = RoomsPresenterImpl::class)
 class RoomsActivity : NavDrawerActivity(), RoomsView {
 
-    private val roomsAdapter : RoomsAdapter = RoomsAdapter()
+    private val roomsAdapter : RoomsAdapter = RoomsAdapter(this)
 
     @Presenter
     lateinit var presenter: RoomsPresenter
