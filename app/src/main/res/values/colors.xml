@@ -6,7 +6,8 @@
     <color name="colorPrimary">#F4F4F4</color>
     <color name="colorError">#FF0000</color>
     <color name="colorGray">#95989A</color>
-    <color name="colorLightBlue">#4AA3CD</color>
+    <color name="colorDarkBlue">#4AA3CD</color>
+    <color name="colorLightBlue">#D5EAF4</color>
 
 
 </resources>

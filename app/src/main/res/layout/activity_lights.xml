@@ -17,8 +17,27 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:text="Living Room"
-            android:textSize="24sp"
-            android:textStyle="bold" />
+            android:textSize="24sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorLightBlue"
+            android:paddingBottom="10dp"
+            android:paddingLeft="20dp"
+            android:paddingTop="10dp"
+            android:layout_marginTop="5dp"
+            android:text="@string/lights"
+            android:textSize="24sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorDarkBlue" />
+
+        <include layout="@layout/color_picker_layout" />
+
+        <include layout="@layout/saturation_bar_layout" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/lightRecyclerView"

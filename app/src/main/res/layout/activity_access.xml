@@ -49,7 +49,7 @@
             app:et_dividerErrorColor="@color/colorError"
             app:et_dividerHeight="2dp"
             app:et_labelEnable="true"
-            app:et_labelTextColor="@color/colorLightBlue"
+            app:et_labelTextColor="@color/colorDarkBlue"
             app:et_supportMode="helper"
             app:et_supportTextErrorColor="@color/colorError" />
 
@@ -73,7 +73,7 @@
             app:et_dividerErrorColor="@color/colorError"
             app:et_dividerHeight="2dp"
             app:et_labelEnable="true"
-            app:et_labelTextColor="@color/colorLightBlue"
+            app:et_labelTextColor="@color/colorDarkBlue"
             app:et_supportMode="helper"
             app:et_supportTextErrorColor="@color/colorError" />
 

@@ -8,7 +8,7 @@ import com.example.paulina.wisehome.R
 import com.example.paulina.wisehome.model.businessobjects.LightBulb
 import kotlinx.android.synthetic.main.item_light_bulb.view.*
 
-internal class LightsAdapter() : RecyclerView.Adapter<LightsAdapter.ViewHolder>() {
+internal class LightsAdapter : RecyclerView.Adapter<LightsAdapter.ViewHolder>() {
 
     var lightBulbs: List<LightBulb> = emptyList<LightBulb>()
         set(value) {

@@ -9,13 +9,15 @@ import com.example.paulina.wisehome.model.businessobjects.LightBulb
 import easymvp.annotation.ActivityView
 import easymvp.annotation.Presenter
 import kotlinx.android.synthetic.main.activity_lights.*
+import kotlinx.android.synthetic.main.color_picker_layout.*
+import kotlinx.android.synthetic.main.saturation_bar_layout.*
 import kotlinx.android.synthetic.main.toolbar.*
 
 
 @ActivityView(layout = R.layout.activity_lights, presenter = LightsPresenterImpl::class)
 class LightsActivity : NavDrawerActivity(), LightsView {
 
-    private val lightsAdapter : LightsAdapter = LightsAdapter()
+    private val lightsAdapter: LightsAdapter = LightsAdapter()
 
     @Presenter
     lateinit var presenter: LightsPresenter
@@ -24,6 +26,7 @@ class LightsActivity : NavDrawerActivity(), LightsView {
         super.onCreate(savedInstanceState)
         setupToolbar(toolbar, " 123")
         setupLightsList()
+        setupColorPicker()
     }
 
     override fun providePresenter(): BasePresenter {
@@ -35,7 +38,12 @@ class LightsActivity : NavDrawerActivity(), LightsView {
         lightRecyclerView.adapter = lightsAdapter
     }
 
-    override fun setLights(lights : List<LightBulb>){
+    override fun setLights(lights: List<LightBulb>) {
         lightsAdapter.lightBulbs = lights
+    }
+
+    private fun setupColorPicker() {
+        colorPicker.showOldCenterColor = false
+        colorPicker.addSaturationBar(saturationBar)
     }
 }

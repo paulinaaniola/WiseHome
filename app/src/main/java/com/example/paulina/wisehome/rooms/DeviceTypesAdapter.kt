@@ -19,7 +19,7 @@ internal class DeviceTypesAdapter(private val deviceTypes: List<DeviceType>, pri
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.deviceTypeNameTextView.text = deviceTypes[position].name
-        setupDeviceTypeImage(deviceTypes[position], holder)
+        setupDevicesList(deviceTypes[position], holder)
         setupDividerView(position, holder)
     }
 
@@ -33,15 +33,19 @@ internal class DeviceTypesAdapter(private val deviceTypes: List<DeviceType>, pri
         }
     }
 
-    private fun setupDeviceTypeImage(deviceType: DeviceType, holder: ViewHolder) {
+    private fun setupDevicesList(deviceType: DeviceType, holder: ViewHolder) {
         if (deviceType == DeviceType.LIGHTS) {
             holder.deviceTypeImageView.setImageDrawable(ResUtil.getDrawable(R.drawable.light_bulb))
+            holder.deviceTypeLayout.setOnClickListener({ v -> (context as RoomsView).onLightsClick() })
         } else if (deviceType == DeviceType.BLINDS) {
             holder.deviceTypeImageView.setImageDrawable(ResUtil.getDrawable(R.drawable.blinds))
+            holder.deviceTypeLayout.setOnClickListener({ v -> (context as RoomsView).onBlindsClick() })
         } else if (deviceType == DeviceType.ALARM_SENSORS) {
             holder.deviceTypeImageView.setImageDrawable(ResUtil.getDrawable(R.drawable.alarm))
+            holder.deviceTypeLayout.setOnClickListener({ v -> (context as RoomsView).onAlarmSensorsClick() })
         } else if (deviceType == DeviceType.WEATHER_SENSORS) {
             holder.deviceTypeImageView.setImageDrawable(ResUtil.getDrawable(R.drawable.temperature))
+            holder.deviceTypeLayout.setOnClickListener({ v -> (context as RoomsView).onWeatherSensorsClick() })
         }
     }
 

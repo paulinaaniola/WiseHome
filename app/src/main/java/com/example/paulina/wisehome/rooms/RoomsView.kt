@@ -6,4 +6,12 @@ import com.example.paulina.wisehome.model.businessobjects.Room
 
 interface RoomsView: BaseView {
     fun setRooms(rooms : List<Room>)
+
+    fun onLightsClick()
+
+    fun onBlindsClick()
+
+    fun onAlarmSensorsClick()
+
+    fun onWeatherSensorsClick()
 }

@@ -2,12 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="10dp"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp">
+        android:layout_height="60dp"
+        android:background="@color/colorLightBlue"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp">
 
         <LinearLayout
             android:layout_width="0dp"
@@ -49,7 +51,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1.5dp"
-        android:background="@color/colorLightBlue" />
+        android:background="@color/colorDarkBlue" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/deviceTypesRecyclerView"
@@ -59,6 +61,6 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1.5dp"
-        android:background="@color/colorLightBlue" />
+        android:background="@color/colorDarkBlue" />
 
 </LinearLayout>
