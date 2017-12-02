@@ -32,7 +32,7 @@ internal class RoomsAdapter(private val context: Context) : RecyclerView.Adapter
 
     private fun setupDeviceTypesList(holder: ViewHolder, listOfDeviceTypes: List<DeviceType>) {
         holder.deviceTypesRecyclerView.layoutManager = LinearLayoutManager(context)
-        holder.deviceTypesRecyclerView.adapter = DeviceTypesAdapter(listOfDeviceTypes)
+        holder.deviceTypesRecyclerView.adapter = DeviceTypesAdapter(listOfDeviceTypes, context)
     }
 
     override fun getItemCount(): Int {

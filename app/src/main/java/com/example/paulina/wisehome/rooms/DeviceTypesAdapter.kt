@@ -1,5 +1,6 @@
 package com.example.paulina.wisehome.rooms
 
+import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -9,7 +10,7 @@ import com.example.paulina.wisehome.model.businessobjects.DeviceType
 import com.example.paulina.wisehome.model.utils.ResUtil
 import kotlinx.android.synthetic.main.item_device_group.view.*
 
-internal class DeviceTypesAdapter(private val deviceTypes: List<DeviceType>) : RecyclerView.Adapter<DeviceTypesAdapter.ViewHolder>() {
+internal class DeviceTypesAdapter(private val deviceTypes: List<DeviceType>, private val context: Context) : RecyclerView.Adapter<DeviceTypesAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.item_device_group, parent, false)
@@ -45,6 +46,7 @@ internal class DeviceTypesAdapter(private val deviceTypes: List<DeviceType>) : R
     }
 
     internal class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val deviceTypeLayout = view.deviceTypeLayout
         val deviceTypeNameTextView = view.deviceTypeNameTextView
         val deviceTypeImageView = view.deviceTypeImageView
         val dividerView = view.dividerView

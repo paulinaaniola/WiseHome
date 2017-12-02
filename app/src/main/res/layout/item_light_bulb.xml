@@ -4,38 +4,38 @@
     android:layout_height="wrap_content">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/deviceTypeLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:layout_marginTop="10dp"
         android:orientation="horizontal">
 
         <ImageView
-            android:id="@+id/deviceTypeImageView"
-            android:layout_width="15dp"
+            android:layout_width="0dp"
             android:layout_height="35dp"
-            android:layout_marginStart="10dp"
-            android:layout_weight="1" />
+            android:layout_marginStart="20dp"
+            android:layout_weight="1"
+            android:src="@drawable/light_bulb" />
 
         <TextView
-            android:id="@+id/deviceTypeNameTextView"
+            android:layout_marginStart="15dp"
+            android:id="@+id/lighNameTextView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="6"
             android:textSize="24sp" />
 
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="35dp"
-            android:layout_marginEnd="10dp"
-            android:layout_weight="1"
-            android:src="@drawable/arrow" />
+        <android.support.v7.widget.SwitchCompat
+            android:id="@+id/bulbSwitch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:layout_weight="1" />
 
     </LinearLayout>
 
     <View
-        android:id="@+id/dividerView"
+        android:id="@+id/bulbDividerView"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_gravity="bottom"
