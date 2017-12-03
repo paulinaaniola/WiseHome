@@ -43,5 +43,9 @@ class RoomsPresenterImpl : BaseAbstractPresenter<RoomsView>(), RoomsPresenter {
         rooms.add(Room("Bedroom", 3, deviceGroupTypes1))
         return rooms
     }
+
+    override fun getAnimDuration(): Int {
+        return presentationModel.ANIM_DURATION
+    }
 }
 
