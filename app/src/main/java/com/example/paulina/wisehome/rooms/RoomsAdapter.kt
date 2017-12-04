@@ -7,8 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.paulina.wisehome.R
-import com.example.paulina.wisehome.model.businessobjects.DeviceType
-import com.example.paulina.wisehome.model.businessobjects.Room
+import com.example.paulina.wisehome.model.transportobjects.DeviceType
+import com.example.paulina.wisehome.model.transportobjects.Room
 import kotlinx.android.synthetic.main.item_room.view.*
 
 

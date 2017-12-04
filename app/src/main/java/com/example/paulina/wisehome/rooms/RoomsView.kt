@@ -2,7 +2,7 @@ package com.example.paulina.wisehome.rooms
 
 import android.view.View
 import com.example.paulina.wisehome.base.BaseView
-import com.example.paulina.wisehome.model.businessobjects.Room
+import com.example.paulina.wisehome.model.transportobjects.Room
 
 
 interface RoomsView: BaseView {

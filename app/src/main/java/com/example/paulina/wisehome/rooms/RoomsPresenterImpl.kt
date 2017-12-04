@@ -1,11 +1,14 @@
 package com.example.paulina.wisehome.rooms
 
 import android.content.Intent
+import com.example.paulina.wisehome.R
 import com.example.paulina.wisehome.base.BaseAbstractPresenter
-import com.example.paulina.wisehome.model.businessobjects.DeviceType
-import com.example.paulina.wisehome.model.businessobjects.Room
+import com.example.paulina.wisehome.model.transportobjects.DeviceType
+import com.example.paulina.wisehome.model.transportobjects.Room
+import com.example.paulina.wisehome.model.utils.ResUtil
+import com.example.paulina.wisehome.service.receivers.GetRoomsReciever
 
-class RoomsPresenterImpl : BaseAbstractPresenter<RoomsView>(), RoomsPresenter {
+class RoomsPresenterImpl : BaseAbstractPresenter<RoomsView>(), RoomsPresenter, GetRoomsReciever {
 
     private val presentationModel: RoomsModel by lazy { RoomsModel() }
 
@@ -19,13 +22,18 @@ class RoomsPresenterImpl : BaseAbstractPresenter<RoomsView>(), RoomsPresenter {
     }
 
     fun getRooms() {
+        view?.startProgressDialog(ResUtil.getString(R.string.progress_loading_text))
         onGetRoomsSuccess(createDummyRooms())
+        // ServiceManager.getRooms(this, "122075")
     }
 
-    fun onGetRoomsSuccess(rooms: List<Room>) {
-        if(view != null) {
-            view?.setRooms(rooms)
-        }
+    override fun onGetRoomsSuccess(rooms: List<Room>) {
+        view?.stopProgressDialog()
+        view?.setRooms(rooms)
+    }
+
+    override fun onGetRoomsError() {
+        view?.stopProgressDialog()
     }
 
     fun createDummyRooms(): List<Room> {

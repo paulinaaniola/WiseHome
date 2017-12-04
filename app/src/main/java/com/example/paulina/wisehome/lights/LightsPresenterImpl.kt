@@ -2,8 +2,8 @@ package com.example.paulina.wisehome.lights
 
 import android.content.Intent
 import com.example.paulina.wisehome.base.BaseAbstractPresenter
-import com.example.paulina.wisehome.model.businessobjects.LightBulb
-import com.example.paulina.wisehome.model.businessobjects.Lights
+import com.example.paulina.wisehome.model.transportobjects.LightBulb
+import com.example.paulina.wisehome.model.transportobjects.Lights
 
 class LightsPresenterImpl : BaseAbstractPresenter<LightsView>(), LightsPresenter {
 

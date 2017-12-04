@@ -8,7 +8,7 @@ import com.example.paulina.wisehome.R
 import com.example.paulina.wisehome.base.BasePresenter
 import com.example.paulina.wisehome.base.NavDrawerActivity
 import com.example.paulina.wisehome.lights.LightsActivity
-import com.example.paulina.wisehome.model.businessobjects.Room
+import com.example.paulina.wisehome.model.transportobjects.Room
 import com.example.paulina.wisehome.model.utils.AnimUtils
 import easymvp.annotation.ActivityView
 import easymvp.annotation.Presenter

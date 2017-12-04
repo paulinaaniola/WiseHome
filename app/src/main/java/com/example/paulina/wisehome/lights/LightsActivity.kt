@@ -5,7 +5,7 @@ import android.support.v7.widget.LinearLayoutManager
 import com.example.paulina.wisehome.R
 import com.example.paulina.wisehome.base.BasePresenter
 import com.example.paulina.wisehome.base.NavDrawerActivity
-import com.example.paulina.wisehome.model.businessobjects.LightBulb
+import com.example.paulina.wisehome.model.transportobjects.LightBulb
 import easymvp.annotation.ActivityView
 import easymvp.annotation.Presenter
 import kotlinx.android.synthetic.main.activity_lights.*

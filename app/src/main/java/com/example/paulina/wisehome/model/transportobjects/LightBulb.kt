@@ -1,4 +1,4 @@
-package com.example.paulina.wisehome.model.businessobjects
+package com.example.paulina.wisehome.model.transportobjects
 
 import java.io.Serializable
 

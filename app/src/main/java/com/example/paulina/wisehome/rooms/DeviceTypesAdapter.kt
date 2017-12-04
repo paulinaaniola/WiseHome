@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.paulina.wisehome.R
-import com.example.paulina.wisehome.model.businessobjects.DeviceType
+import com.example.paulina.wisehome.model.transportobjects.DeviceType
 import com.example.paulina.wisehome.model.utils.ResUtil
 import kotlinx.android.synthetic.main.item_device_group.view.*
 

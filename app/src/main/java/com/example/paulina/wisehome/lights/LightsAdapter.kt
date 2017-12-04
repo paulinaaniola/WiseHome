@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.paulina.wisehome.R
-import com.example.paulina.wisehome.model.businessobjects.LightBulb
+import com.example.paulina.wisehome.model.transportobjects.LightBulb
 import kotlinx.android.synthetic.main.item_light_bulb.view.*
 
 internal class LightsAdapter : RecyclerView.Adapter<LightsAdapter.ViewHolder>() {
