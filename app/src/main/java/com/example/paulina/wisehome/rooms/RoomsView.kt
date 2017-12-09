@@ -8,7 +8,7 @@ import com.example.paulina.wisehome.model.transportobjects.Room
 interface RoomsView: BaseView {
     fun setRooms(rooms : List<Room>)
 
-    fun onLightsClick()
+    fun onLightsClick(roomId: String)
 
     fun onBlindsClick()
 

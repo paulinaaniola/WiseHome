@@ -4,5 +4,5 @@ import java.io.Serializable
 
 
 class Lights(
-        val selectedColor: Int,
-        val listOfLightBulb: List<LightBulb>) : Serializable
+        val currentColor: Long,
+        val lightBulbs: List<LightBulb>) : Serializable

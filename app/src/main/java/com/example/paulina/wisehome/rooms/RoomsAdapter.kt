@@ -21,7 +21,6 @@ internal class RoomsAdapter(private val context: Context) : RecyclerView.Adapter
             notifyDataSetChanged()
         }
     lateinit var isRoomCollapsedList: MutableList<Boolean>
-    var isInitializing: Boolean =true
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.item_room, parent, false)
@@ -30,7 +29,7 @@ internal class RoomsAdapter(private val context: Context) : RecyclerView.Adapter
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.roomNameTextView.text = rooms[position].name
-        setupDeviceTypesList(holder, rooms[position].listOfDeviceGroupTypes)
+        setupDeviceTypesList(holder, rooms[position].listOfDeviceTypes, rooms[position]._id)
         holder.roomNameLayout.setOnClickListener({ v -> expandOrCollapseList(position, holder) })
     }
 
@@ -41,9 +40,9 @@ internal class RoomsAdapter(private val context: Context) : RecyclerView.Adapter
         isRoomCollapsedList[position] = !isRoomCollapsed
     }
 
-    private fun setupDeviceTypesList(holder: ViewHolder, listOfDeviceTypes: List<DeviceType>) {
+    private fun setupDeviceTypesList(holder: ViewHolder, listOfDeviceTypes: List<DeviceType>, roomId: String) {
         holder.deviceTypesRecyclerView.layoutManager = LinearLayoutManager(context)
-        holder.deviceTypesRecyclerView.adapter = DeviceTypesAdapter(listOfDeviceTypes, context)
+        holder.deviceTypesRecyclerView.adapter = DeviceTypesAdapter(roomId, listOfDeviceTypes, context)
     }
 
     override fun getItemCount(): Int {

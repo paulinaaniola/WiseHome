@@ -24,7 +24,7 @@ class RoomsPresenterImpl : BaseAbstractPresenter<RoomsView>(), RoomsPresenter, G
     fun getRooms() {
         view?.startProgressDialog(ResUtil.getString(R.string.progress_loading_text))
         onGetRoomsSuccess(createDummyRooms())
-        // ServiceManager.getRooms(this, "122075")
+        // ServiceManager.getRooms(this)
     }
 
     override fun onGetRoomsSuccess(rooms: List<Room>) {
@@ -46,9 +46,9 @@ class RoomsPresenterImpl : BaseAbstractPresenter<RoomsView>(), RoomsPresenter, G
         deviceGroupTypes1.add(DeviceType.WEATHER_SENSORS)
         deviceGroupTypes2.add(DeviceType.LIGHTS)
         deviceGroupTypes2.add(DeviceType.BLINDS)
-        rooms.add(Room("Living Room", 1, deviceGroupTypes1))
-        rooms.add(Room("Kitchen", 2, deviceGroupTypes2))
-        rooms.add(Room("Bedroom", 3, deviceGroupTypes1))
+        rooms.add(Room(1.toString(), "Living Room", deviceGroupTypes1))
+        rooms.add(Room(2.toString(), "Kitchen", deviceGroupTypes2))
+        rooms.add(Room(3.toString(), "Bedroom", deviceGroupTypes1))
         return rooms
     }
 

@@ -4,10 +4,11 @@ import android.widget.Toast
 import com.example.paulina.wisehome.R
 import com.example.paulina.wisehome.base.ApplicationContext
 import com.example.paulina.wisehome.model.businessobjects.ResponseErrorMessage
+import com.example.paulina.wisehome.model.transportobjects.Lights
 import com.example.paulina.wisehome.model.transportobjects.Room
 import com.example.paulina.wisehome.model.utils.ResUtil
 import com.example.paulina.wisehome.model.utils.ToastUtil
-import com.example.paulina.wisehome.service.receivers.GetPatientReciever
+import com.example.paulina.wisehome.service.receivers.GetLightsReciever
 import com.example.paulina.wisehome.service.receivers.GetRoomsReciever
 import com.google.gson.Gson
 import retrofit2.HttpException
@@ -22,26 +23,28 @@ import java.lang.Exception
 
 object ServiceManager {
 
-    fun getPatient(receiver: GetPatientReciever, patientId: String) {
+    fun getRooms(receiver: GetRoomsReciever) {
         setupRequest(ServiceProvider
-                .patientService
-                .getPatient(patientId),
-                Action1 { receiver.onGetPatientSuccess(it as Int) },
+                .roomsService
+                .getRooms(),
+                Action1 {
+                    receiver.onGetRoomsSuccess(it as List<Room>) },
                 Action1 {
                     handleError(it)
-                    receiver.onGetPatientError()
+                    receiver.onGetRoomsError()
                 },
                 Action0 { Timber.e("OnCompleted") })
     }
 
-    fun getRooms(receiver: GetRoomsReciever, patientId: String) {
+    fun getLights(receiver: GetLightsReciever, roomId : String) {
         setupRequest(ServiceProvider
-                .roomsService
-                .getRooms(patientId),
-                Action1 { receiver.onGetRoomsSuccess(it as List<Room>) },
+                .lightsService
+                .getLights(roomId),
+                Action1 {
+                    receiver.onGetLightsSuccess(it as Lights) },
                 Action1 {
                     handleError(it)
-                    receiver.onGetRoomsError()
+                    receiver.onGetLightsError()
                 },
                 Action0 { Timber.e("OnCompleted") })
     }

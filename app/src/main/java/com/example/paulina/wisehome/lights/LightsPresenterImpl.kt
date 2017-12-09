@@ -4,13 +4,14 @@ import android.content.Intent
 import com.example.paulina.wisehome.base.BaseAbstractPresenter
 import com.example.paulina.wisehome.model.transportobjects.LightBulb
 import com.example.paulina.wisehome.model.transportobjects.Lights
+import com.example.paulina.wisehome.service.receivers.GetLightsReciever
 
-class LightsPresenterImpl : BaseAbstractPresenter<LightsView>(), LightsPresenter {
+class LightsPresenterImpl : BaseAbstractPresenter<LightsView>(), LightsPresenter, GetLightsReciever {
 
     private val presentationModel: LightsModel by lazy { LightsModel() }
 
     override fun initExtras(intent: Intent) {
-        // no extras
+        presentationModel.roomId = intent.getStringExtra("room_id")
     }
 
     override fun onViewAttached(view: LightsView?) {
@@ -19,22 +20,24 @@ class LightsPresenterImpl : BaseAbstractPresenter<LightsView>(), LightsPresenter
     }
 
     private fun getLight() {
-        onGetLightSucces(createDummyLights())
+        onGetLightsSuccess(createDummyLights())
+        //ServiceManager.getLights(this, presentationModel.roomId)
     }
 
-    private fun onGetLightSucces(light: Lights) {
-        if (view != null) {
-            view?.setLights(light.listOfLightBulb)
-        }
+    override fun onGetLightsError() {
     }
 
     private fun createDummyLights(): Lights {
         val lightBulbs: MutableList<LightBulb> = ArrayList<LightBulb>()
-        lightBulbs.add(LightBulb("Light 1", 1, true))
-        lightBulbs.add(LightBulb("Light 2", 1, false))
-        lightBulbs.add(LightBulb("Light 3", 1, false))
-        lightBulbs.add(LightBulb("Light 4", 1, true))
+        lightBulbs.add(LightBulb( 1.toString(), "Light 1",true))
+        lightBulbs.add(LightBulb( 1.toString(),"Light 2", false))
+        lightBulbs.add(LightBulb( 1.toString(), "Light 3",false))
+        lightBulbs.add(LightBulb( 1.toString(), "Light 4", true))
         val lights = Lights(1, lightBulbs)
         return lights
+    }
+
+    override fun onGetLightsSuccess(lights: Lights) {
+        view?.setLights(lights.lightBulbs)
     }
 }

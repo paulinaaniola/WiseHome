@@ -23,7 +23,7 @@ internal class LightsAdapter : RecyclerView.Adapter<LightsAdapter.ViewHolder>() 
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.lightNameTextView.text = lightBulbs[position].name
-        holder.bulbSwitch.isChecked = lightBulbs[position].isTurnOn
+        holder.bulbSwitch.isChecked = lightBulbs[position].isPoweredOn
     }
 
     override fun getItemCount(): Int {

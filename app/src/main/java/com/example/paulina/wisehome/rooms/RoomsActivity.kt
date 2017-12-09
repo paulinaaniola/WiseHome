@@ -43,8 +43,8 @@ class RoomsActivity : NavDrawerActivity(), RoomsView {
         roomsAdapter.rooms = rooms
     }
 
-    override fun onLightsClick() {
-        startActivity(Intent(this, LightsActivity::class.java))
+    override fun onLightsClick(roomId : String) {
+        startActivity(Intent(this, LightsActivity::class.java).putExtra("room_id", roomId))
     }
 
     override fun onBlindsClick() {

@@ -10,7 +10,7 @@ import com.example.paulina.wisehome.model.transportobjects.DeviceType
 import com.example.paulina.wisehome.model.utils.ResUtil
 import kotlinx.android.synthetic.main.item_device_group.view.*
 
-internal class DeviceTypesAdapter(private val deviceTypes: List<DeviceType>, private val context: Context) : RecyclerView.Adapter<DeviceTypesAdapter.ViewHolder>() {
+internal class DeviceTypesAdapter(private val roomId: String, private val listOfDevices: List<DeviceType>, private val context: Context) : RecyclerView.Adapter<DeviceTypesAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.item_device_group, parent, false)
@@ -18,17 +18,17 @@ internal class DeviceTypesAdapter(private val deviceTypes: List<DeviceType>, pri
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.deviceTypeNameTextView.text = deviceTypes[position].name
-        setupDevicesList(deviceTypes[position], holder)
+        holder.deviceTypeNameTextView.text = listOfDevices[position].name
+        setupDevicesList(listOfDevices[position], holder)
         setupDividerView(position, holder)
     }
 
     override fun getItemCount(): Int {
-        return deviceTypes.size
+        return listOfDevices.size
     }
 
     private fun setupDividerView(position: Int, holder: ViewHolder) {
-        if (position == deviceTypes.size - 1) {
+        if (position == listOfDevices.size - 1) {
             holder.dividerView.visibility = View.GONE
         }
     }
@@ -36,7 +36,7 @@ internal class DeviceTypesAdapter(private val deviceTypes: List<DeviceType>, pri
     private fun setupDevicesList(deviceType: DeviceType, holder: ViewHolder) {
         if (deviceType == DeviceType.LIGHTS) {
             holder.deviceTypeImageView.setImageDrawable(ResUtil.getDrawable(R.drawable.light_bulb))
-            holder.deviceTypeLayout.setOnClickListener({ v -> (context as RoomsView).onLightsClick() })
+            holder.deviceTypeLayout.setOnClickListener({ v -> (context as RoomsView).onLightsClick(roomId) })
         } else if (deviceType == DeviceType.BLINDS) {
             holder.deviceTypeImageView.setImageDrawable(ResUtil.getDrawable(R.drawable.blinds))
             holder.deviceTypeLayout.setOnClickListener({ v -> (context as RoomsView).onBlindsClick() })
