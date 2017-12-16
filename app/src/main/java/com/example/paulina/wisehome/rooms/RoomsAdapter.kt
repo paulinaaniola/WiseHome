@@ -17,7 +17,7 @@ internal class RoomsAdapter(private val context: Context) : RecyclerView.Adapter
     var rooms: List<Room> = emptyList<Room>()
         set(value) {
             field = value
-            initializeRoomCollapsedList(value)
+            initializeRoomExpansionList(value)
             notifyDataSetChanged()
         }
     lateinit var isRoomCollapsedList: MutableList<Boolean>
@@ -35,8 +35,11 @@ internal class RoomsAdapter(private val context: Context) : RecyclerView.Adapter
 
     private fun expandOrCollapseList(position: Int, holder: ViewHolder) {
         val isRoomCollapsed: Boolean = isRoomCollapsedList[position]
-        (context as RoomsView).devicesLayoutExpandCollapse(isRoomCollapsed, holder.expandableLayout)
-        (context as RoomsView).arrowAnimation(isRoomCollapsed, holder.arrowUpImageView, holder.arroDownImageView)
+        if (isRoomCollapsed) {
+            (context as RoomsView).expandDevicesLayout(holder.expandableLayout, holder.arrowUpImageView, holder.arroDownImageView)
+        } else {
+            (context as RoomsView).collapseDevicesLayout(holder.expandableLayout, holder.arrowUpImageView, holder.arroDownImageView)
+        }
         isRoomCollapsedList[position] = !isRoomCollapsed
     }
 
@@ -58,7 +61,7 @@ internal class RoomsAdapter(private val context: Context) : RecyclerView.Adapter
         val arroDownImageView = view.arrowDownImageView
     }
 
-    private fun initializeRoomCollapsedList(roomList: List<Room>) {
+    private fun initializeRoomExpansionList(roomList: List<Room>) {
         isRoomCollapsedList = mutableListOf<Boolean>()
         for (i in roomList.listIterator()) {
             isRoomCollapsedList.add(true)

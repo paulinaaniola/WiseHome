@@ -5,8 +5,8 @@ import com.example.paulina.wisehome.base.BaseView
 import com.example.paulina.wisehome.model.transportobjects.Room
 
 
-interface RoomsView: BaseView {
-    fun setRooms(rooms : List<Room>)
+interface RoomsView : BaseView {
+    fun setRooms(rooms: List<Room>)
 
     fun onLightsClick(roomId: String)
 
@@ -14,9 +14,9 @@ interface RoomsView: BaseView {
 
     fun onAlarmSensorsClick(roomId: String)
 
-    fun onWeatherSensorsClick(roomId : String)
+    fun onWeatherSensorsClick(roomId: String)
 
-    fun devicesLayoutExpandCollapse(isExpanded: Boolean, viewToAnim: View)
+    fun expandDevicesLayout(viewToAnim: View, arrowUp: View, arrowDown: View)
 
-    fun arrowAnimation(isExpanded: Boolean, arrowUp: View, arrowDown : View)
+    fun collapseDevicesLayout(viewToAnim: View, arrowUp: View, arrowDown: View)
 }

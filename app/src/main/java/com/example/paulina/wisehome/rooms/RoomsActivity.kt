@@ -60,23 +60,17 @@ class RoomsActivity : NavDrawerActivity(), RoomsView {
         startActivity(Intent(this, WeatherActivity::class.java).putExtra("room_id", roomId))
     }
 
-    override fun devicesLayoutExpandCollapse(isCollapsed: Boolean, viewToAnim: View) {
+    override fun expandDevicesLayout(viewToAnim: View, arrowUp: View, arrowDown: View){
         val animDuration = presenter.getAnimDuration()
-        if (isCollapsed) {
-            AnimUtils.expand(animDuration, viewToAnim)
-        } else {
-            AnimUtils.collapse(animDuration, viewToAnim)
-        }
+        AnimUtils.expand(animDuration, viewToAnim)
+        AnimUtils.fadeIn(animDuration, arrowUp)
+        AnimUtils.fadeOut(animDuration, arrowDown)
     }
 
-    override fun arrowAnimation(isCollapsed: Boolean, arrowUp: View, arrowDown: View) {
+    override fun collapseDevicesLayout(viewToAnim: View, arrowUp: View, arrowDown: View){
         val animDuration = presenter.getAnimDuration()
-        if (isCollapsed) {
-            AnimUtils.fadeIn(animDuration, arrowUp)
-            AnimUtils.fadeOut(animDuration, arrowDown)
-        } else {
-            AnimUtils.fadeIn(animDuration, arrowDown)
-            AnimUtils.fadeOut(animDuration, arrowUp)
-        }
+        AnimUtils.collapse(animDuration, viewToAnim)
+        AnimUtils.fadeIn(animDuration, arrowDown)
+        AnimUtils.fadeOut(animDuration, arrowUp)
     }
 }
