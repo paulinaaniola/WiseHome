@@ -12,7 +12,7 @@ interface RoomsView: BaseView {
 
     fun onBlindsClick()
 
-    fun onAlarmSensorsClick()
+    fun onAlarmSensorsClick(roomId: String)
 
     fun onWeatherSensorsClick(roomId : String)
 

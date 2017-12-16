@@ -42,7 +42,7 @@ internal class DeviceTypesAdapter(private val roomId: String, private val listOf
             holder.deviceTypeLayout.setOnClickListener({ v -> (context as RoomsView).onBlindsClick() })
         } else if (deviceType == DeviceType.ALARM_SENSORS) {
             holder.deviceTypeImageView.setImageDrawable(ResUtil.getDrawable(R.drawable.alarm))
-            holder.deviceTypeLayout.setOnClickListener({ v -> (context as RoomsView).onAlarmSensorsClick() })
+            holder.deviceTypeLayout.setOnClickListener({ v -> (context as RoomsView).onAlarmSensorsClick(roomId) })
         } else if (deviceType == DeviceType.WEATHER_SENSORS) {
             holder.deviceTypeImageView.setImageDrawable(ResUtil.getDrawable(R.drawable.temperature))
             holder.deviceTypeLayout.setOnClickListener({ v -> (context as RoomsView).onWeatherSensorsClick(roomId) })

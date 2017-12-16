@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.example.paulina.wisehome.R
+import com.example.paulina.wisehome.alarms.AlarmsActivity
 import com.example.paulina.wisehome.base.BasePresenter
 import com.example.paulina.wisehome.base.NavDrawerActivity
 import com.example.paulina.wisehome.lights.LightsActivity
@@ -44,17 +45,18 @@ class RoomsActivity : NavDrawerActivity(), RoomsView {
         roomsAdapter.rooms = rooms
     }
 
-    override fun onLightsClick(roomId : String) {
+    override fun onLightsClick(roomId: String) {
         startActivity(Intent(this, LightsActivity::class.java).putExtra("room_id", roomId))
     }
 
     override fun onBlindsClick() {
     }
 
-    override fun onAlarmSensorsClick() {
+    override fun onAlarmSensorsClick(roomId: String) {
+        startActivity(Intent(this, AlarmsActivity::class.java).putExtra("room_id", roomId))
     }
 
-    override fun onWeatherSensorsClick(roomId : String) {
+    override fun onWeatherSensorsClick(roomId: String) {
         startActivity(Intent(this, WeatherActivity::class.java).putExtra("room_id", roomId))
     }
 
@@ -67,9 +69,9 @@ class RoomsActivity : NavDrawerActivity(), RoomsView {
         }
     }
 
-    override    fun arrowAnimation(isCollapsed: Boolean, arrowUp: View, arrowDown : View) {
+    override fun arrowAnimation(isCollapsed: Boolean, arrowUp: View, arrowDown: View) {
         val animDuration = presenter.getAnimDuration()
-        if(isCollapsed) {
+        if (isCollapsed) {
             AnimUtils.fadeIn(animDuration, arrowUp)
             AnimUtils.fadeOut(animDuration, arrowDown)
         } else {
