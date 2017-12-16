@@ -10,6 +10,7 @@ import com.example.paulina.wisehome.base.NavDrawerActivity
 import com.example.paulina.wisehome.lights.LightsActivity
 import com.example.paulina.wisehome.model.transportobjects.Room
 import com.example.paulina.wisehome.model.utils.AnimUtils
+import com.example.paulina.wisehome.weather.WeatherActivity
 import easymvp.annotation.ActivityView
 import easymvp.annotation.Presenter
 import kotlinx.android.synthetic.main.activity_rooms.*
@@ -53,7 +54,8 @@ class RoomsActivity : NavDrawerActivity(), RoomsView {
     override fun onAlarmSensorsClick() {
     }
 
-    override fun onWeatherSensorsClick() {
+    override fun onWeatherSensorsClick(roomId : String) {
+        startActivity(Intent(this, WeatherActivity::class.java).putExtra("room_id", roomId))
     }
 
     override fun devicesLayoutExpandCollapse(isCollapsed: Boolean, viewToAnim: View) {

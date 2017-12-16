@@ -31,6 +31,7 @@
             android:screenOrientation="portrait" />
 
         <activity android:name=".lights.LightsActivity" />
+        <activity android:name=".weather.WeatherActivity" />
 
     </application>
 </manifest>

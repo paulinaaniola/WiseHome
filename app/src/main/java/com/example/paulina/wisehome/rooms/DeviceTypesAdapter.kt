@@ -45,7 +45,7 @@ internal class DeviceTypesAdapter(private val roomId: String, private val listOf
             holder.deviceTypeLayout.setOnClickListener({ v -> (context as RoomsView).onAlarmSensorsClick() })
         } else if (deviceType == DeviceType.WEATHER_SENSORS) {
             holder.deviceTypeImageView.setImageDrawable(ResUtil.getDrawable(R.drawable.temperature))
-            holder.deviceTypeLayout.setOnClickListener({ v -> (context as RoomsView).onWeatherSensorsClick() })
+            holder.deviceTypeLayout.setOnClickListener({ v -> (context as RoomsView).onWeatherSensorsClick(roomId) })
         }
     }
 

@@ -14,7 +14,7 @@ interface RoomsView: BaseView {
 
     fun onAlarmSensorsClick()
 
-    fun onWeatherSensorsClick()
+    fun onWeatherSensorsClick(roomId : String)
 
     fun devicesLayoutExpandCollapse(isExpanded: Boolean, viewToAnim: View)
 
