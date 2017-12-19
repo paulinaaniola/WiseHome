@@ -15,12 +15,6 @@ import kotlinx.android.synthetic.main.item_room.view.*
 internal class RoomsAdapter(private val context: Context) : RecyclerView.Adapter<RoomsAdapter.ViewHolder>() {
 
     var rooms: List<Room> = emptyList<Room>()
-        set(value) {
-            field = value
-            initializeRoomExpansionList(value)
-            notifyDataSetChanged()
-        }
-    lateinit var isRoomCollapsedList: MutableList<Boolean>
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.item_room, parent, false)
@@ -30,17 +24,16 @@ internal class RoomsAdapter(private val context: Context) : RecyclerView.Adapter
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.roomNameTextView.text = rooms[position].name
         setupDeviceTypesList(holder, rooms[position].listOfDeviceTypes, rooms[position]._id)
-        holder.roomNameLayout.setOnClickListener({ v -> expandOrCollapseList(position, holder) })
+        holder.roomNameLayout.setOnClickListener({ v -> expandOrCollapseList(holder) })
     }
 
-    private fun expandOrCollapseList(position: Int, holder: ViewHolder) {
-        val isRoomCollapsed: Boolean = isRoomCollapsedList[position]
+    private fun expandOrCollapseList(holder: ViewHolder) {
+        val isRoomCollapsed: Boolean = holder.expandableLayout.visibility == View.GONE
         if (isRoomCollapsed) {
             (context as RoomsView).expandDevicesLayout(holder.expandableLayout, holder.arrowUpImageView, holder.arroDownImageView)
         } else {
             (context as RoomsView).collapseDevicesLayout(holder.expandableLayout, holder.arrowUpImageView, holder.arroDownImageView)
         }
-        isRoomCollapsedList[position] = !isRoomCollapsed
     }
 
     private fun setupDeviceTypesList(holder: ViewHolder, listOfDeviceTypes: List<DeviceType>, roomId: String) {
@@ -59,12 +52,5 @@ internal class RoomsAdapter(private val context: Context) : RecyclerView.Adapter
         val expandableLayout = view.expandableLayout
         val arrowUpImageView = view.arrowUpImageView
         val arroDownImageView = view.arrowDownImageView
-    }
-
-    private fun initializeRoomExpansionList(roomList: List<Room>) {
-        isRoomCollapsedList = mutableListOf<Boolean>()
-        for (i in roomList.listIterator()) {
-            isRoomCollapsedList.add(true)
-        }
     }
 }

@@ -49,6 +49,8 @@ class RoomsPresenterImpl : BaseAbstractPresenter<RoomsView>(), RoomsPresenter, G
         rooms.add(Room(1.toString(), "Living Room", deviceGroupTypes1))
         rooms.add(Room(2.toString(), "Kitchen", deviceGroupTypes2))
         rooms.add(Room(3.toString(), "Bedroom", deviceGroupTypes1))
+        rooms.add(Room(4.toString(), "Bathroom1", deviceGroupTypes1))
+        rooms.add(Room(5.toString(), "Bathroom2", deviceGroupTypes1))
         return rooms
     }
 
