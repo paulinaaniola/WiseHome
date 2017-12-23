@@ -12,6 +12,9 @@
     <color name="colorLightRed">#F4B0B0</color>
     <color name="colorGreen">#009688</color>
     <color name="colorLightYellow">#ECE259</color>
+    <color name="colorPurple">#AD1457</color>
+    <color name="colorOrange">#FF9800</color>
+    <color name="colorGreenLight">#7CB342</color>
 
 
 </resources>

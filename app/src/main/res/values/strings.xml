@@ -9,6 +9,9 @@
     <string name="lights">Lights</string>
     <string name="weather">Weather</string>
     <string name="temperature">Temperature</string>
+    <string name="blinds">Blinds</string>
+    <string name="state">State:</string>
+    <string name="stop">STOP</string>
     <string name="humidity">Humidity</string>
     <string name="alarm_sensors">Alarm sensors</string>
     <string name="carbon_monoxide_alarm">Carbon monoxide alarm</string>

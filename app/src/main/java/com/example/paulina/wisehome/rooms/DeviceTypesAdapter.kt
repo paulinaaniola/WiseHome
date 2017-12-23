@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.paulina.wisehome.R
-import com.example.paulina.wisehome.model.transportobjects.DeviceType
+import com.example.paulina.wisehome.model.businessobjects.DeviceType
 import com.example.paulina.wisehome.model.utils.ResUtil
 import kotlinx.android.synthetic.main.item_device_group.view.*
 
@@ -39,7 +39,7 @@ internal class DeviceTypesAdapter(private val roomId: String, private val listOf
             holder.deviceTypeLayout.setOnClickListener({ v -> (context as RoomsView).onLightsClick(roomId) })
         } else if (deviceType == DeviceType.BLINDS) {
             holder.deviceTypeImageView.setImageDrawable(ResUtil.getDrawable(R.drawable.blinds))
-            holder.deviceTypeLayout.setOnClickListener({ v -> (context as RoomsView).onBlindsClick() })
+            holder.deviceTypeLayout.setOnClickListener({ v -> (context as RoomsView).onBlindsClick(roomId) })
         } else if (deviceType == DeviceType.ALARM_SENSORS) {
             holder.deviceTypeImageView.setImageDrawable(ResUtil.getDrawable(R.drawable.alarm))
             holder.deviceTypeLayout.setOnClickListener({ v -> (context as RoomsView).onAlarmSensorsClick(roomId) })

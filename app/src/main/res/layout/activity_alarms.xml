@@ -65,7 +65,7 @@
                 android:layout_gravity="center"
                 android:layout_marginBottom="30dp"
                 android:layout_marginTop="30dp"
-                android:src="@drawable/temperature" />
+                android:src="@drawable/no_danger" />
 
 
         </LinearLayout>
@@ -76,7 +76,7 @@
             android:layout_marginBottom="20dp"
             android:layout_marginEnd="40dp"
             android:layout_marginStart="40dp"
-            android:background="@drawable/white_round_frame_green_borders"
+            android:background="@drawable/white_round_frame_red_borders"
             android:orientation="vertical">
 
             <TextView
@@ -84,16 +84,16 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dp"
-                android:text="@string/humidity"
+                android:text="@string/carbon_dioxide_alarm"
                 android:textSize="20sp" />
 
             <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="30dp"
                 android:layout_marginBottom="30dp"
-                android:src="@drawable/temperature" />
+                android:src="@drawable/danger" />
 
         </LinearLayout>
 

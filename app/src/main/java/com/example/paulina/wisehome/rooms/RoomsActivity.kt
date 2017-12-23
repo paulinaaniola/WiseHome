@@ -8,6 +8,7 @@ import com.example.paulina.wisehome.R
 import com.example.paulina.wisehome.alarms.AlarmsActivity
 import com.example.paulina.wisehome.base.BasePresenter
 import com.example.paulina.wisehome.base.NavDrawerActivity
+import com.example.paulina.wisehome.blinds.BlindsActivity
 import com.example.paulina.wisehome.lights.LightsActivity
 import com.example.paulina.wisehome.model.transportobjects.Room
 import com.example.paulina.wisehome.model.utils.AnimUtils
@@ -49,7 +50,8 @@ class RoomsActivity : NavDrawerActivity(), RoomsView {
         startActivity(Intent(this, LightsActivity::class.java).putExtra("room_id", roomId))
     }
 
-    override fun onBlindsClick() {
+    override fun onBlindsClick(roomId: String) {
+        startActivity(Intent(this, BlindsActivity::class.java).putExtra("room_id", roomId))
     }
 
     override fun onAlarmSensorsClick(roomId: String) {

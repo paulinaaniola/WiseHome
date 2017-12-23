@@ -1,4 +1,4 @@
-package com.example.paulina.wisehome.model.transportobjects
+package com.example.paulina.wisehome.model.businessobjects
 
 
 

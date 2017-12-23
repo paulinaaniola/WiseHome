@@ -72,7 +72,7 @@
                     android:layout_height="40dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="2dp"
-                    android:src="@drawable/temperature" />
+                    android:src="@drawable/temperature2" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -117,7 +117,7 @@
                     android:layout_height="40dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="2dp"
-                    android:src="@drawable/temperature" />
+                    android:src="@drawable/humidity" />
 
                 <TextView
                     android:layout_width="wrap_content"

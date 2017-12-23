@@ -3,7 +3,7 @@ package com.example.paulina.wisehome.rooms
 import android.content.Intent
 import com.example.paulina.wisehome.R
 import com.example.paulina.wisehome.base.BaseAbstractPresenter
-import com.example.paulina.wisehome.model.transportobjects.DeviceType
+import com.example.paulina.wisehome.model.businessobjects.DeviceType
 import com.example.paulina.wisehome.model.transportobjects.Room
 import com.example.paulina.wisehome.model.utils.ResUtil
 import com.example.paulina.wisehome.service.receivers.GetRoomsReciever
