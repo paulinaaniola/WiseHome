@@ -30,8 +30,9 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@color/colorLightBlue"
-            android:gravity="center"
+            android:background="@color/colorLightYellow"
+            android:gravity="center_vertical"
+            android:paddingStart="20dp"
             android:text="@string/alarm_sensors"
             android:textSize="24sp" />
 

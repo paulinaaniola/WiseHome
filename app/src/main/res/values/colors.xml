@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#ECE247</color>
+    <color name="colorAccent">#4AA3CD</color>
+    <color name="colorDarkYellow">#ECE247</color>
     <color name="colorBackground">#F3F3F4</color>
     <color name="colorPrimary">#F4F4F4</color>
     <color name="colorError">#FF0000</color>
@@ -10,6 +11,7 @@
     <color name="colorLightBlue">#D5EAF4</color>
     <color name="colorLightRed">#F4B0B0</color>
     <color name="colorGreen">#009688</color>
+    <color name="colorLightYellow">#ECE259</color>
 
 
 </resources>
