@@ -8,6 +8,9 @@ import android.support.v7.widget.Toolbar
 import android.view.Gravity
 import android.view.View
 import com.example.paulina.wisehome.R
+import com.example.paulina.wisehome.model.businessobjects.AccountType
+import com.example.paulina.wisehome.model.businessobjects.NavDrawerItemType
+import com.example.paulina.wisehome.model.database.Database
 import com.example.paulina.wisehome.rooms.RoomsActivity
 import com.yalantis.jellytoolbar.widget.JellyToolbar
 import kotlinx.android.synthetic.main.activity_rooms.*
@@ -20,7 +23,7 @@ abstract class NavDrawerActivity : BaseActivity() {
     private var drawerToggle: ActionBarDrawerToggle? = null
     private var closeable: Boolean = false
     private var isInitializing = true
-    // private var drawerAdapter: NavDrawerAdapter? = null
+    private lateinit var drawerAdapter: NavDrawerAdapter
 
     override fun setContentView(@LayoutRes layoutResID: Int) {
         super.setContentView(layoutResID)
@@ -35,7 +38,7 @@ abstract class NavDrawerActivity : BaseActivity() {
             setDrawerToggle()
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
             setNavigationIcon(toolbar.toolbar as Toolbar)
-//            setupDrawerList()
+            setupDrawerList()
         } else {
             drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
         }
@@ -72,5 +75,27 @@ abstract class NavDrawerActivity : BaseActivity() {
 
     protected fun setupToolbar(toolbar: JellyToolbar, title: String) {
         CustomToolbar().setupToolbar(toolbar, title)
+    }
+
+    private fun setupDrawerList() {
+        val header = layoutInflater.inflate(R.layout.header_nav_drawer, null)
+        drawerList.addHeaderView(header, null, false)
+        drawerAdapter = NavDrawerAdapter(this)
+        drawerAdapter.items = createNavDrawerItems()
+        drawerList.adapter = drawerAdapter
+        //drawerList.setOnItemClickListener { parent, view, position, id -> handleDrawerItemClick(position) }
+    }
+
+    private fun createNavDrawerItems(): MutableList<NavDrawerItemType> {
+        val items: MutableList<NavDrawerItemType> = mutableListOf()
+        items.add(NavDrawerItemType.MY_ROOMS)
+        if (Database().getAccountType() == AccountType.ADMIN) {
+            items.add(NavDrawerItemType.ADD_ROOM)
+            items.add(NavDrawerItemType.ADD_DEVICE)
+            items.add(NavDrawerItemType.ADD_ACCOUNT)
+        }
+        items.add(NavDrawerItemType.ACCOUNT_SETTINGS)
+        items.add(NavDrawerItemType.LOGOUT)
+        return items
     }
 }

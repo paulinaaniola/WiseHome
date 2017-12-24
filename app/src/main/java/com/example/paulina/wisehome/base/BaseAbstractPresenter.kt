@@ -1,17 +1,12 @@
 package com.example.paulina.wisehome.base
 
+import com.example.paulina.wisehome.model.database.Database
 import easymvp.RxPresenter
 
 abstract class BaseAbstractPresenter<V : BaseView> : RxPresenter<V>(), BasePresenter {
 
-//    abstract val presentationModel: BaseModel
+   /* abstract val presentationModel: BaseModel*/
 
-//    val database: Database
-//        get() = Database()
-//
-//    var token: Token
-//        get() = database.getToken()
-//        set(token) {
-//            database.putToken(token)
-//        }
+    val database: Database
+        get() = Database()
 }

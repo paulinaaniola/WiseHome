@@ -26,6 +26,11 @@ class AccessActivity : BaseActivity(), AccessView {
     }
 
     fun setupLoginButton() {
-        loginButton.setOnClickListener(({ v -> startActivity(Intent(this, RoomsActivity::class.java)) }))
+        loginButton.setOnClickListener(({ v -> onLoginButtonClick() }))
+    }
+
+    private fun onLoginButtonClick() {
+        presenter.saveAccountType()
+        startActivity(Intent(this, RoomsActivity::class.java))
     }
 }

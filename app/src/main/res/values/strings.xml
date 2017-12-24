@@ -18,4 +18,14 @@
     <string name="carbon_dioxide_alarm">Carbon dioxide alarm</string>
     <string name="sth_wrong_check_internet_connection">Something went wrong. Check your internet connection and try again.</string>
     <string name="authorization_error">Authorization problem. Try again later.</string>
+    <string name="my_rooms">My Rooms</string>
+    <string name="add_room">Add Room</string>
+    <string name="add_device">Add Device</string>
+    <string name="logout">Logout</string>
+    <string name="account_settings">Account Settings</string>
+    <string name="add_account">Add Account</string>
+    <string name="closed">CLOSED</string>
+    <string name="partly_closed">PARTLY CLOSED</string>
+    <string name="moving">MOVING</string>
+    <string name="open">OPEN</string>
 </resources>

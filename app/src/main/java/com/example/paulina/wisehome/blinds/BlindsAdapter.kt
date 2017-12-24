@@ -21,7 +21,7 @@ internal class BlindsAdapter(private val context: Context) : RecyclerView.Adapte
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.blindNameTextView.text = blinds[position].name
-        holder.blindStateTextView.text = blinds[position].state.name
+        holder.blindStateTextView.text = blinds[position].state.toStringLocale()
         setupStateTextColor(holder, blinds[position].state)
     }
 
