@@ -6,10 +6,12 @@ import com.example.paulina.wisehome.base.ApplicationContext
 import com.example.paulina.wisehome.model.businessobjects.ResponseErrorMessage
 import com.example.paulina.wisehome.model.transportobjects.Lights
 import com.example.paulina.wisehome.model.transportobjects.Room
+import com.example.paulina.wisehome.model.transportobjects.UnconfigDevice
 import com.example.paulina.wisehome.model.utils.ResUtil
 import com.example.paulina.wisehome.model.utils.ToastUtil
 import com.example.paulina.wisehome.service.receivers.GetLightsReciever
 import com.example.paulina.wisehome.service.receivers.GetRoomsReciever
+import com.example.paulina.wisehome.service.receivers.GetUnconfigDevicesReciever
 import com.google.gson.Gson
 import retrofit2.HttpException
 import rx.Observable
@@ -36,7 +38,21 @@ object ServiceManager {
                 Action0 { Timber.e("OnCompleted") })
     }
 
-    fun getLights(receiver: GetLightsReciever, roomId : String) {
+    fun getUnconfigDevices(receiver: GetUnconfigDevicesReciever) {
+        setupRequest(ServiceProvider
+                .unconfigDeviceService
+                .getUnconfigDevices(),
+                Action1 {
+                    receiver.onGetUnconfigDevicesSucces(it as List<UnconfigDevice>) },
+                Action1 {
+                    handleError(it)
+                    receiver.onGetUnconfigDevicesError()
+                },
+                Action0 { Timber.e("OnCompleted") })
+    }
+
+
+    fun getights(receiver: GetLightsReciever, roomId : String) {
         setupRequest(ServiceProvider
                 .lightsService
                 .getLights(roomId),

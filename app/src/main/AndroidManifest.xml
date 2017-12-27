@@ -34,6 +34,7 @@
         <activity android:name=".weather.WeatherActivity" />
         <activity android:name=".alarms.AlarmsActivity" />
         <activity android:name=".blinds.BlindsActivity" />
+        <activity android:name=".unconfigdevices.UnconfigDevicesActivity" />
 
     </application>
 </manifest>

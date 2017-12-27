@@ -12,6 +12,7 @@ import com.example.paulina.wisehome.model.businessobjects.AccountType
 import com.example.paulina.wisehome.model.businessobjects.NavDrawerItemType
 import com.example.paulina.wisehome.model.database.Database
 import com.example.paulina.wisehome.rooms.RoomsActivity
+import com.example.paulina.wisehome.unconfigdevices.UnconfigDevicesActivity
 import com.yalantis.jellytoolbar.widget.JellyToolbar
 import kotlinx.android.synthetic.main.activity_rooms.*
 import kotlinx.android.synthetic.main.toolbar.*
@@ -83,7 +84,27 @@ abstract class NavDrawerActivity : BaseActivity() {
         drawerAdapter = NavDrawerAdapter(this)
         drawerAdapter.items = createNavDrawerItems()
         drawerList.adapter = drawerAdapter
-        //drawerList.setOnItemClickListener { parent, view, position, id -> handleDrawerItemClick(position) }
+        drawerList.setOnItemClickListener { parent, view, position, id -> handleDrawerItemClick(position) }
+    }
+
+    private fun handleDrawerItemClick(position: Int) {
+        val navDrawerItems = drawerAdapter.items
+        val clickedItem = navDrawerItems.get(position - 1)
+        when (clickedItem) {
+            NavDrawerItemType.MY_ROOMS -> openActivityFadeInFadeOut(RoomsActivity::class.java)
+            NavDrawerItemType.ADD_ROOM -> {}
+            NavDrawerItemType.ADD_DEVICE -> openActivityFadeInFadeOut(UnconfigDevicesActivity::class.java)
+            NavDrawerItemType.LOGOUT -> {}
+            NavDrawerItemType.ADD_ACCOUNT -> {}
+            NavDrawerItemType.ACCOUNT_SETTINGS -> {}
+        }
+        drawerLayout.closeDrawer(Gravity.LEFT)
+    }
+
+    private fun openActivityFadeInFadeOut(classTo: Class<*>) {
+        startActivity(Intent(this, classTo)
+                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP))
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
     }
 
     private fun createNavDrawerItems(): MutableList<NavDrawerItemType> {

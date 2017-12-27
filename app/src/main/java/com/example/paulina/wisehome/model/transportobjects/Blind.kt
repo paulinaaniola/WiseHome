@@ -1,7 +1,8 @@
 package com.example.paulina.wisehome.model.transportobjects
 
 import com.example.paulina.wisehome.model.businessobjects.BlindState
+import java.io.Serializable
 
 class Blind(val _id: String,
             val name : String,
-            val state : BlindState )
+            val state : BlindState ) : Serializable

@@ -20,7 +20,7 @@
     <string name="authorization_error">Authorization problem. Try again later.</string>
     <string name="my_rooms">My Rooms</string>
     <string name="add_room">Add Room</string>
-    <string name="add_device">Add Device</string>
+    <string name="add_device">Add device</string>
     <string name="logout">Logout</string>
     <string name="account_settings">Account Settings</string>
     <string name="add_account">Add Account</string>
@@ -28,4 +28,14 @@
     <string name="partly_closed">PARTLY CLOSED</string>
     <string name="moving">MOVING</string>
     <string name="open">OPEN</string>
+    <string name="unconfigured_devices">Unconfigured devices</string>
+    <string name="light">Light</string>
+    <string name="blind">Blind</string>
+    <string name="alarm_sensor">Alarm sensor</string>
+    <string name="weather_sensor">Weather sensor</string>
+    <string name="check_if_you_chose_right_device">Check if you chose right device</string>
+    <string name="selected_light_was_turned_on">Selected light was turned on</string>
+    <string name="red_diode_on_selected_device_is_blinking">Red diode on selected device is blinking</string>
+    <string name="cancel">cancel</string>
+    <string name="continue_word">continue</string>
 </resources>
