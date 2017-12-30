@@ -5,5 +5,5 @@ import java.io.Serializable
 
 
 class Room(val _id: String,
-           val name: String,
-           val listOfDeviceTypes: List<DeviceType>): Serializable
+           val roomName: String,
+           val deviceGroups: List<DeviceType>): Serializable

@@ -6,6 +6,6 @@ import rx.Observable
 
 interface RoomsApi {
 
-    @GET("api/id/rooms")
+    @GET("api/homeId/rooms")
     fun getRooms(): Observable<List<Room>>
 }

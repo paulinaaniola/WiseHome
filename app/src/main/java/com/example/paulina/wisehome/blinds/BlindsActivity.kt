@@ -5,12 +5,11 @@ import android.support.v7.widget.LinearLayoutManager
 import com.example.paulina.wisehome.R
 import com.example.paulina.wisehome.base.BasePresenter
 import com.example.paulina.wisehome.base.NavDrawerActivity
+import com.example.paulina.wisehome.model.businessobjects.BlindDirection
 import com.example.paulina.wisehome.model.transportobjects.Blind
-import com.example.paulina.wisehome.rooms.RoomsAdapter
 import easymvp.annotation.ActivityView
 import easymvp.annotation.Presenter
 import kotlinx.android.synthetic.main.activity_blinds.*
-import kotlinx.android.synthetic.main.activity_rooms.*
 import kotlinx.android.synthetic.main.toolbar.*
 
 
@@ -39,5 +38,9 @@ class BlindsActivity : NavDrawerActivity(), BlindsView {
 
     override fun setBlinds(blinds: List<Blind>) {
         blindsAdapter.blinds = blinds
+    }
+
+    override fun onChangeBlindDirectionClick(direction : BlindDirection){
+        presenter.changeBlindDirection(direction)
     }
 }

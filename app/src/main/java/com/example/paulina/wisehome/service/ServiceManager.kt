@@ -3,15 +3,12 @@ package com.example.paulina.wisehome.service
 import android.widget.Toast
 import com.example.paulina.wisehome.R
 import com.example.paulina.wisehome.base.ApplicationContext
+import com.example.paulina.wisehome.model.businessobjects.BlindDirection
 import com.example.paulina.wisehome.model.businessobjects.ResponseErrorMessage
-import com.example.paulina.wisehome.model.transportobjects.Lights
-import com.example.paulina.wisehome.model.transportobjects.Room
-import com.example.paulina.wisehome.model.transportobjects.UnconfigDevice
+import com.example.paulina.wisehome.model.transportobjects.*
 import com.example.paulina.wisehome.model.utils.ResUtil
 import com.example.paulina.wisehome.model.utils.ToastUtil
-import com.example.paulina.wisehome.service.receivers.GetLightsReciever
-import com.example.paulina.wisehome.service.receivers.GetRoomsReciever
-import com.example.paulina.wisehome.service.receivers.GetUnconfigDevicesReciever
+import com.example.paulina.wisehome.service.receivers.*
 import com.google.gson.Gson
 import retrofit2.HttpException
 import rx.Observable
@@ -30,7 +27,8 @@ object ServiceManager {
                 .roomsService
                 .getRooms(),
                 Action1 {
-                    receiver.onGetRoomsSuccess(it as List<Room>) },
+                    receiver.onGetRoomsSuccess(it as List<Room>)
+                },
                 Action1 {
                     handleError(it)
                     receiver.onGetRoomsError()
@@ -43,7 +41,8 @@ object ServiceManager {
                 .unconfigDeviceService
                 .getUnconfigDevices(),
                 Action1 {
-                    receiver.onGetUnconfigDevicesSucces(it as List<UnconfigDevice>) },
+                    receiver.onGetUnconfigDevicesSucces(it as List<UnconfigDevice>)
+                },
                 Action1 {
                     handleError(it)
                     receiver.onGetUnconfigDevicesError()
@@ -52,15 +51,72 @@ object ServiceManager {
     }
 
 
-    fun getights(receiver: GetLightsReciever, roomId : String) {
+    fun getLights(receiver: GetLightsReciever, roomId: String) {
         setupRequest(ServiceProvider
                 .lightsService
                 .getLights(roomId),
                 Action1 {
-                    receiver.onGetLightsSuccess(it as Lights) },
+                    receiver.onGetLightsSuccess(it as Lights)
+                },
                 Action1 {
                     handleError(it)
                     receiver.onGetLightsError()
+                },
+                Action0 { Timber.e("OnCompleted") })
+    }
+
+    fun changeLightColor(receiver: PostChangeLightColorReciver, roomId: String, color: RGBColor) {
+        setupRequest(ServiceProvider
+                .lightsService
+                .changeLightColor(roomId, color),
+                Action1 {
+                    receiver.onChangeLightColorSuccess()
+                },
+                Action1 {
+                    handleError(it)
+                    receiver.onChangeLightColorError()
+                },
+                Action0 { Timber.e("OnCompleted") })
+    }
+
+    fun turnOnOffLight(receiver: PostTurnOnOffLightReciever, roomId: String, lightId: String, power: Boolean) {
+        setupRequest(ServiceProvider
+                .lightsService
+                .turnOnOffLight(roomId, power, lightId),
+                Action1 {
+                    receiver.onTurnOnOffSucces()
+                },
+                Action1 {
+                    handleError(it)
+                    receiver.onTurnOnOffError()
+                },
+                Action0 { Timber.e("OnCompleted") })
+    }
+
+    fun getBlinds(receiver: GetBlindsReciever, roomId: String) {
+        setupRequest(ServiceProvider
+                .blindsService
+                .getBlinds(roomId),
+                Action1 {
+                    receiver.onGetBlindsSuccess(it as List<Blind>)
+                },
+                Action1 {
+                    handleError(it)
+                    receiver.onGetBlindsError()
+                },
+                Action0 { Timber.e("OnCompleted") })
+    }
+
+    fun changeBlindState(receiver: PostChangeBlindState, roomId: String, direction: BlindDirection) {
+        setupRequest(ServiceProvider
+                .blindsService
+                .changeBlindState(roomId, direction),
+                Action1 {
+                    receiver.onChangeBlindStateSuccess()
+                },
+                Action1 {
+                    handleError(it)
+                    receiver.onChangeBlindsStateError()
                 },
                 Action0 { Timber.e("OnCompleted") })
     }

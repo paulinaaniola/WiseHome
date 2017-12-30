@@ -1,5 +1,6 @@
 package com.example.paulina.wisehome.service
 
+import com.example.paulina.wisehome.service.api.BlindsApi
 import com.example.paulina.wisehome.service.api.LightsApi
 import com.example.paulina.wisehome.service.api.RoomsApi
 import com.example.paulina.wisehome.service.api.UnconfigDevicesApi
@@ -14,4 +15,5 @@ object ServiceProvider {
 
     var lightsService: LightsApi = ServiceFactory.createRetrofitService(LightsApi::class.java, BASE_URL, false, false)
 
+    var blindsService: BlindsApi = ServiceFactory.createRetrofitService(BlindsApi::class.java, BASE_URL, false, false)
 }

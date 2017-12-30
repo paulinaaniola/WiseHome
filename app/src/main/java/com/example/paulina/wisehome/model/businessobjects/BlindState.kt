@@ -5,9 +5,9 @@ import com.example.paulina.wisehome.model.utils.ResUtil
 
 
 enum class BlindState(val resourceId : Int) {
-    OPEN(R.string.open),
+    OPENED(R.string.open),
     CLOSED(R.string.closed),
-    PARTLY_CLOSE(R.string.partly_closed),
+    PARTLY_CLOSED(R.string.partly_closed),
     MOVING(R.string.moving);
 
     fun toStringLocale(): String? {

@@ -22,12 +22,14 @@
             android:textSize="24sp" />
 
         <ImageView
+            android:id="@+id/downImageView"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_marginStart="30dp"
             android:src="@drawable/blind_down" />
 
         <com.rey.material.widget.Button
+            android:id="@+id/stopImageView"
             android:layout_width="70dp"
             android:layout_height="30dp"
             android:layout_gravity="center_vertical"
@@ -37,6 +39,7 @@
             android:text="@string/stop" />
 
         <ImageView
+            android:id="@+id/upImageView"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_marginEnd="20dp"

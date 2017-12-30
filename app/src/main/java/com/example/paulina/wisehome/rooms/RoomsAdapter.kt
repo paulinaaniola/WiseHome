@@ -14,7 +14,11 @@ import kotlinx.android.synthetic.main.item_room.view.*
 
 internal class RoomsAdapter(private val context: Context) : RecyclerView.Adapter<RoomsAdapter.ViewHolder>() {
 
-    var rooms: List<Room> = emptyList<Room>()
+    var rooms: List<Room> = mutableListOf()
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.item_room, parent, false)
@@ -22,8 +26,8 @@ internal class RoomsAdapter(private val context: Context) : RecyclerView.Adapter
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.roomNameTextView.text = rooms[position].name
-        setupDeviceTypesList(holder, rooms[position].listOfDeviceTypes, rooms[position]._id)
+        holder.roomNameTextView.text = rooms[position].roomName
+        setupDeviceTypesList(holder, rooms[position].deviceGroups, rooms[position]._id)
         holder.roomNameLayout.setOnClickListener({ v -> expandOrCollapseList(holder) })
     }
 

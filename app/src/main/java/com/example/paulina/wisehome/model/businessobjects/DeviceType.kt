@@ -2,9 +2,10 @@ package com.example.paulina.wisehome.model.businessobjects
 
 import com.example.paulina.wisehome.R
 import com.example.paulina.wisehome.model.utils.ResUtil
+import java.io.Serializable
 
 
-enum class DeviceType(val resourceId: Int) {
+enum class DeviceType(val resourceId: Int) : Serializable {
     LIGHTS(R.string.lights),
     BLINDS(R.string.blinds),
     ALARM_SENSORS(R.string.alarm_sensors),
