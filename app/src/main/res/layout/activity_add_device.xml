@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -27,13 +28,36 @@
             android:text="@string/add_device"
             android:textSize="24sp" />
 
+        <com.rey.material.widget.EditText
+            android:id="@+id/deviceNameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="fill"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="20dp"
+            android:background="@android:color/transparent"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:hint="@string/device_name"
+            android:imeOptions="actionSearch"
+            android:inputType="textPersonName"
+            android:textSize="18sp"
+            android:touchscreenBlocksFocus="true"
+            app:et_dividerColor="@color/colorGray"
+            app:et_dividerErrorColor="@color/colorError"
+            app:et_dividerHeight="2dp"
+            app:et_labelEnable="true"
+            app:et_labelTextColor="@color/colorDarkBlue"
+            app:et_supportMode="helper"
+            app:et_supportTextErrorColor="@color/colorError" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@color/colorLightYellow"
             android:gravity="center_vertical"
             android:paddingStart="20dp"
-            android:text="@string/unconfigured_devices"
+            android:text="@string/choose_room"
             android:textSize="24sp" />
 
         <View
@@ -42,15 +66,20 @@
             android:background="@color/colorDarkBlue" />
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/unconfigDevicesRecyclerView"
+            android:id="@+id/roomsRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
     </LinearLayout>
 
     <include
-        android:id="@+id/checkUnconfigDeviceDialog"
-        layout="@layout/dialog_selected_device_highlight"
+        android:id="@+id/dialogMatchDeviceToRoom"
+        layout="@layout/dialog_match_device_to_room"
+        android:visibility="gone" />
+
+    <include
+        android:id="@+id/dialogDeviceConfigurated"
+        layout="@layout/dialog_device_configurated"
         android:visibility="gone" />
 
     <ListView

@@ -1,0 +1,47 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.8"
+        android:background="@color/colorPrimary"
+        android:clickable="false" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginEnd="40dp"
+        android:layout_marginStart="40dp"
+        android:background="@drawable/white_with_blue_borders"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="50dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:text="@string/device_configurated"
+            android:textSize="24sp" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/ok" />
+
+        <com.rey.material.widget.Button
+            android:id="@+id/okButton"
+            android:layout_width="80dp"
+            android:layout_height="32dp"
+            android:layout_gravity="center"
+            android:layout_margin="20dp"
+            android:background="@color/colorAccent"
+            android:text="@string/ok" />
+
+    </LinearLayout>
+</FrameLayout>

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.example.paulina.wisehome.R
+import com.example.paulina.wisehome.adddevice.AddDeviceActivity
 import com.example.paulina.wisehome.base.BasePresenter
 import com.example.paulina.wisehome.base.NavDrawerActivity
 import com.example.paulina.wisehome.model.businessobjects.DeviceType
@@ -14,7 +15,7 @@ import com.example.paulina.wisehome.rooms.RoomsActivity
 import easymvp.annotation.ActivityView
 import easymvp.annotation.Presenter
 import kotlinx.android.synthetic.main.activity_unconfig_devices.*
-import kotlinx.android.synthetic.main.check_unconfig_device_dialog.*
+import kotlinx.android.synthetic.main.dialog_selected_device_highlight.*
 import kotlinx.android.synthetic.main.toolbar.*
 
 
@@ -46,19 +47,25 @@ class UnconfigDevicesActivity : NavDrawerActivity(), UnconfigDevicesView {
         devicesAdapter.devices = devices
     }
 
-    override fun onDeviceClick(deviceType: DeviceType) {
-        if (deviceType == DeviceType.LIGHTS) {
+    override fun onDeviceClick(selectedDevice: UnconfigDevice) {
+        if (selectedDevice.type == DeviceType.LIGHTS) {
             higlightInformation.text = ResUtil.getString(R.string.selected_light_was_turned_on)
         } else {
             higlightInformation.text = ResUtil.getString(R.string.red_diode_on_selected_device_is_blinking)
         }
+        presenter.saveSelectedDevice(selectedDevice)
         checkUnconfigDeviceDialog.visibility = View.VISIBLE
     }
 
     private fun setupDialog() {
         cancelButton.setOnClickListener(({ v -> checkUnconfigDeviceDialog.visibility = View.GONE }))
         //TODO: remember to turn off light or diode after cancel click
-        continueButton.setOnClickListener(({ view -> }))
+        continueButton.setOnClickListener(({ view -> onContinueClick() }))
+    }
+
+    private fun onContinueClick() {
+        startActivity(Intent(this, AddDeviceActivity::class.java)
+                .putExtra("SelectedDevice", presenter.getSelectedDevice()))
     }
 
     override fun onBackPressed() {

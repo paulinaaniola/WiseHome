@@ -35,6 +35,7 @@
         <activity android:name=".alarms.AlarmsActivity" />
         <activity android:name=".blinds.BlindsActivity" />
         <activity android:name=".unconfigdevices.UnconfigDevicesActivity" />
+        <activity android:name=".adddevice.AddDeviceActivity"/>
 
     </application>
 </manifest>

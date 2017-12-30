@@ -35,6 +35,14 @@ class UnconfigDevicesPresenterImpl : BaseAbstractPresenter<UnconfigDevicesView>(
         view?.stopProgressDialog()
     }
 
+    override fun saveSelectedDevice(selectedDevice: UnconfigDevice){
+        presentationModel.selectedDevice = selectedDevice
+    }
+
+    override fun getSelectedDevice() : UnconfigDevice{
+        return presentationModel.selectedDevice
+    }
+
     private fun createDummyDevices(): List<UnconfigDevice> {
         val devices: MutableList<UnconfigDevice> = mutableListOf()
         devices.add(UnconfigDevice("1", DeviceType.LIGHTS))

@@ -29,7 +29,7 @@ internal class UnconfigDevicesAdapter(private val context: Context) : RecyclerVi
         val deviceType: DeviceType = devices[position].type
         holder.deviceTypeNameTextView.text = deviceType.toStringLocale()
         setupDevicesList(deviceType, holder)
-        holder.deviceTypeLayout.setOnClickListener(({ view -> (context as UnconfigDevicesView).onDeviceClick(deviceType) }))
+        holder.deviceTypeLayout.setOnClickListener(({ view -> (context as UnconfigDevicesView).onDeviceClick(devices[position]) }))
     }
 
     private fun setupDevicesList(deviceType: DeviceType, holder: UnconfigDevicesAdapter.ViewHolder) {

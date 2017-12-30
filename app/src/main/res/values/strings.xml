@@ -38,4 +38,11 @@
     <string name="red_diode_on_selected_device_is_blinking">Red diode on selected device is blinking</string>
     <string name="cancel">cancel</string>
     <string name="continue_word">continue</string>
+    <string name="device_name">Device name</string>
+    <string name="choose_room">Choose room:</string>
+    <string name="do_you_want_to_add">Are you sure that you want to add</string>
+    <string name="to_room">to room:</string>
+    <string name="add">add</string>
+    <string name="device_configurated">Device configurated</string>
+    <string name="ok">OK</string>
 </resources>

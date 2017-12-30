@@ -4,11 +4,11 @@
     android:layout_height="match_parent">
 
     <FrameLayout
-        android:clickable="false"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:alpha="0.8"
-        android:background="@color/colorPrimary" />
+        android:background="@color/colorPrimary"
+        android:clickable="false" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -26,19 +26,44 @@
             android:layout_marginStart="50dp"
             android:layout_marginTop="30dp"
             android:gravity="center"
-            android:text="@string/check_if_you_chose_right_device"
+            android:text="@string/do_you_want_to_add"
             android:textSize="24sp" />
 
         <TextView
-            android:id="@+id/higlightInformation"
+            android:id="@+id/selectedDeviceNameTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
             android:gravity="center"
-            android:layout_marginEnd="50dp"
-            android:layout_marginStart="50dp"
-            android:layout_marginTop="30dp"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/to_room"
             android:textSize="24sp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/selectedRoomNameTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="24sp"
+                android:text="?"/>
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -54,12 +79,12 @@
                 android:text="@string/cancel" />
 
             <com.rey.material.widget.Button
-                android:id="@+id/continueButton"
+                android:id="@+id/addButton"
                 android:layout_width="80dp"
                 android:layout_height="40dp"
                 android:layout_margin="20dp"
                 android:background="@color/colorAccent"
-                android:text="@string/continue_word" />
+                android:text="@string/add" />
 
         </LinearLayout>
     </LinearLayout>
