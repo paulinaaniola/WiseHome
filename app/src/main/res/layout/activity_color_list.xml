@@ -22,66 +22,27 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="10dp"
             android:layout_marginTop="10dp"
-            android:text="Living Room"
+            android:text="@string/lights"
             android:textSize="24sp" />
 
-        <RelativeLayout
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:background="@color/colorLightYellow"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingBottom="10dp"
-                android:paddingLeft="20dp"
-                android:paddingTop="10dp"
-                android:text="@string/lights"
-                android:textSize="24sp" />
-
-            <com.rey.material.widget.Button
-                android:id="@+id/colorListButton"
-                android:layout_width="wrap_content"
-                android:layout_height="32dp"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="10dp"
-                android:background="@drawable/round_blue_frame"
-                android:paddingEnd="5dp"
-                android:paddingStart="5dp"
-                android:text="@string/color_list"
-                android:textAllCaps="false" />
-
-        </RelativeLayout>
+            android:gravity="center_vertical"
+            android:paddingStart="20dp"
+            android:text="@string/color_list"
+            android:textSize="24sp" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/colorDarkBlue" />
 
-
-        <include layout="@layout/color_picker_layout" />
-
-        <include layout="@layout/saturation_bar_layout" />
-
-
-        <com.rey.material.widget.Button
-            android:id="@+id/changeColorButton"
-            android:layout_width="wrap_content"
-            android:layout_height="32dp"
-            android:layout_gravity="center"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/round_blue_frame"
-            android:paddingEnd="5dp"
-            android:paddingStart="5dp"
-            android:text="@string/apply_color"
-            android:textAllCaps="false" />
-
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/lightRecyclerView"
+            android:id="@+id/colorListRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 

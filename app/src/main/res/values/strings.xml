@@ -45,4 +45,6 @@
     <string name="add">add</string>
     <string name="device_configurated">Device configurated</string>
     <string name="ok">OK</string>
+    <string name="apply_color">Apply color</string>
+    <string name="color_list">Color list</string>
 </resources>
