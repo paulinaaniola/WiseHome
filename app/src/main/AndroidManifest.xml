@@ -37,6 +37,9 @@
         <activity android:name=".unconfigdevices.UnconfigDevicesActivity" />
         <activity android:name=".adddevice.AddDeviceActivity" />
         <activity android:name=".colorlist.ColorListActivity" />
+        <activity
+            android:name=".addroom.AddRoomActivity"
+            android:theme="@style/Theme.AppCompat.Translucent" />
 
     </application>
 </manifest>

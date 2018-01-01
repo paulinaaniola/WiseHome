@@ -42,9 +42,12 @@
     <string name="choose_room">Choose room:</string>
     <string name="do_you_want_to_add">Are you sure that you want to add</string>
     <string name="to_room">to room:</string>
-    <string name="add">add</string>
+    <string name="add">Add</string>
     <string name="device_configurated">Device configurated</string>
     <string name="ok">OK</string>
     <string name="apply_color">Apply color</string>
     <string name="color_list">Color list</string>
+    <string name="room_name">Room name</string>
+    <string name="blank_edit_text_error">This field can not be blank</string>
 </resources>
+

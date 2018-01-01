@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar
 import android.view.Gravity
 import android.view.View
 import com.example.paulina.wisehome.R
+import com.example.paulina.wisehome.addroom.AddRoomActivity
 import com.example.paulina.wisehome.model.businessobjects.AccountType
 import com.example.paulina.wisehome.model.businessobjects.NavDrawerItemType
 import com.example.paulina.wisehome.model.database.Database
@@ -92,11 +93,14 @@ abstract class NavDrawerActivity : BaseActivity() {
         val clickedItem = navDrawerItems.get(position - 1)
         when (clickedItem) {
             NavDrawerItemType.MY_ROOMS -> openActivityFadeInFadeOut(RoomsActivity::class.java)
-            NavDrawerItemType.ADD_ROOM -> {}
+            NavDrawerItemType.ADD_ROOM -> openActivityFadeInFadeOut(AddRoomActivity::class.java)
             NavDrawerItemType.ADD_DEVICE -> openActivityFadeInFadeOut(UnconfigDevicesActivity::class.java)
-            NavDrawerItemType.LOGOUT -> {}
-            NavDrawerItemType.ADD_ACCOUNT -> {}
-            NavDrawerItemType.ACCOUNT_SETTINGS -> {}
+            NavDrawerItemType.LOGOUT -> {
+            }
+            NavDrawerItemType.ADD_ACCOUNT -> {
+            }
+            NavDrawerItemType.ACCOUNT_SETTINGS -> {
+            }
         }
         drawerLayout.closeDrawer(Gravity.LEFT)
     }
