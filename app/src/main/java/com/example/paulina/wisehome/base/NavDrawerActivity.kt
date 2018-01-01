@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar
 import android.view.Gravity
 import android.view.View
 import com.example.paulina.wisehome.R
+import com.example.paulina.wisehome.addaccount.AddAccountActivity
 import com.example.paulina.wisehome.addroom.AddRoomActivity
 import com.example.paulina.wisehome.model.businessobjects.AccountType
 import com.example.paulina.wisehome.model.businessobjects.NavDrawerItemType
@@ -97,8 +98,7 @@ abstract class NavDrawerActivity : BaseActivity() {
             NavDrawerItemType.ADD_DEVICE -> openActivityFadeInFadeOut(UnconfigDevicesActivity::class.java)
             NavDrawerItemType.LOGOUT -> {
             }
-            NavDrawerItemType.ADD_ACCOUNT -> {
-            }
+            NavDrawerItemType.ADD_ACCOUNT -> openActivityFadeInFadeOut(AddAccountActivity::class.java)
             NavDrawerItemType.ACCOUNT_SETTINGS -> {
             }
         }

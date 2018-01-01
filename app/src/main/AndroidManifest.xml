@@ -40,6 +40,7 @@
         <activity
             android:name=".addroom.AddRoomActivity"
             android:theme="@style/Theme.AppCompat.Translucent" />
+        <activity android:name=".addaccount.AddAccountActivity" />
 
     </application>
 </manifest>
