@@ -78,4 +78,8 @@ class LightsPresenterImpl : BaseAbstractPresenter<LightsView>(), LightsPresenter
         view?.stopProgressDialog()
         Timber.e("POSZŁOOO")
     }
+
+    override fun getRoomId(): String {
+        return presentationModel.roomId
+    }
 }

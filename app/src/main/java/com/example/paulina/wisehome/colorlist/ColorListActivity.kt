@@ -34,5 +34,6 @@ class ColorListActivity : NavDrawerActivity(), ColorListView {
     }
 
     override fun onColorClick(color: RGBColor) {
+        presenter.changeLightColor(color)
     }
 }

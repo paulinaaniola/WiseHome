@@ -54,7 +54,12 @@ class LightsActivity : NavDrawerActivity(), LightsView {
     }
 
     private fun setupButtons() {
-        colorListButton.setOnClickListener({ startActivity(Intent(this, ColorListActivity::class.java)) })
+        colorListButton.setOnClickListener({
+            startActivity(Intent(this, ColorListActivity::class.java)
+                    .putExtra("roomId", presenter.getRoomId())
+                    .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
+            )
+        })
         changeColorButton.setOnClickListener({ changeLightColor() })
     }
 
