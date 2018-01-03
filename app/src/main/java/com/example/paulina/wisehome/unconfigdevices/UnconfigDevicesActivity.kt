@@ -48,12 +48,15 @@ class UnconfigDevicesActivity : NavDrawerActivity(), UnconfigDevicesView {
     }
 
     override fun onDeviceClick(selectedDevice: UnconfigDevice) {
+        presenter.highlightSelectedDevice(selectedDevice)
+    }
+
+    override fun displayDeviceHighlightedDialog(selectedDevice: UnconfigDevice) {
         if (selectedDevice.type == DeviceType.LIGHTS) {
             higlightInformation.text = ResUtil.getString(R.string.selected_light_was_turned_on)
         } else {
             higlightInformation.text = ResUtil.getString(R.string.red_diode_on_selected_device_is_blinking)
         }
-        presenter.saveSelectedDevice(selectedDevice)
         checkUnconfigDeviceDialog.visibility = View.VISIBLE
     }
 

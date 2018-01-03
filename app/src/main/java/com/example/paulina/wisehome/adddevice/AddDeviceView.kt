@@ -9,4 +9,6 @@ interface AddDeviceView : BaseView {
     fun setRooms(rooms: List<Room>)
 
     fun displayRoomConfigurationDialog(room: Room)
+
+    fun displayDeviceConfiguratedDialog()
 }

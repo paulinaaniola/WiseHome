@@ -5,6 +5,6 @@ import com.example.paulina.wisehome.model.transportobjects.UnconfigDevice
 
 
 interface UnconfigDevicesPresenter : BasePresenter{
-    fun saveSelectedDevice(selectedDevice: UnconfigDevice)
     fun getSelectedDevice() : UnconfigDevice
+    fun highlightSelectedDevice(selectedDevice: UnconfigDevice)
 }

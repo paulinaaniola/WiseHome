@@ -7,13 +7,14 @@ import com.example.paulina.wisehome.model.businessobjects.DeviceType
 import com.example.paulina.wisehome.model.transportobjects.Room
 import com.example.paulina.wisehome.model.transportobjects.UnconfigDevice
 import com.example.paulina.wisehome.model.utils.ResUtil
+import com.example.paulina.wisehome.service.receivers.AddDeviceToRoom
 import com.example.paulina.wisehome.service.receivers.GetRoomsReciever
 
 
-class AddDevicePresenterImpl : BaseAbstractPresenter<AddDeviceView>(), AddDevicePresenter, GetRoomsReciever {
+class AddDevicePresenterImpl : BaseAbstractPresenter<AddDeviceView>(), AddDevicePresenter, GetRoomsReciever, AddDeviceToRoom {
 
     override fun initExtras(intent: Intent) {
-        presentationModel.slectedDevice = intent.getSerializableExtra("SelectedDevice") as UnconfigDevice
+        presentationModel.selectedDevice = intent.getSerializableExtra("SelectedDevice") as UnconfigDevice
     }
 
     private val presentationModel: AddDeviceModel by lazy { AddDeviceModel() }
@@ -25,6 +26,7 @@ class AddDevicePresenterImpl : BaseAbstractPresenter<AddDeviceView>(), AddDevice
 
     private fun getRooms() {
         view?.startProgressDialog(ResUtil.getString(R.string.progress_loading_text))
+        // ServiceManager.getRooms(this)
         onGetRoomsSuccess(createDummyRooms())
     }
 
@@ -37,8 +39,31 @@ class AddDevicePresenterImpl : BaseAbstractPresenter<AddDeviceView>(), AddDevice
         view?.stopProgressDialog()
     }
 
-    override fun getSelectedDeviceType() : DeviceType {
-       return presentationModel.slectedDevice.type
+    override fun getSelectedDeviceType(): DeviceType {
+        return presentationModel.selectedDevice.type
+    }
+
+    override fun saveNewDeviceName(newName: String) {
+        presentationModel.newDeviceName = newName
+    }
+
+    override fun saveSelectedRoom(selectedRoom: Room) {
+        presentationModel.selectedRoom = selectedRoom
+    }
+
+    override fun addDeviceToRoom() {
+        view?.startProgressDialog(ResUtil.getString(R.string.progress_loading_text))
+        //TODO add Device to Room
+        onAddDeviceToRoomSuccess()
+    }
+
+    override fun onAddDeviceToRoomSuccess() {
+        view?.stopProgressDialog()
+        view?.displayDeviceConfiguratedDialog()
+    }
+
+    override fun onAddDeviceToRoomError() {
+        view?.stopProgressDialog()
     }
 
     fun createDummyRooms(): List<Room> {
