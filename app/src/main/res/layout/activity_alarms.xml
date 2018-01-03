@@ -42,13 +42,13 @@
             android:background="@color/colorDarkBlue" />
 
         <LinearLayout
+            android:id="@+id/carboonMonoxideLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:layout_marginEnd="40dp"
             android:layout_marginStart="40dp"
             android:layout_marginTop="20dp"
-            android:background="@drawable/white_round_frame_green_borders"
             android:orientation="vertical">
 
             <TextView
@@ -56,27 +56,27 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dp"
-                android:text="@string/carbon_monoxide_alarm"
+                android:text="@string/carbon_monoxide"
                 android:textSize="20sp" />
 
             <ImageView
+                android:id="@+id/carbonMonoxideImage"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_gravity="center"
                 android:layout_marginBottom="30dp"
-                android:layout_marginTop="30dp"
-                android:src="@drawable/no_danger" />
+                android:layout_marginTop="30dp" />
 
 
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/carbonDioxideLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:layout_marginEnd="40dp"
             android:layout_marginStart="40dp"
-            android:background="@drawable/white_round_frame_red_borders"
             android:orientation="vertical">
 
             <TextView
@@ -84,16 +84,16 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dp"
-                android:text="@string/carbon_dioxide_alarm"
+                android:text="@string/carbon_dioxide"
                 android:textSize="20sp" />
 
             <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:id="@+id/carbonDioxideImage"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="30dp"
                 android:layout_marginBottom="30dp"
-                android:src="@drawable/danger" />
+                android:layout_marginTop="30dp" />
 
         </LinearLayout>
 
