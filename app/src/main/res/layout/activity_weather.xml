@@ -75,11 +75,11 @@
                     android:src="@drawable/temperature2" />
 
                 <TextView
+                    android:id="@+id/temperatureTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:gravity="center"
-                    android:text="24"
                     android:textSize="40sp"
                     android:textStyle="bold" />
 
@@ -120,11 +120,11 @@
                     android:src="@drawable/humidity" />
 
                 <TextView
+                    android:id="@+id/humidityTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:gravity="center"
-                    android:text="24"
                     android:textSize="40sp"
                     android:textStyle="bold" />
 

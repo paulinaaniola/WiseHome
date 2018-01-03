@@ -121,6 +121,20 @@ object ServiceManager {
                 Action0 { Timber.e("OnCompleted") })
     }
 
+    fun getWeather(receiver: GetWeatherReciever) {
+        setupRequest(ServiceProvider
+                .weatherService
+                .getWeather(),
+                Action1 {
+                    receiver.onGetWeatherSuccess(it as Weather)
+                },
+                Action1 {
+                    handleError(it)
+                    receiver.onGetWeatherError()
+                },
+                Action0 { Timber.e("OnCompleted") })
+    }
+
     private fun setupRequest(observable: Observable<*>, onNext: Action1<Any>, onError: Action1<Throwable>, onCompleted: Action0): Subscription {
         return observable
                 .subscribeOn(Schedulers.newThread())
