@@ -91,7 +91,7 @@
             android:focusable="false"
             android:focusableInTouchMode="false"
             android:hint="@string/repeat_password"
-            android:inputType="textPersonName"
+            android:inputType="textPassword"
             android:textSize="14sp"
             android:touchscreenBlocksFocus="true"
             app:et_dividerColor="@color/colorGray"
@@ -101,6 +101,16 @@
             app:et_labelTextColor="@color/colorDarkBlue"
             app:et_supportMode="helper"
             app:et_supportTextErrorColor="@color/colorError" />
+
+        <com.rey.material.widget.Button
+            android:id="@+id/addButton"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:background="@color/colorAccent"
+            android:text="@string/add"
+            android:textColor="@android:color/white" />
     </LinearLayout>
 
     <ListView

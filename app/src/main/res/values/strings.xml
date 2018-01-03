@@ -50,6 +50,6 @@
     <string name="room_name">Room name</string>
     <string name="blank_edit_text_error">This field can not be blank</string>
     <string name="repeat_password">Repeat password</string>
-    <string name="password_error_messag">Password does not match the confirm password.</string>
+    <string name="password_error_message">Password does not match the confirm password.</string>
 </resources>
 
