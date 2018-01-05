@@ -68,7 +68,7 @@ class UnconfigDevicesActivity : NavDrawerActivity(), UnconfigDevicesView {
         continueButton.setOnClickListener(({ view -> onContinueClick() }))
     }
 
-    private fun onCancelClick(){
+    private fun onCancelClick() {
         checkUnconfigDeviceDialog.visibility = View.GONE
         presenter.highlightSelectedDevice(false)
     }

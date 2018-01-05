@@ -33,7 +33,7 @@ class AddDeviceActivity : NavDrawerActivity(), AddDeviceView {
         super.onCreate(savedInstanceState)
         setupToolbar(toolbar, " 123")
         setupRoomsList()
-        setupDialogButtons()
+        setupDialog()
     }
 
     override fun displayRoomConfigurationDialog(room: Room) {
@@ -64,7 +64,8 @@ class AddDeviceActivity : NavDrawerActivity(), AddDeviceView {
         roomsRecyclerView.adapter = roomsAdapter
     }
 
-    private fun setupDialogButtons() {
+    private fun setupDialog() {
+        matchDeviceDialogBackground.setOnClickListener({ dialogMatchDeviceToRoom.visibility = View.GONE })
         addButton.setOnClickListener({ onAddButtonClick() })
         cancelButton.setOnClickListener({ dialogMatchDeviceToRoom.visibility = View.GONE })
         okButton.setOnClickListener({ navigateToRooms() })
@@ -80,7 +81,7 @@ class AddDeviceActivity : NavDrawerActivity(), AddDeviceView {
         presenter.addDeviceToRoom()
     }
 
-    override fun displayDeviceConfiguratedDialog(){
+    override fun displayDeviceConfiguratedDialog() {
         dialogDeviceConfigurated.visibility = View.VISIBLE
     }
 
