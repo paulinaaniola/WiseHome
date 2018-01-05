@@ -1,7 +1,7 @@
 package com.example.paulina.wisehome.service.receivers
 
 
-interface AddDeviceToRoom{
+interface AddDeviceToRoomReciever {
     fun onAddDeviceToRoomSuccess()
     fun onAddDeviceToRoomError()
 }

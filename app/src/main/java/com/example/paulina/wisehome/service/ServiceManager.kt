@@ -50,6 +50,49 @@ object ServiceManager {
                 Action0 { Timber.e("OnCompleted") })
     }
 
+    fun highlightDevice(receiver: PostHighlightSelectedDevice, deviceId: String, power: Boolean) {
+        setupRequest(ServiceProvider
+                .unconfigDeviceService
+                .highlightDevice(deviceId, power),
+                Action1 {
+                    receiver.onHighlightDeviceSuccess(it as Boolean)
+                },
+                Action1 {
+                    handleError(it)
+                    receiver.onHighlightDeviceError()
+                },
+                Action0 { Timber.e("OnCompleted") })
+    }
+
+    fun addDeviceToRoom(receiver: AddDeviceToRoomReciever, roomId: String, deviceName: String, mac: String) {
+        setupRequest(ServiceProvider
+                .unconfigDeviceService
+                .addDeviceToRoom(roomId, deviceName, mac),
+                Action1 {
+                    receiver.onAddDeviceToRoomSuccess()
+                },
+                Action1 {
+                    handleError(it)
+                    receiver.onAddDeviceToRoomError()
+                },
+                Action0 { Timber.e("OnCompleted") })
+    }
+
+
+    fun addNewRoom(receiver: AddRoomReciever, roomName: String) {
+        setupRequest(ServiceProvider
+                .roomsService
+                .addNewRoom(roomName),
+                Action1 {
+                    receiver.onAddRoomSuccess()
+                },
+                Action1 {
+                    handleError(it)
+                    receiver.onAddRoomError()
+                },
+                Action0 { Timber.e("OnCompleted") })
+    }
+
 
     fun getLights(receiver: GetLightsReciever, roomId: String) {
         setupRequest(ServiceProvider
@@ -79,10 +122,10 @@ object ServiceManager {
                 Action0 { Timber.e("OnCompleted") })
     }
 
-    fun turnOnOffLight(receiver: PostTurnOnOffLightReciever, roomId: String, lightId: String, power: Boolean) {
+    fun turnOnOffLight(receiver: PostTurnOnOffLightReciever, lightId: String, power: Boolean) {
         setupRequest(ServiceProvider
                 .lightsService
-                .turnOnOffLight(roomId, power, lightId),
+                .turnOnOffLight(lightId, power),
                 Action1 {
                     receiver.onTurnOnOffSucces()
                 },
@@ -107,10 +150,10 @@ object ServiceManager {
                 Action0 { Timber.e("OnCompleted") })
     }
 
-    fun changeBlindState(receiver: PostChangeBlindState, roomId: String, direction: BlindDirection) {
+    fun changeBlindState(receiver: PostChangeBlindState, blindId: String, direction: BlindDirection) {
         setupRequest(ServiceProvider
                 .blindsService
-                .changeBlindState(roomId, direction),
+                .changeBlindState(blindId, direction),
                 Action1 {
                     receiver.onChangeBlindStateSuccess()
                 },
@@ -121,10 +164,10 @@ object ServiceManager {
                 Action0 { Timber.e("OnCompleted") })
     }
 
-    fun getWeather(receiver: GetWeatherReciever) {
+    fun getWeather(receiver: GetWeatherReciever, roomId : String) {
         setupRequest(ServiceProvider
                 .weatherService
-                .getWeather(),
+                .getWeather(roomId),
                 Action1 {
                     receiver.onGetWeatherSuccess(it as Weather)
                 },

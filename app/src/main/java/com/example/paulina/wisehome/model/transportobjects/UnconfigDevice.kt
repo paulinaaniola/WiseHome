@@ -5,4 +5,5 @@ import java.io.Serializable
 
 
 class UnconfigDevice(val mac: String,
-                     val type: DeviceType) : Serializable
+                     val ip: String,
+                     val deviceType: DeviceType) : Serializable

@@ -26,7 +26,7 @@ class BlindsPresenterImpl : BaseAbstractPresenter<BlindsView>(), BlindsPresenter
 
     private fun getBlinds() {
         view?.startProgressDialog(ResUtil.getString(R.string.progress_loading_text))
-        // ServiceManager.getBlinds(this, presentationModel.roomId)
+        //ServiceManager.getBlinds(this, presentationModel.roomId)
         onGetBlindsSuccess(createDummyBlinds())
     }
 
@@ -39,10 +39,10 @@ class BlindsPresenterImpl : BaseAbstractPresenter<BlindsView>(), BlindsPresenter
         view?.stopProgressDialog()
     }
 
-    override fun changeBlindDirection(direction: BlindDirection) {
+    override fun changeBlindDirection(direction: BlindDirection, blindId: String) {
         view?.startProgressDialog(ResUtil.getString(R.string.progress_loading_text))
         onChangeBlindStateSuccess()
-        // ServiceManager.changeBlindState(this, presentationModel.roomId, direction)
+        //ServiceManager.changeBlindState(this, blindId, direction)
     }
 
     override fun onChangeBlindStateSuccess() {

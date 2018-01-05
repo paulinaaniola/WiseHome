@@ -6,7 +6,6 @@ import com.example.paulina.wisehome.base.BaseAbstractPresenter
 import com.example.paulina.wisehome.model.businessobjects.Color
 import com.example.paulina.wisehome.model.transportobjects.RGBColor
 import com.example.paulina.wisehome.model.utils.ResUtil
-import com.example.paulina.wisehome.service.ServiceManager
 import com.example.paulina.wisehome.service.receivers.PostChangeLightColorReciver
 
 
@@ -28,7 +27,8 @@ class ColorListPresenterImpl : BaseAbstractPresenter<ColorListView>(), ColorList
 
     override fun changeLightColor(color: RGBColor) {
         view?.startProgressDialog(ResUtil.getString(R.string.progress_loading_text))
-        ServiceManager.changeLightColor(this, presentationModel.roomId, color)
+        // ServiceManager.changeLightColor(this, presentationModel.roomId, color)
+        onChangeLightColorSuccess()
     }
 
     override fun onChangeLightColorSuccess() {

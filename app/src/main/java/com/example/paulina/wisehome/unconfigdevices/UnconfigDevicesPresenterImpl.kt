@@ -24,7 +24,7 @@ class UnconfigDevicesPresenterImpl : BaseAbstractPresenter<UnconfigDevicesView>(
 
     fun getUnconfigDevices() {
         view?.startProgressDialog(ResUtil.getString(R.string.progress_loading_text))
-        //TODO: get unconfig devices
+        //ServiceManager.getUnconfigDevices(this)
         onGetUnconfigDevicesSucces(createDummyDevices())
     }
 
@@ -37,15 +37,20 @@ class UnconfigDevicesPresenterImpl : BaseAbstractPresenter<UnconfigDevicesView>(
         view?.stopProgressDialog()
     }
 
-    override fun highlightSelectedDevice(selectedDevice: UnconfigDevice) {
-        view?.startProgressDialog(ResUtil.getString(R.string.progress_loading_text))
+    override fun saveSelectedDevice(selectedDevice: UnconfigDevice) {
         presentationModel.selectedDevice = selectedDevice
-        //TODO: highlight selected device
-        onHighlightDeviceSuccess()
     }
 
-    override fun onHighlightDeviceSuccess() {
-        view?.displayDeviceHighlightedDialog(presentationModel.selectedDevice)
+    override fun highlightSelectedDevice(power: Boolean) {
+        view?.startProgressDialog(ResUtil.getString(R.string.progress_loading_text))
+        //ServiceManager.highlightDevice(this, presentationModel.selectedDevice.mac, power)
+        onHighlightDeviceSuccess(true)
+    }
+
+    override fun onHighlightDeviceSuccess(power: Boolean) {
+        if (power == true) {
+            view?.displayDeviceHighlightedDialog(presentationModel.selectedDevice)
+        }
         view?.stopProgressDialog()
     }
 
@@ -59,13 +64,13 @@ class UnconfigDevicesPresenterImpl : BaseAbstractPresenter<UnconfigDevicesView>(
 
     private fun createDummyDevices(): List<UnconfigDevice> {
         val devices: MutableList<UnconfigDevice> = mutableListOf()
-        devices.add(UnconfigDevice("1", DeviceType.LIGHTS))
-        devices.add(UnconfigDevice("2", DeviceType.LIGHTS))
-        devices.add(UnconfigDevice("7", DeviceType.LIGHTS))
-        devices.add(UnconfigDevice("5", DeviceType.BLINDS))
-        devices.add(UnconfigDevice("3", DeviceType.BLINDS))
-        devices.add(UnconfigDevice("4", DeviceType.ALARM_SENSORS))
-        devices.add(UnconfigDevice("6", DeviceType.WEATHER_SENSORS))
+        devices.add(UnconfigDevice("1", "1", DeviceType.LIGHTS))
+        devices.add(UnconfigDevice("2", "1", DeviceType.LIGHTS))
+        devices.add(UnconfigDevice("7", "1", DeviceType.LIGHTS))
+        devices.add(UnconfigDevice("5", "1", DeviceType.BLINDS))
+        devices.add(UnconfigDevice("3", "1", DeviceType.BLINDS))
+        devices.add(UnconfigDevice("4", "1", DeviceType.ALARM_SENSORS))
+        devices.add(UnconfigDevice("6", "1", DeviceType.WEATHER_SENSORS))
         return devices
     }
 }

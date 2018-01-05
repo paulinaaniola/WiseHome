@@ -14,8 +14,8 @@ interface BlindsApi {
     fun getBlinds(
             @Path("roomId") patientId: String): Observable<List<Blind>>
 
-    @POST("api/homeId/rooms/{roomId}/BLINDS")
+    @POST("api/homeId/changeDeviceState/{deviceId}")
     fun changeBlindState(
-            @Path("roomId") patientId: String,
+            @Path("deviceId") deviceId: String,
             @Query("direction") direction: BlindDirection): Observable<Void>
 }

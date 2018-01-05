@@ -22,7 +22,7 @@ class WeatherPresenterImpl : BaseAbstractPresenter<WeatherView>(), WeatherPresen
 
     fun getWeather() {
         view?.startProgressDialog(ResUtil.getString(R.string.progress_loading_text))
-        //ServiceManager.getWeather(this)
+        // ServiceManager.getWeather(this, presentationModel.roomId)
         onGetWeatherSuccess(Weather("24", "11"))
     }
 

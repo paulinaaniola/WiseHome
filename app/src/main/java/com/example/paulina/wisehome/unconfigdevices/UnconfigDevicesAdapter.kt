@@ -15,6 +15,10 @@ import kotlinx.android.synthetic.main.item_device_group.view.*
 internal class UnconfigDevicesAdapter(private val context: Context) : RecyclerView.Adapter<UnconfigDevicesAdapter.ViewHolder>() {
 
     var devices: List<UnconfigDevice> = emptyList<UnconfigDevice>()
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
     var numberOfLights: Int = 1
     var numberOfBlinds: Int = 1
     var numberOfWeatherSensors: Int = 1
@@ -26,7 +30,7 @@ internal class UnconfigDevicesAdapter(private val context: Context) : RecyclerVi
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val deviceType: DeviceType = devices[position].type
+        val deviceType: DeviceType = devices[position].deviceType
         holder.deviceTypeNameTextView.text = deviceType.toStringLocale()
         setupDevicesList(deviceType, holder)
         holder.deviceTypeLayout.setOnClickListener(({ view -> (context as UnconfigDevicesView).onDeviceClick(devices[position]) }))

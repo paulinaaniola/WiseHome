@@ -48,11 +48,12 @@ class UnconfigDevicesActivity : NavDrawerActivity(), UnconfigDevicesView {
     }
 
     override fun onDeviceClick(selectedDevice: UnconfigDevice) {
-        presenter.highlightSelectedDevice(selectedDevice)
+        presenter.saveSelectedDevice(selectedDevice)
+        presenter.highlightSelectedDevice(true)
     }
 
     override fun displayDeviceHighlightedDialog(selectedDevice: UnconfigDevice) {
-        if (selectedDevice.type == DeviceType.LIGHTS) {
+        if (selectedDevice.deviceType == DeviceType.LIGHTS) {
             higlightInformation.text = ResUtil.getString(R.string.selected_light_was_turned_on)
         } else {
             higlightInformation.text = ResUtil.getString(R.string.red_diode_on_selected_device_is_blinking)
@@ -61,9 +62,15 @@ class UnconfigDevicesActivity : NavDrawerActivity(), UnconfigDevicesView {
     }
 
     private fun setupDialog() {
-        cancelButton.setOnClickListener(({ v -> checkUnconfigDeviceDialog.visibility = View.GONE }))
+        dialogBackgroundLayout.setOnClickListener({ checkUnconfigDeviceDialog.visibility = View.GONE })
+        cancelButton.setOnClickListener(({ v -> onCancelClick() }))
         //TODO: remember to turn off light or diode after cancel click
         continueButton.setOnClickListener(({ view -> onContinueClick() }))
+    }
+
+    private fun onCancelClick(){
+        checkUnconfigDeviceDialog.visibility = View.GONE
+        presenter.highlightSelectedDevice(false)
     }
 
     private fun onContinueClick() {

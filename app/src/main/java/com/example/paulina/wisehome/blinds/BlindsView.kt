@@ -6,5 +6,5 @@ import com.example.paulina.wisehome.model.transportobjects.Blind
 
 interface BlindsView : BaseView{
     fun setBlinds(blinds : List<Blind>)
-    fun onChangeBlindDirectionClick(direction : BlindDirection)
+    fun onChangeBlindDirectionClick(direction : BlindDirection, blindId: String)
 }

@@ -27,7 +27,7 @@ class LightsPresenterImpl : BaseAbstractPresenter<LightsView>(), LightsPresenter
 
     private fun getLight() {
         onGetLightsSuccess(createDummyLights())
-        // ServiceManager.getLights(this, presentationModel.roomId)
+        //ServiceManager.getLights(this, presentationModel.roomId)
     }
 
     override fun onGetLightsError() {
@@ -50,7 +50,7 @@ class LightsPresenterImpl : BaseAbstractPresenter<LightsView>(), LightsPresenter
     override fun changeLightColor(color: RGBColor) {
         view?.startProgressDialog(ResUtil.getString(R.string.progress_loading_text))
         onChangeLightColorSuccess()
-        // ServiceManager.changeLightColor(this, presentationModel.roomId, color)
+        //ServiceManager.changeLightColor(this, presentationModel.roomId, color)
     }
 
     override fun onChangeLightColorError() {
@@ -66,7 +66,7 @@ class LightsPresenterImpl : BaseAbstractPresenter<LightsView>(), LightsPresenter
     override fun turnOnOffLight(lightId: String, power: Boolean) {
         view?.startProgressDialog(ResUtil.getString(R.string.progress_loading_text))
         onTurnOnOffSucces()
-        // ServiceManager.turnOnOffLight(this, presentationModel.roomId, lightId, power)
+        //ServiceManager.turnOnOffLight(this, lightId, power)
     }
 
     override fun onTurnOnOffError() {

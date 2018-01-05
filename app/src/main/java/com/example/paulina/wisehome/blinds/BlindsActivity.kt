@@ -40,7 +40,7 @@ class BlindsActivity : NavDrawerActivity(), BlindsView {
         blindsAdapter.blinds = blinds
     }
 
-    override fun onChangeBlindDirectionClick(direction : BlindDirection){
-        presenter.changeBlindDirection(direction)
+    override fun onChangeBlindDirectionClick(direction : BlindDirection, blindId: String){
+        presenter.changeBlindDirection(direction, blindId)
     }
 }

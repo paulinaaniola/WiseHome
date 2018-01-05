@@ -4,7 +4,7 @@ import com.example.paulina.wisehome.service.api.*
 
 object ServiceProvider {
 
-    var BASE_URL = "http://192.168.43.197:4000"
+    var BASE_URL = "http://10.0.2.2:4000"
 
     var roomsService: RoomsApi = ServiceFactory.createRetrofitService(RoomsApi::class.java, BASE_URL, false, false)
 
