@@ -17,6 +17,12 @@ internal class LightsAdapter(val context: Context) : RecyclerView.Adapter<Lights
             field = value
             notifyDataSetChanged()
         }
+    //TODO: ustawic automatic mode z tego co przyjdzie w poczatkowym getcie
+    var automaticMode: Boolean = false
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.item_light_bulb, parent, false)
@@ -25,10 +31,22 @@ internal class LightsAdapter(val context: Context) : RecyclerView.Adapter<Lights
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.lightNameTextView.text = lightBulbs[position].name
+        setupSwitch(holder, position)
+        if (position == lightBulbs.size - 1) {
+            (context as LightsView).setLightsStateUpdate(false)
+        }
+    }
+
+    private fun setupSwitch(holder: ViewHolder, position: Int) {
         holder.bulbSwitch.isChecked = lightBulbs[position].isPoweredOn
-        holder.bulbSwitch.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
-            (context as LightsView).onBulbSwitchClick(lightBulbs[position]._id, isChecked)
-        })
+        if (automaticMode) {
+            holder.bulbSwitch.isEnabled = false
+        } else {
+            holder.bulbSwitch.isEnabled = true
+            holder.bulbSwitch.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
+                (context as LightsView).onBulbSwitchClick(lightBulbs[position]._id, isChecked)
+            })
+        }
     }
 
     override fun getItemCount(): Int {
@@ -38,5 +56,16 @@ internal class LightsAdapter(val context: Context) : RecyclerView.Adapter<Lights
     internal class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val lightNameTextView = view.lighNameTextView
         val bulbSwitch = view.bulbSwitch
+    }
+
+    fun updateLightsState(id: String, isPoweredOn: Boolean?) {
+        if (isPoweredOn != null) {
+            for (lightBulb in lightBulbs) {
+                if (lightBulb._id == id) {
+                    lightBulb.isPoweredOn = isPoweredOn
+                }
+            }
+            notifyDataSetChanged()
+        }
     }
 }

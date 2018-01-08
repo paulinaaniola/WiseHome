@@ -3,6 +3,7 @@ package com.example.paulina.wisehome.lights
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.widget.CompoundButton
 import com.example.paulina.wisehome.R
 import com.example.paulina.wisehome.base.BasePresenter
 import com.example.paulina.wisehome.base.NavDrawerActivity
@@ -61,6 +62,10 @@ class LightsActivity : NavDrawerActivity(), LightsView {
             )
         })
         changeColorButton.setOnClickListener({ changeLightColor() })
+        automaticModeSwitch.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
+            presenter.setAutomaticMode(isChecked)
+            lightsAdapter.automaticMode = isChecked
+        })
     }
 
 
@@ -79,7 +84,6 @@ class LightsActivity : NavDrawerActivity(), LightsView {
 //            colorG.setText(green.toString())
 //            colorB.setText(blue.toString())
         }
-
     }
 
     private fun changeLightColor() {
@@ -88,6 +92,16 @@ class LightsActivity : NavDrawerActivity(), LightsView {
     }
 
     override fun onBulbSwitchClick(lightId: String, isPowerOn: Boolean) {
-        presenter.turnOnOffLight(lightId, isPowerOn)
+        if (!presenter.isLightStateUpdate()) {
+            presenter.turnOnOffLight(lightId, isPowerOn)
+        }
+    }
+
+    override fun updateLighBulbsState(id: String, isPoweredOn: Boolean?) {
+        lightsAdapter.updateLightsState(id, isPoweredOn)
+    }
+
+    override fun setLightsStateUpdate(isUpdate: Boolean) {
+        presenter.setLightStateUpdate(isUpdate)
     }
 }

@@ -4,4 +4,4 @@ import java.io.Serializable
 
 class LightBulb(val _id: String,
                 val name: String,
-                val isPoweredOn: Boolean) : Serializable
+                var isPoweredOn: Boolean) : Serializable

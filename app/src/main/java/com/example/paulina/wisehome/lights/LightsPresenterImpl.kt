@@ -11,6 +11,11 @@ import com.example.paulina.wisehome.service.ServiceManager
 import com.example.paulina.wisehome.service.receivers.GetLightsReciever
 import com.example.paulina.wisehome.service.receivers.PostChangeLightColorReciver
 import com.example.paulina.wisehome.service.receivers.PostTurnOnOffLightReciever
+import com.github.mikephil.charting.charts.Chart
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import timber.log.Timber
 
 class LightsPresenterImpl : BaseAbstractPresenter<LightsView>(), LightsPresenter, GetLightsReciever, PostChangeLightColorReciver, PostTurnOnOffLightReciever {
@@ -23,7 +28,16 @@ class LightsPresenterImpl : BaseAbstractPresenter<LightsView>(), LightsPresenter
 
     override fun onViewAttached(view: LightsView?) {
         super.onViewAttached(view)
+        setupDatabaseReferences()
         getLight()
+    }
+
+    private fun setupDatabaseReferences() {
+        val pm = presentationModel
+        pm.mDatabase = FirebaseDatabase.getInstance().getReference()
+        pm.test = pm.mDatabase.child("test")
+        pm.devicesStates = pm.test.child("devicesStates")
+        pm.lightBulbPower = pm.devicesStates.child("lightBulbPower")
     }
 
     private fun getLight() {
@@ -46,6 +60,24 @@ class LightsPresenterImpl : BaseAbstractPresenter<LightsView>(), LightsPresenter
 
     override fun onGetLightsSuccess(lights: Lights) {
         view?.setLights(lights.lightBulbs)
+        setupLightStateChangeListener(lights.lightBulbs)
+    }
+
+    private fun setupLightStateChangeListener(lightBulbs: List<LightBulb>) {
+        for (lightBulb in lightBulbs) {
+            presentationModel.lightBulbPower.child(lightBulb._id).addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    val id = dataSnapshot.key
+                    val state = dataSnapshot.child("isPoweredOn").getValue<Boolean>(Boolean::class.java)
+                    view?.updateLighBulbsState(id, state)
+                    presentationModel.isLightStateUpdate = true
+                }
+
+                override fun onCancelled(databaseError: DatabaseError) {
+                    Timber.d(Chart.LOG_TAG, databaseError.message)
+                }
+            })
+        }
     }
 
     override fun changeLightColor(color: RGBColor) {
@@ -82,5 +114,18 @@ class LightsPresenterImpl : BaseAbstractPresenter<LightsView>(), LightsPresenter
 
     override fun getRoomId(): String {
         return presentationModel.roomId
+    }
+
+    override fun isLightStateUpdate(): Boolean {
+        return presentationModel.isLightStateUpdate
+    }
+
+    override fun setLightStateUpdate(isUpdate: Boolean) {
+        presentationModel.isLightStateUpdate = isUpdate
+    }
+
+    override fun setAutomaticMode(isAutomaticMode: Boolean) {
+        // TODO: wysłać request o zmianie
+        presentationModel.isAutomaticMode = isAutomaticMode
     }
 }

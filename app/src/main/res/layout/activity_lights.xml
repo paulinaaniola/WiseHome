@@ -32,20 +32,14 @@
             android:background="@color/colorLightYellow"
             android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingBottom="10dp"
-                android:paddingLeft="20dp"
-                android:paddingTop="10dp"
-                android:text="@string/lights"
-                android:textSize="24sp" />
 
             <com.rey.material.widget.Button
                 android:id="@+id/colorListButton"
                 android:layout_width="wrap_content"
                 android:layout_height="32dp"
-                android:layout_alignParentEnd="true"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="20dp"
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="10dp"
                 android:background="@drawable/round_blue_frame"
@@ -54,6 +48,28 @@
                 android:text="@string/color_list"
                 android:textAllCaps="false" />
 
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="20dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/automatic_mode" />
+
+                <android.support.v7.widget.SwitchCompat
+                    android:id="@+id/automaticModeSwitch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal" />
+
+            </LinearLayout>
+
         </RelativeLayout>
 
         <View
@@ -61,29 +77,41 @@
             android:layout_height="1dp"
             android:background="@color/colorDarkBlue" />
 
-
-        <include layout="@layout/color_picker_layout" />
-
-        <include layout="@layout/saturation_bar_layout" />
-
-
-        <com.rey.material.widget.Button
-            android:id="@+id/changeColorButton"
-            android:layout_width="wrap_content"
-            android:layout_height="32dp"
-            android:layout_gravity="center"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/round_blue_frame"
-            android:paddingEnd="5dp"
-            android:paddingStart="5dp"
-            android:text="@string/apply_color"
-            android:textAllCaps="false" />
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/lightRecyclerView"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <include
+                layout="@layout/color_picker_layout"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2" />
+
+            <include layout="@layout/saturation_bar_layout" />
+
+
+            <com.rey.material.widget.Button
+                android:id="@+id/changeColorButton"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/round_blue_frame"
+                android:paddingEnd="5dp"
+                android:paddingStart="5dp"
+                android:text="@string/apply_color"
+                android:textAllCaps="false" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/lightRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+        </LinearLayout>
 
     </LinearLayout>
 

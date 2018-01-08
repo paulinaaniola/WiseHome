@@ -7,4 +7,7 @@ interface LightsPresenter : BasePresenter {
     fun changeLightColor(color : RGBColor)
     fun turnOnOffLight(lightId: String, power: Boolean)
     fun getRoomId(): String
+    fun isLightStateUpdate() : Boolean
+    fun setLightStateUpdate(isUpdate: Boolean)
+    fun setAutomaticMode(isAutomaticMode: Boolean)
 }
