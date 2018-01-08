@@ -6,6 +6,7 @@ import com.example.paulina.wisehome.R
 import com.example.paulina.wisehome.base.BasePresenter
 import com.example.paulina.wisehome.base.NavDrawerActivity
 import com.example.paulina.wisehome.model.businessobjects.BlindDirection
+import com.example.paulina.wisehome.model.businessobjects.BlindState
 import com.example.paulina.wisehome.model.transportobjects.Blind
 import easymvp.annotation.ActivityView
 import easymvp.annotation.Presenter
@@ -18,6 +19,7 @@ class BlindsActivity : NavDrawerActivity(), BlindsView {
 
     @Presenter
     lateinit var presenter: BlindsPresenter
+
 
     private val blindsAdapter: BlindsAdapter = BlindsAdapter(this)
 
@@ -40,7 +42,19 @@ class BlindsActivity : NavDrawerActivity(), BlindsView {
         blindsAdapter.blinds = blinds
     }
 
-    override fun onChangeBlindDirectionClick(direction : BlindDirection, blindId: String){
+    override fun onChangeBlindDirectionClick(direction: BlindDirection, blindId: String) {
         presenter.changeBlindDirection(direction, blindId)
+    }
+
+    override fun updateBlindState(id: String, state: String) {
+        var blindState: BlindState = BlindState.OPENED
+        when (state) {
+            getString(R.string.closed) -> blindState = BlindState.CLOSED
+            getString(R.string.opened) -> blindState = BlindState.OPENED
+            getString(R.string.moving) -> blindState = BlindState.MOVING
+            getString(R.string.partly_close_underscore) -> blindState = BlindState.PARTLY_CLOSED
+        }
+
+        blindsAdapter.updateBlindState(id, blindState)
     }
 }

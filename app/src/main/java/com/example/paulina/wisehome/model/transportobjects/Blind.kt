@@ -5,4 +5,4 @@ import java.io.Serializable
 
 class Blind(val _id: String,
             val name : String,
-            val state : BlindState ) : Serializable
+            var state : BlindState ) : Serializable

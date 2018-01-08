@@ -5,7 +5,7 @@ import com.example.paulina.wisehome.model.utils.ResUtil
 
 
 enum class BlindState(val resourceId : Int) {
-    OPENED(R.string.open),
+    OPENED(R.string.opened),
     CLOSED(R.string.closed),
     PARTLY_CLOSED(R.string.partly_closed),
     MOVING(R.string.moving);

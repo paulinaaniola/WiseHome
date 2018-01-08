@@ -59,4 +59,14 @@ internal class BlindsAdapter(private val context: Context) : RecyclerView.Adapte
         val upImageView = view.upImageView
         val stopImageView = view.stopImageView
     }
+
+    fun updateBlindState(id: String, state: BlindState) {
+        for (blind in blinds) {
+            if (blind._id == id) {
+                blind.state = state
+                break
+            }
+        }
+        notifyDataSetChanged()
+    }
 }

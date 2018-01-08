@@ -7,6 +7,7 @@ import com.example.paulina.wisehome.model.transportobjects.LightBulb
 import com.example.paulina.wisehome.model.transportobjects.Lights
 import com.example.paulina.wisehome.model.transportobjects.RGBColor
 import com.example.paulina.wisehome.model.utils.ResUtil
+import com.example.paulina.wisehome.service.ServiceManager
 import com.example.paulina.wisehome.service.receivers.GetLightsReciever
 import com.example.paulina.wisehome.service.receivers.PostChangeLightColorReciver
 import com.example.paulina.wisehome.service.receivers.PostTurnOnOffLightReciever
@@ -26,8 +27,8 @@ class LightsPresenterImpl : BaseAbstractPresenter<LightsView>(), LightsPresenter
     }
 
     private fun getLight() {
-        onGetLightsSuccess(createDummyLights())
-        //ServiceManager.getLights(this, presentationModel.roomId)
+        //onGetLightsSuccess(createDummyLights())
+        ServiceManager.getLights(this, presentationModel.roomId)
     }
 
     override fun onGetLightsError() {
@@ -49,8 +50,8 @@ class LightsPresenterImpl : BaseAbstractPresenter<LightsView>(), LightsPresenter
 
     override fun changeLightColor(color: RGBColor) {
         view?.startProgressDialog(ResUtil.getString(R.string.progress_loading_text))
-        onChangeLightColorSuccess()
-        //ServiceManager.changeLightColor(this, presentationModel.roomId, color)
+        // onChangeLightColorSuccess()
+        ServiceManager.changeLightColor(this, presentationModel.roomId, color)
     }
 
     override fun onChangeLightColorError() {
@@ -65,8 +66,8 @@ class LightsPresenterImpl : BaseAbstractPresenter<LightsView>(), LightsPresenter
 
     override fun turnOnOffLight(lightId: String, power: Boolean) {
         view?.startProgressDialog(ResUtil.getString(R.string.progress_loading_text))
-        onTurnOnOffSucces()
-        //ServiceManager.turnOnOffLight(this, lightId, power)
+        // onTurnOnOffSucces()
+        ServiceManager.turnOnOffLight(this, lightId, power)
     }
 
     override fun onTurnOnOffError() {

@@ -26,8 +26,9 @@
     <string name="add_account">Add Account</string>
     <string name="closed">CLOSED</string>
     <string name="partly_closed">PARTLY CLOSED</string>
+    <string name="partly_close_underscore">PARTLY_CLOSED</string>
     <string name="moving">MOVING</string>
-    <string name="open">OPEN</string>
+    <string name="opened">OPENED</string>
     <string name="unconfigured_devices">Unconfigured devices</string>
     <string name="light">Light</string>
     <string name="blind">Blind</string>

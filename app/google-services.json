@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "317479068268",
+    "firebase_url": "https://temp-6e7b5.firebaseio.com",
+    "project_id": "temp-6e7b5",
+    "storage_bucket": "temp-6e7b5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:317479068268:android:dc82581c5068901a",
+        "android_client_info": {
+          "package_name": "com.example.paulina.wisehome"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "317479068268-d2mvk071p4ntbifnujuujgieh6tfhl63.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiT4mQgRhyBvFL1AVTcvPG7PITGnfISQg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
