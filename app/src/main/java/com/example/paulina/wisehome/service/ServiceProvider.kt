@@ -15,4 +15,6 @@ object ServiceProvider {
     var blindsService: BlindsApi = ServiceFactory.createRetrofitService(BlindsApi::class.java, BASE_URL, false, false)
 
     var weatherService: WeatherApi = ServiceFactory.createRetrofitService(WeatherApi::class.java, BASE_URL, false, false)
+
+    var alarmsService: AlarmsApi = ServiceFactory.createRetrofitService(AlarmsApi::class.java, BASE_URL, false, false)
 }

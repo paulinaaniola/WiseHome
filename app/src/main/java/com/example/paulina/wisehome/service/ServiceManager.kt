@@ -164,7 +164,7 @@ object ServiceManager {
                 Action0 { Timber.e("OnCompleted") })
     }
 
-    fun getWeather(receiver: GetWeatherReciever, roomId : String) {
+    fun getWeather(receiver: GetWeatherReciever, roomId: String) {
         setupRequest(ServiceProvider
                 .weatherService
                 .getWeather(roomId),
@@ -174,6 +174,20 @@ object ServiceManager {
                 Action1 {
                     handleError(it)
                     receiver.onGetWeatherError()
+                },
+                Action0 { Timber.e("OnCompleted") })
+    }
+
+    fun getAlarms(receiver: GetAlarmsReciever, roomId: String) {
+        setupRequest(ServiceProvider
+                .alarmsService
+                .getAlarms(roomId),
+                Action1 {
+                    receiver.onGetAlarmsSuccess(it as Alarms)
+                },
+                Action1 {
+                    handleError(it)
+                    receiver.onGetAlarmsError()
                 },
                 Action0 { Timber.e("OnCompleted") })
     }

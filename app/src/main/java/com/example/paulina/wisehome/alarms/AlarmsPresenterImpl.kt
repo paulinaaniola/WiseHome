@@ -3,7 +3,9 @@ package com.example.paulina.wisehome.alarms
 import android.content.Intent
 import com.example.paulina.wisehome.R
 import com.example.paulina.wisehome.base.BaseAbstractPresenter
+import com.example.paulina.wisehome.model.transportobjects.Alarms
 import com.example.paulina.wisehome.model.utils.ResUtil
+import com.example.paulina.wisehome.service.ServiceManager
 import com.example.paulina.wisehome.service.receivers.GetAlarmsReciever
 
 class AlarmsPresenterImpl : BaseAbstractPresenter<AlarmsView>(), AlarmsPresenter, GetAlarmsReciever {
@@ -21,12 +23,12 @@ class AlarmsPresenterImpl : BaseAbstractPresenter<AlarmsView>(), AlarmsPresenter
 
     private fun getAlarms() {
         view?.startProgressDialog(ResUtil.getString(R.string.progress_loading_text))
-        onGetAlarmsSuccess()
+        ServiceManager.getAlarms(this, presentationModel.roomId)
     }
 
-    override fun onGetAlarmsSuccess() {
+    override fun onGetAlarmsSuccess(alarms: Alarms) {
         view?.stopProgressDialog()
-        view?.setupAlarmsDrawables(true, false)
+        view?.setupAlarmsDrawables(alarms.monoxide, alarms.dioxide)
     }
 
     override fun onGetAlarmsError() {
