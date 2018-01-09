@@ -32,9 +32,6 @@ internal class LightsAdapter(val context: Context) : RecyclerView.Adapter<Lights
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.lightNameTextView.text = lightBulbs[position].name
         setupSwitch(holder, position)
-        if (position == lightBulbs.size - 1) {
-            (context as LightsView).setLightsStateUpdate(false)
-        }
     }
 
     private fun setupSwitch(holder: ViewHolder, position: Int) {

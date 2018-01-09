@@ -70,7 +70,6 @@ class LightsPresenterImpl : BaseAbstractPresenter<LightsView>(), LightsPresenter
                     val id = dataSnapshot.key
                     val state = dataSnapshot.child("isPoweredOn").getValue<Boolean>(Boolean::class.java)
                     view?.updateLighBulbsState(id, state)
-                    presentationModel.isLightStateUpdate = true
                 }
 
                 override fun onCancelled(databaseError: DatabaseError) {
@@ -116,16 +115,12 @@ class LightsPresenterImpl : BaseAbstractPresenter<LightsView>(), LightsPresenter
         return presentationModel.roomId
     }
 
-    override fun isLightStateUpdate(): Boolean {
-        return presentationModel.isLightStateUpdate
-    }
-
-    override fun setLightStateUpdate(isUpdate: Boolean) {
-        presentationModel.isLightStateUpdate = isUpdate
-    }
-
     override fun setAutomaticMode(isAutomaticMode: Boolean) {
         // TODO: wysłać request o zmianie
         presentationModel.isAutomaticMode = isAutomaticMode
+    }
+
+    override fun isAutomaticMode(): Boolean {
+        return presentationModel.isAutomaticMode
     }
 }

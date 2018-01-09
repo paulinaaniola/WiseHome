@@ -92,16 +92,12 @@ class LightsActivity : NavDrawerActivity(), LightsView {
     }
 
     override fun onBulbSwitchClick(lightId: String, isPowerOn: Boolean) {
-        if (!presenter.isLightStateUpdate()) {
+        if (!presenter.isAutomaticMode()) {
             presenter.turnOnOffLight(lightId, isPowerOn)
         }
     }
 
     override fun updateLighBulbsState(id: String, isPoweredOn: Boolean?) {
         lightsAdapter.updateLightsState(id, isPoweredOn)
-    }
-
-    override fun setLightsStateUpdate(isUpdate: Boolean) {
-        presenter.setLightStateUpdate(isUpdate)
     }
 }

@@ -43,8 +43,8 @@ internal class BlindsAdapter(private val context: Context) : RecyclerView.Adapte
     }
 
     private fun setupDirectionImages(holder: ViewHolder, id: String) {
-        holder.downImageView.setOnClickListener(({ view -> (context as BlindsView).onChangeBlindDirectionClick(BlindDirection.DOWN, id) }))
-        holder.upImageView.setOnClickListener(({ view -> (context as BlindsView).onChangeBlindDirectionClick(BlindDirection.UP, id) }))
+        holder.downButton.setOnClickListener(({ view -> (context as BlindsView).onChangeBlindDirectionClick(BlindDirection.DOWN, id) }))
+        holder.upButton.setOnClickListener(({ view -> (context as BlindsView).onChangeBlindDirectionClick(BlindDirection.UP, id) }))
         holder.stopImageView.setOnClickListener(({ view -> (context as BlindsView).onChangeBlindDirectionClick(BlindDirection.STOP, id) }))
     }
 
@@ -55,8 +55,8 @@ internal class BlindsAdapter(private val context: Context) : RecyclerView.Adapte
     internal class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val blindNameTextView = view.blindNameTextView
         val blindStateTextView = view.blindStateTextView
-        val downImageView = view.downImageView
-        val upImageView = view.upImageView
+        val downButton = view.downButton
+        val upButton = view.upButton
         val stopImageView = view.stopImageView
     }
 

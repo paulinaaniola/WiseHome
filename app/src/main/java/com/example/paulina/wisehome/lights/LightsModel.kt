@@ -5,7 +5,6 @@ import com.google.firebase.database.DatabaseReference
 
 class LightsModel : BaseModel {
     lateinit var roomId: String
-    var isLightStateUpdate : Boolean = false
     var isAutomaticMode: Boolean = false
     lateinit var mDatabase: DatabaseReference
     lateinit var test: DatabaseReference
