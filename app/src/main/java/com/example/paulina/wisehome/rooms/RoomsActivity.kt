@@ -7,9 +7,11 @@ import android.view.View
 import com.example.paulina.wisehome.R
 import com.example.paulina.wisehome.alarms.AlarmsActivity
 import com.example.paulina.wisehome.base.BasePresenter
+import com.example.paulina.wisehome.base.IntentKeys
 import com.example.paulina.wisehome.base.NavDrawerActivity
 import com.example.paulina.wisehome.blinds.BlindsActivity
 import com.example.paulina.wisehome.lights.LightsActivity
+import com.example.paulina.wisehome.model.businessobjects.DeviceType
 import com.example.paulina.wisehome.model.transportobjects.Room
 import com.example.paulina.wisehome.model.utils.AnimUtils
 import com.example.paulina.wisehome.weather.WeatherActivity
@@ -46,33 +48,38 @@ class RoomsActivity : NavDrawerActivity(), RoomsView {
         roomsAdapter.rooms = rooms
     }
 
-    override fun onLightsClick(roomId: String) {
-        startActivity(Intent(this, LightsActivity::class.java).putExtra("room_id", roomId))
+    override fun onDeviceTypeClick(roomId: String, roomName: String, deviceType: DeviceType) {
+        var activityToGo: Class<*>? = null
+        when (deviceType) {
+            DeviceType.LIGHTS -> activityToGo = LightsActivity::class.java
+            DeviceType.ALARM_SENSORS -> activityToGo = AlarmsActivity::class.java
+            DeviceType.WEATHER_SENSORS -> activityToGo = WeatherActivity::class.java
+            DeviceType.BLINDS -> activityToGo = BlindsActivity::class.java
+        }
+        startActivity(Intent(this, activityToGo)
+                .putExtra(IntentKeys.ROOM_ID, roomId)
+                .putExtra(IntentKeys.ROOM_NAME, roomName))
     }
 
-    override fun onBlindsClick(roomId: String) {
-        startActivity(Intent(this, BlindsActivity::class.java).putExtra("room_id", roomId))
-    }
-
-    override fun onAlarmSensorsClick(roomId: String) {
-        startActivity(Intent(this, AlarmsActivity::class.java).putExtra("room_id", roomId))
-    }
-
-    override fun onWeatherSensorsClick(roomId: String) {
-        startActivity(Intent(this, WeatherActivity::class.java).putExtra("room_id", roomId))
-    }
-
-    override fun expandDevicesLayout(viewToAnim: View, arrowUp: View, arrowDown: View){
+    override fun expandDevicesLayout(viewToAnim: View, arrowUp: View, arrowDown: View) {
         val animDuration = presenter.getAnimDuration()
         AnimUtils.expand(animDuration, viewToAnim)
         AnimUtils.fadeIn(animDuration, arrowUp)
         AnimUtils.fadeOut(animDuration, arrowDown)
     }
 
-    override fun collapseDevicesLayout(viewToAnim: View, arrowUp: View, arrowDown: View){
+    override fun collapseDevicesLayout(viewToAnim: View, arrowUp: View, arrowDown: View) {
         val animDuration = presenter.getAnimDuration()
         AnimUtils.collapse(animDuration, viewToAnim)
         AnimUtils.fadeIn(animDuration, arrowDown)
         AnimUtils.fadeOut(animDuration, arrowUp)
+    }
+
+    override fun setupRoomsEmptyView(isVisible: Boolean) {
+        if (isVisible) {
+            roomsEmptyView.visibility = View.VISIBLE
+        } else {
+            roomsEmptyView.visibility = View.GONE
+        }
     }
 }

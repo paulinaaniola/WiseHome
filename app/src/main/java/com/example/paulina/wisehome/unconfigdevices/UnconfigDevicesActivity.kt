@@ -86,4 +86,12 @@ class UnconfigDevicesActivity : NavDrawerActivity(), UnconfigDevicesView {
                     .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP))
         }
     }
+
+    override fun setupEmptyView(isVisible : Boolean){
+        if(isVisible){
+            unconfigDevicesEmptyView.visibility = View.VISIBLE
+        } else {
+            unconfigDevicesEmptyView.visibility = View.GONE
+        }
+    }
 }

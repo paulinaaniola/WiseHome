@@ -3,6 +3,7 @@ package com.example.paulina.wisehome.lights
 import android.content.Intent
 import com.example.paulina.wisehome.R
 import com.example.paulina.wisehome.base.BaseAbstractPresenter
+import com.example.paulina.wisehome.base.IntentKeys
 import com.example.paulina.wisehome.model.transportobjects.LightBulb
 import com.example.paulina.wisehome.model.transportobjects.Lights
 import com.example.paulina.wisehome.model.transportobjects.RGBColor
@@ -23,13 +24,15 @@ class LightsPresenterImpl : BaseAbstractPresenter<LightsView>(), LightsPresenter
     private val presentationModel: LightsModel by lazy { LightsModel() }
 
     override fun initExtras(intent: Intent) {
-        presentationModel.roomId = intent.getStringExtra("room_id")
+        presentationModel.roomId = intent.getStringExtra(IntentKeys.ROOM_ID)
+        presentationModel.roomName = intent.getStringExtra(IntentKeys.ROOM_NAME)
     }
 
     override fun onViewAttached(view: LightsView?) {
         super.onViewAttached(view)
         setupDatabaseReferences()
         getLight()
+        view?.setupRoomName(presentationModel.roomName)
     }
 
     private fun setupDatabaseReferences() {
@@ -42,25 +45,21 @@ class LightsPresenterImpl : BaseAbstractPresenter<LightsView>(), LightsPresenter
 
     private fun getLight() {
         //onGetLightsSuccess(createDummyLights())
+        view?.startProgressDialog(ResUtil.getString(R.string.progress_loading_text))
         ServiceManager.getLights(this, presentationModel.roomId)
     }
 
-    override fun onGetLightsError() {
-    }
-
-    private fun createDummyLights(): Lights {
-        val lightBulbs: MutableList<LightBulb> = ArrayList<LightBulb>()
-        lightBulbs.add(LightBulb(1.toString(), "Light 1", true))
-        lightBulbs.add(LightBulb(1.toString(), "Light 2", false))
-        lightBulbs.add(LightBulb(1.toString(), "Light 3", false))
-        lightBulbs.add(LightBulb(1.toString(), "Light 4", true))
-        val lights = Lights(RGBColor("", "", ""), lightBulbs)
-        return lights
-    }
-
     override fun onGetLightsSuccess(lights: Lights) {
-        view?.setLights(lights.lightBulbs)
+        view?.stopProgressDialog()
+        //TODO: usunac przypisywanie na sztywno, odkomentowac reszte
+        // presentationModel.isAutomaticMode = lights.automaticMode
+        presentationModel.isAutomaticMode = true
+        view?.setLights(lights)
         setupLightStateChangeListener(lights.lightBulbs)
+    }
+
+    override fun onGetLightsError() {
+        view?.stopProgressDialog()
     }
 
     private fun setupLightStateChangeListener(lightBulbs: List<LightBulb>) {

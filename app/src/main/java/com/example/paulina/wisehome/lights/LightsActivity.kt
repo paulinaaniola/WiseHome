@@ -91,4 +91,8 @@ class LightsActivity : NavDrawerActivity(), LightsView {
     override fun updateLighBulbsState(id: String, isPoweredOn: Boolean?) {
         lightsAdapter.updateLightsState(id, isPoweredOn)
     }
+
+    override fun setupRoomName(roomName : String){
+        roomNameTextView.setText(roomName)
+    }
 }

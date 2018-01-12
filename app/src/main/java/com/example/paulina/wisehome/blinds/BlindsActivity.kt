@@ -57,4 +57,8 @@ class BlindsActivity : NavDrawerActivity(), BlindsView {
 
         blindsAdapter.updateBlindState(id, blindState)
     }
+
+    override fun setupRoomName(roomName : String){
+        roomNameTextView.setText(roomName)
+    }
 }

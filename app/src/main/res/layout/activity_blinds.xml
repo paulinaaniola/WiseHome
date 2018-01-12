@@ -19,18 +19,18 @@
             android:elevation="3dp" />
 
         <TextView
+            android:id="@+id/roomNameTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="10dp"
             android:layout_marginTop="10dp"
-            android:text="Living Room"
             android:textSize="24sp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@color/colorLightYellow"
+            android:background="@color/colorAccentLight"
             android:gravity="center_vertical"
             android:paddingStart="20dp"
             android:text="@string/blinds"
@@ -39,7 +39,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/colorDarkBlue" />
+            android:background="@color/colorLightGray" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/blindsRecyclerView"

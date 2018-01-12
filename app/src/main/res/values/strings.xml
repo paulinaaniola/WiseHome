@@ -53,5 +53,7 @@
     <string name="repeat_password">Repeat password</string>
     <string name="password_error_message">Password does not match the confirm password.</string>
     <string name="automatic_mode">automatic mode</string>
+    <string name="you_dont_have_any_rooms_yet">You don\'t have any rooms yet. \nGo to menu and lets add some!</string>
+    <string name="We_havent_detect_any_unconfigured_device_in_your_area">We haven\'t detected any unconfigured device in your area. \n To configurate it you need to turn it on</string>
 </resources>
 

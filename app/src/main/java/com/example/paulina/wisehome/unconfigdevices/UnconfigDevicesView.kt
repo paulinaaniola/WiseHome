@@ -7,4 +7,5 @@ interface UnconfigDevicesView : BaseView {
     fun setDevices(devices: List<UnconfigDevice>)
     fun onDeviceClick(selectedDevice: UnconfigDevice)
     fun displayDeviceHighlightedDialog(selectedDevice: UnconfigDevice)
+    fun setupEmptyView(isVisible : Boolean)
 }

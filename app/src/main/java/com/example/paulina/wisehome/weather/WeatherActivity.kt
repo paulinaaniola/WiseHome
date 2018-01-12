@@ -22,4 +22,8 @@ class WeatherActivity : NavDrawerActivity(), WeatherView {
         humidityTextView.setText(weather.humidity)
         temperatureTextView.setText(weather.temperature)
     }
+
+    override fun setupRoomName(roomName : String){
+        roomNameTextView.setText(roomName)
+    }
 }

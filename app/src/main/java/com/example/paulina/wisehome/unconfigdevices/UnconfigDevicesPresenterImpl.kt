@@ -6,6 +6,7 @@ import com.example.paulina.wisehome.base.BaseAbstractPresenter
 import com.example.paulina.wisehome.model.businessobjects.DeviceType
 import com.example.paulina.wisehome.model.transportobjects.UnconfigDevice
 import com.example.paulina.wisehome.model.utils.ResUtil
+import com.example.paulina.wisehome.service.ServiceManager
 import com.example.paulina.wisehome.service.receivers.GetUnconfigDevicesReciever
 import com.example.paulina.wisehome.service.receivers.PostHighlightSelectedDevice
 
@@ -24,13 +25,14 @@ class UnconfigDevicesPresenterImpl : BaseAbstractPresenter<UnconfigDevicesView>(
 
     fun getUnconfigDevices() {
         view?.startProgressDialog(ResUtil.getString(R.string.progress_loading_text))
-        //ServiceManager.getUnconfigDevices(this)
-        onGetUnconfigDevicesSucces(createDummyDevices())
+        ServiceManager.getUnconfigDevices(this)
+        //onGetUnconfigDevicesSucces(createDummyDevices())
     }
 
     override fun onGetUnconfigDevicesSucces(devices: List<UnconfigDevice>) {
         view?.stopProgressDialog()
         view?.setDevices(devices)
+        view?.setupEmptyView(devices.isEmpty())
     }
 
     override fun onGetUnconfigDevicesError() {
@@ -43,8 +45,8 @@ class UnconfigDevicesPresenterImpl : BaseAbstractPresenter<UnconfigDevicesView>(
 
     override fun highlightSelectedDevice(power: Boolean) {
         view?.startProgressDialog(ResUtil.getString(R.string.progress_loading_text))
-        //ServiceManager.highlightDevice(this, presentationModel.selectedDevice.mac, power)
-        onHighlightDeviceSuccess(true)
+        ServiceManager.highlightDevice(this, presentationModel.selectedDevice.mac, power)
+        // onHighlightDeviceSuccess(true)
     }
 
     override fun onHighlightDeviceSuccess(power: Boolean) {

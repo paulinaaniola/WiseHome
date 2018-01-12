@@ -1,7 +1,7 @@
 package com.example.paulina.wisehome.base
 
 
-class IntentKeys{
-    val SHOULD_CREATE_NAV_DRAWER = "should_create_toolbar"
+object IntentKeys{
     val ROOM_ID = "room_id"
+    val ROOM_NAME = "room_name"
 }

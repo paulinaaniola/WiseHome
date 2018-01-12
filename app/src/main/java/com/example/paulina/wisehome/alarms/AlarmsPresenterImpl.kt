@@ -3,6 +3,7 @@ package com.example.paulina.wisehome.alarms
 import android.content.Intent
 import com.example.paulina.wisehome.R
 import com.example.paulina.wisehome.base.BaseAbstractPresenter
+import com.example.paulina.wisehome.base.IntentKeys
 import com.example.paulina.wisehome.model.transportobjects.Alarms
 import com.example.paulina.wisehome.model.utils.ResUtil
 import com.example.paulina.wisehome.service.ServiceManager
@@ -13,12 +14,14 @@ class AlarmsPresenterImpl : BaseAbstractPresenter<AlarmsView>(), AlarmsPresenter
     private val presentationModel: AlarmsModel by lazy { AlarmsModel() }
 
     override fun initExtras(intent: Intent) {
-        presentationModel.roomId = intent.getStringExtra("room_id")
+        presentationModel.roomId = intent.getStringExtra(IntentKeys.ROOM_ID)
+        presentationModel.roomName = intent.getStringExtra(IntentKeys.ROOM_NAME)
     }
 
     override fun onViewAttached(view: AlarmsView?) {
         super.onViewAttached(view)
         getAlarms()
+        view?.setupRoomName(presentationModel.roomName)
     }
 
     private fun getAlarms() {

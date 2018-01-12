@@ -31,6 +31,7 @@ class RoomsPresenterImpl : BaseAbstractPresenter<RoomsView>(), RoomsPresenter, G
     override fun onGetRoomsSuccess(rooms: List<Room>) {
         view?.stopProgressDialog()
         view?.setRooms(rooms)
+        view?.setupRoomsEmptyView(rooms.isEmpty())
     }
 
     override fun onGetRoomsError() {

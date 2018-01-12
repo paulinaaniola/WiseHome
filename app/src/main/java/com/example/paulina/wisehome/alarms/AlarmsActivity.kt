@@ -34,4 +34,8 @@ class AlarmsActivity : NavDrawerActivity(), AlarmsView {
             carbonDioxideImage.setImageDrawable(getDrawable(R.drawable.no_danger))
         }
     }
+
+    override fun setupRoomName(roomName : String){
+        roomNameTextView.setText(roomName)
+    }
 }

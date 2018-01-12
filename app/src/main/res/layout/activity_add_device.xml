@@ -49,14 +49,14 @@
             app:et_dividerErrorColor="@color/colorError"
             app:et_dividerHeight="2dp"
             app:et_labelEnable="true"
-            app:et_labelTextColor="@color/colorDarkBlue"
+            app:et_labelTextColor="@color/colorAccent"
             app:et_supportMode="helper"
             app:et_supportTextErrorColor="@color/colorError" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@color/colorLightYellow"
+            android:background="@color/colorAccentLight"
             android:gravity="center_vertical"
             android:paddingStart="20dp"
             android:text="@string/choose_room"
@@ -65,7 +65,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/colorDarkBlue" />
+            android:background="@color/colorAccent" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/roomsRecyclerView"

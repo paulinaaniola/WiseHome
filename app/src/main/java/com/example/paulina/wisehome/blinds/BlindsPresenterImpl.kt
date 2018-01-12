@@ -3,6 +3,7 @@ package com.example.paulina.wisehome.blinds
 import android.content.Intent
 import com.example.paulina.wisehome.R
 import com.example.paulina.wisehome.base.BaseAbstractPresenter
+import com.example.paulina.wisehome.base.IntentKeys
 import com.example.paulina.wisehome.model.businessobjects.BlindDirection
 import com.example.paulina.wisehome.model.businessobjects.BlindState
 import com.example.paulina.wisehome.model.transportobjects.Blind
@@ -25,13 +26,15 @@ class BlindsPresenterImpl : BaseAbstractPresenter<BlindsView>(), BlindsPresenter
     private lateinit var blindState: DatabaseReference
 
     override fun initExtras(intent: Intent) {
-        presentationModel.roomId = intent.getStringExtra("room_id")
+        presentationModel.roomId = intent.getStringExtra(IntentKeys.ROOM_ID)
+        presentationModel.roomName = intent.getStringExtra(IntentKeys.ROOM_NAME)
     }
 
     override fun onViewAttached(view: BlindsView?) {
         super.onViewAttached(view)
         setupDatabaseReferences()
         getBlinds()
+        view?.setupRoomName(presentationModel.roomName)
     }
 
     private fun setupDatabaseReferences() {

@@ -63,7 +63,7 @@ abstract class NavDrawerActivity : BaseActivity() {
     }
 
     private fun setNavigationIcon(toolbar: Toolbar) {
-        toolbar.setNavigationIcon(if (closeable) R.mipmap.close else R.mipmap.menu)
+        toolbar.setNavigationIcon(if (closeable) R.mipmap.close else R.drawable.menu)
         toolbar.setNavigationOnClickListener({ v -> onNavIconClick() })
     }
 

@@ -30,7 +30,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@color/colorLightYellow"
+            android:background="@color/colorAccentLight"
             android:gravity="center_vertical"
             android:paddingStart="20dp"
             android:text="@string/unconfigured_devices"
@@ -39,7 +39,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/colorDarkBlue" />
+            android:background="@color/colorLightGray" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/unconfigDevicesRecyclerView"
@@ -47,6 +47,17 @@
             android:layout_height="wrap_content" />
 
     </LinearLayout>
+
+    <com.rey.material.widget.TextView
+        android:id="@+id/unconfigDevicesEmptyView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        android:gravity="center"
+        android:visibility="gone"
+        android:text="@string/We_havent_detect_any_unconfigured_device_in_your_area"
+        android:textSize="18sp" />
 
     <include
         android:id="@+id/checkUnconfigDeviceDialog"

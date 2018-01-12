@@ -8,4 +8,5 @@ interface BlindsView : BaseView{
     fun setBlinds(blinds : List<Blind>)
     fun onChangeBlindDirectionClick(direction : BlindDirection, blindId: String)
     fun updateBlindState(id: String, state : String)
+    fun setupRoomName(roomName : String)
 }
