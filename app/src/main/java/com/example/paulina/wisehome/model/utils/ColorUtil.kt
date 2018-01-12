@@ -14,17 +14,9 @@ object ColorUtil {
     }
 
     fun rgbToInt(rgbColor: RGBColor): Int {
-        var Red: Float = rgbColor.red.toFloat()
-        var Green: Float = rgbColor.green.toFloat()
-        var Blue: Float = rgbColor.blue.toFloat()
-        var R = Math.round(255 * Red)
-        var G = Math.round(255 * Green)
-        var B = Math.round(255 * Blue)
-
-        R = R shl 16 and 0x00FF0000
-        G = G shl 8 and 0x0000FF00
-        B = B and 0x000000FF
-
-        return -0x1000000 or R or G or B
+        var red: Int = rgbColor.red.toInt()
+        var green: Int = rgbColor.green.toInt()
+        var blue: Int = rgbColor.blue.toInt()
+        return Color.argb(255, red, green, blue)
     }
 }
