@@ -11,4 +11,6 @@ interface AddDeviceView : BaseView {
     fun displayRoomConfigurationDialog(room: Room)
 
     fun displayDeviceConfiguratedDialog()
+
+    fun navigateToRooms()
 }

@@ -46,9 +46,7 @@ class LightsActivity : NavDrawerActivity(), LightsView {
     }
 
     override fun setLights(lights: Lights) {
-        //TODO: usunac przypisywanie na sztywno, odkomentowac reszte
-        // lightsAdapter.automaticMode = lights.automaticMode
-        lightsAdapter.automaticMode = true
+        lightsAdapter.automaticMode = lights.automaticMode
         lightsAdapter.lightBulbs = lights.lightBulbs
         colorPicker.color = ColorUtil.rgbToInt(lights.currentColor)
     }
@@ -79,7 +77,7 @@ class LightsActivity : NavDrawerActivity(), LightsView {
         val green: Int = Color.green(colorInt)
         val blue: Int = Color.blue(colorInt)
         val rgb: RGBColor = ColorUtil.intToRgb(colorInt)
-        val colorInt1 : Int = ColorUtil.rgbToInt(rgb)
+        val colorInt1: Int = ColorUtil.rgbToInt(rgb)
     }
 
     override fun onBulbSwitchClick(lightId: String, isPowerOn: Boolean) {
@@ -92,7 +90,7 @@ class LightsActivity : NavDrawerActivity(), LightsView {
         lightsAdapter.updateLightsState(id, isPoweredOn)
     }
 
-    override fun setupRoomName(roomName : String){
+    override fun setupRoomName(roomName: String) {
         roomNameTextView.setText(roomName)
     }
 }

@@ -78,7 +78,6 @@ class BlindsPresenterImpl : BaseAbstractPresenter<BlindsView>(), BlindsPresenter
 
     override fun changeBlindDirection(direction: BlindDirection, blindId: String) {
         view?.startProgressDialog(ResUtil.getString(R.string.progress_loading_text))
-        // onChangeBlindStateSuccess()
         ServiceManager.changeBlindState(this, blindId, direction)
     }
 

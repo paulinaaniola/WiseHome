@@ -17,7 +17,6 @@ internal class LightsAdapter(val context: Context) : RecyclerView.Adapter<Lights
             field = value
             notifyDataSetChanged()
         }
-    //TODO: ustawic automatic mode z tego co przyjdzie w poczatkowym getcie
     var automaticMode: Boolean = false
         set(value) {
             field = value

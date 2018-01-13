@@ -26,7 +26,7 @@ class UnconfigDevicesPresenterImpl : BaseAbstractPresenter<UnconfigDevicesView>(
     fun getUnconfigDevices() {
         view?.startProgressDialog(ResUtil.getString(R.string.progress_loading_text))
         ServiceManager.getUnconfigDevices(this)
-        //onGetUnconfigDevicesSucces(createDummyDevices())
+       // onGetUnconfigDevicesSucces(createDummyDevices())
     }
 
     override fun onGetUnconfigDevicesSucces(devices: List<UnconfigDevice>) {
@@ -46,7 +46,7 @@ class UnconfigDevicesPresenterImpl : BaseAbstractPresenter<UnconfigDevicesView>(
     override fun highlightSelectedDevice(power: Boolean) {
         view?.startProgressDialog(ResUtil.getString(R.string.progress_loading_text))
         ServiceManager.highlightDevice(this, presentationModel.selectedDevice.mac, power)
-        // onHighlightDeviceSuccess(true)
+         //onHighlightDeviceSuccess(true)
     }
 
     override fun onHighlightDeviceSuccess(power: Boolean) {

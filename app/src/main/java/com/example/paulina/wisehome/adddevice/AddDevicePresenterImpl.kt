@@ -1,6 +1,7 @@
 package com.example.paulina.wisehome.adddevice
 
 import android.content.Intent
+import android.os.Handler
 import com.example.paulina.wisehome.R
 import com.example.paulina.wisehome.base.BaseAbstractPresenter
 import com.example.paulina.wisehome.model.businessobjects.DeviceType
@@ -56,12 +57,16 @@ class AddDevicePresenterImpl : BaseAbstractPresenter<AddDeviceView>(), AddDevice
         view?.startProgressDialog(ResUtil.getString(R.string.progress_loading_text))
         val pm = presentationModel
         ServiceManager.addDeviceToRoom(this, pm.selectedRoom._id, pm.newDeviceName, pm.selectedDevice.mac)
-        //onAddDeviceToRoomSuccess()
+       // onAddDeviceToRoomSuccess()
     }
 
     override fun onAddDeviceToRoomSuccess() {
         view?.stopProgressDialog()
         view?.displayDeviceConfiguratedDialog()
+        val handler = Handler()
+        handler.postDelayed(Runnable {
+            view?.navigateToRooms()
+        }, presentationModel.dialogDuration)
     }
 
     override fun onAddDeviceToRoomError() {

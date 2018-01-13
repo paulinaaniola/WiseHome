@@ -9,4 +9,5 @@ class AddDeviceModel : BaseModel{
     lateinit var selectedDevice: UnconfigDevice
     lateinit var newDeviceName: String
     lateinit var selectedRoom: Room
+    val dialogDuration : Long = 2000
 }

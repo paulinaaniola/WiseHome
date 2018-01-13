@@ -13,7 +13,6 @@ import com.example.paulina.wisehome.rooms.RoomsActivity
 import easymvp.annotation.ActivityView
 import easymvp.annotation.Presenter
 import kotlinx.android.synthetic.main.activity_add_device.*
-import kotlinx.android.synthetic.main.dialog_device_configurated.*
 import kotlinx.android.synthetic.main.dialog_match_device_to_room.*
 import kotlinx.android.synthetic.main.toolbar.*
 
@@ -68,10 +67,10 @@ class AddDeviceActivity : NavDrawerActivity(), AddDeviceView {
         matchDeviceDialogBackground.setOnClickListener({ dialogMatchDeviceToRoom.visibility = View.GONE })
         addButton.setOnClickListener({ onAddButtonClick() })
         cancelButton.setOnClickListener({ dialogMatchDeviceToRoom.visibility = View.GONE })
-        okButton.setOnClickListener({ navigateToRooms() })
     }
 
-    private fun navigateToRooms() {
+    override fun navigateToRooms() {
+        dialogDeviceConfigurated.visibility = View.GONE
         startActivity(Intent(this, RoomsActivity::class.java)
                 .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP))
     }
@@ -87,5 +86,13 @@ class AddDeviceActivity : NavDrawerActivity(), AddDeviceView {
 
     override fun setRooms(rooms: List<Room>) {
         roomsAdapter.rooms = rooms
+    }
+
+    override fun onBackPressed() {
+        if (dialogMatchDeviceToRoom.visibility == View.VISIBLE) {
+            dialogMatchDeviceToRoom.visibility = View.GONE
+        } else {
+            super.onBackPressed()
+        }
     }
 }

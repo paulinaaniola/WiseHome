@@ -74,6 +74,8 @@ class UnconfigDevicesActivity : NavDrawerActivity(), UnconfigDevicesView {
     }
 
     private fun onContinueClick() {
+        //TODO: czy mam tu wyłączać zarówke? Można się wrocić do tego ekranu i zmienić urządzenie
+        checkUnconfigDeviceDialog.visibility = View.GONE
         startActivity(Intent(this, AddDeviceActivity::class.java)
                 .putExtra("SelectedDevice", presenter.getSelectedDevice()))
     }
@@ -81,6 +83,7 @@ class UnconfigDevicesActivity : NavDrawerActivity(), UnconfigDevicesView {
     override fun onBackPressed() {
         if (checkUnconfigDeviceDialog.visibility == View.VISIBLE) {
             checkUnconfigDeviceDialog.visibility = View.GONE
+            presenter.highlightSelectedDevice(false)
         } else {
             startActivity(Intent(this, RoomsActivity::class.java)
                     .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP))

@@ -28,7 +28,7 @@ internal class BlindsAdapter(private val context: Context) : RecyclerView.Adapte
         holder.blindNameTextView.text = blinds[position].name
         holder.blindStateTextView.text = blinds[position].state.toStringLocale()
         setupStateTextColor(holder, blinds[position].state)
-        setupDirectionImages(holder, blinds[position]._id)
+        setupDirectionImages(holder, position)
     }
 
     private fun setupStateTextColor(holder: ViewHolder, state: BlindState) {
@@ -42,10 +42,14 @@ internal class BlindsAdapter(private val context: Context) : RecyclerView.Adapte
         holder.blindStateTextView.setTextColor(context.resources.getColor(stateColor))
     }
 
-    private fun setupDirectionImages(holder: ViewHolder, id: String) {
+    private fun setupDirectionImages(holder: ViewHolder, position: Int) {
+        val id: String = blinds[position]._id
         holder.downButton.setOnClickListener(({ view -> (context as BlindsView).onChangeBlindDirectionClick(BlindDirection.DOWN, id) }))
         holder.upButton.setOnClickListener(({ view -> (context as BlindsView).onChangeBlindDirectionClick(BlindDirection.UP, id) }))
-        holder.stopImageView.setOnClickListener(({ view -> (context as BlindsView).onChangeBlindDirectionClick(BlindDirection.STOP, id) }))
+        holder.stopImageView.setOnClickListener(({ view ->
+            if (blinds[position].state == BlindState.MOVING)
+                (context as BlindsView).onChangeBlindDirectionClick(BlindDirection.STOP, id)
+        }))
     }
 
     override fun getItemCount(): Int {

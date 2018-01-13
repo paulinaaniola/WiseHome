@@ -51,9 +51,7 @@ class LightsPresenterImpl : BaseAbstractPresenter<LightsView>(), LightsPresenter
 
     override fun onGetLightsSuccess(lights: Lights) {
         view?.stopProgressDialog()
-        //TODO: usunac przypisywanie na sztywno, odkomentowac reszte
-        // presentationModel.isAutomaticMode = lights.automaticMode
-        presentationModel.isAutomaticMode = true
+        presentationModel.isAutomaticMode = lights.automaticMode
         view?.setLights(lights)
         setupLightStateChangeListener(lights.lightBulbs)
     }
