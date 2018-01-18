@@ -8,4 +8,5 @@ interface LightsView : BaseView {
     fun onBulbSwitchClick(bulbId: String, isPowerOn: Boolean)
     fun updateLighBulbsState(id: String, isPoweredOn: Boolean?)
     fun setupRoomName(roomName : String)
+    fun setAutomaticModeSwitch(isPoweredOn: Boolean)
 }

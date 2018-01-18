@@ -55,6 +55,7 @@ class LightsPresenterImpl : BaseAbstractPresenter<LightsView>(), LightsPresenter
     override fun onGetLightsSuccess(lights: Lights) {
         view?.stopProgressDialog()
         presentationModel.isAutomaticMode = lights.automaticMode
+        view?.setAutomaticModeSwitch(lights.automaticMode)
         view?.setLights(lights)
         setupLightStateChangeListener(lights.lightBulbs)
     }

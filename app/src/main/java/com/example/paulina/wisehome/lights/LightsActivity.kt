@@ -96,6 +96,9 @@ class LightsActivity : NavDrawerActivity(), LightsView {
         lightsAdapter.updateLightsState(id, isPoweredOn)
     }
 
+    override fun setAutomaticModeSwitch(isPoweredOn: Boolean){
+        automaticModeSwitch.isChecked = isPoweredOn
+    }
     override fun setupRoomName(roomName: String) {
         roomNameTextView.setText(roomName)
     }
