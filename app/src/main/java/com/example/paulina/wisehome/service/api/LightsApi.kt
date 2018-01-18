@@ -19,4 +19,9 @@ interface LightsApi {
     fun turnOnOffLight(
             @Path("deviceId") deviceId: String,
             @Query("power") power: Boolean): Observable<Void>
+
+    @POST("api/homeId/automaticLightsPower/{roomId}")
+    fun setAutomaticWork(
+            @Path("roomId") roomId: String,
+            @Query("automaticMode") automaticMode: Boolean): Observable<Void>
 }

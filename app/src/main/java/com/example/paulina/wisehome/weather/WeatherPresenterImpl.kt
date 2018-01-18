@@ -6,6 +6,7 @@ import com.example.paulina.wisehome.base.BaseAbstractPresenter
 import com.example.paulina.wisehome.base.IntentKeys
 import com.example.paulina.wisehome.model.transportobjects.Weather
 import com.example.paulina.wisehome.model.utils.ResUtil
+import com.example.paulina.wisehome.service.ServiceManager
 import com.example.paulina.wisehome.service.receivers.GetWeatherReciever
 
 class WeatherPresenterImpl : BaseAbstractPresenter<WeatherView>(), WeatherPresenter, GetWeatherReciever {
@@ -25,8 +26,8 @@ class WeatherPresenterImpl : BaseAbstractPresenter<WeatherView>(), WeatherPresen
 
     fun getWeather() {
         view?.startProgressDialog(ResUtil.getString(R.string.progress_loading_text))
-        // ServiceManager.getWeather(this, presentationModel.roomId)
-        onGetWeatherSuccess(Weather("24", "11"))
+        ServiceManager.getWeather(this, presentationModel.roomId)
+        //onGetWeatherSuccess(Weather("24", "11"))
     }
 
     override fun onGetWeatherSuccess(weather: Weather) {

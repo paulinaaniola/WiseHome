@@ -12,6 +12,7 @@ import com.example.paulina.wisehome.service.ServiceManager
 import com.example.paulina.wisehome.service.receivers.GetLightsReciever
 import com.example.paulina.wisehome.service.receivers.PostChangeLightColorReciver
 import com.example.paulina.wisehome.service.receivers.PostTurnOnOffLightReciever
+import com.example.paulina.wisehome.service.receivers.SetAutomaticWorkReciever
 import com.github.mikephil.charting.charts.Chart
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -19,7 +20,9 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import timber.log.Timber
 
-class LightsPresenterImpl : BaseAbstractPresenter<LightsView>(), LightsPresenter, GetLightsReciever, PostChangeLightColorReciver, PostTurnOnOffLightReciever {
+class LightsPresenterImpl : BaseAbstractPresenter<LightsView>(), LightsPresenter, GetLightsReciever, PostChangeLightColorReciver, PostTurnOnOffLightReciever, SetAutomaticWorkReciever {
+
+
 
     private val presentationModel: LightsModel by lazy { LightsModel() }
 
@@ -113,11 +116,17 @@ class LightsPresenterImpl : BaseAbstractPresenter<LightsView>(), LightsPresenter
     }
 
     override fun setAutomaticMode(isAutomaticMode: Boolean) {
-        // TODO: wysłać request o zmianie
+        ServiceManager.setAutomaticMode(this, presentationModel.roomId, isAutomaticMode)
         presentationModel.isAutomaticMode = isAutomaticMode
     }
 
     override fun isAutomaticMode(): Boolean {
         return presentationModel.isAutomaticMode
+    }
+
+    override fun onSetAutomaticWorkError() {
+    }
+
+    override fun onSetAutomaticWorkSuccess() {
     }
 }

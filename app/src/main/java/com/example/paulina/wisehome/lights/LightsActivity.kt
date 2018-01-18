@@ -47,6 +47,7 @@ class LightsActivity : NavDrawerActivity(), LightsView {
 
     override fun setLights(lights: Lights) {
         lightsAdapter.automaticMode = lights.automaticMode
+        setupAutomaticModeSwitch(lights.automaticMode)
         lightsAdapter.lightBulbs = lights.lightBulbs
         colorPicker.color = ColorUtil.rgbToInt(lights.currentColor)
     }
@@ -57,6 +58,7 @@ class LightsActivity : NavDrawerActivity(), LightsView {
     }
 
     private fun setupButtons() {
+
         colorListButton.setOnClickListener({
             startActivity(Intent(this, ColorListActivity::class.java)
                     .putExtra("roomId", presenter.getRoomId())
@@ -78,6 +80,10 @@ class LightsActivity : NavDrawerActivity(), LightsView {
         val blue: Int = Color.blue(colorInt)
         val rgb: RGBColor = ColorUtil.intToRgb(colorInt)
         val colorInt1: Int = ColorUtil.rgbToInt(rgb)
+    }
+
+    private fun setupAutomaticModeSwitch(automaticMode: Boolean){
+        automaticModeSwitch.isChecked = automaticMode
     }
 
     override fun onBulbSwitchClick(lightId: String, isPowerOn: Boolean) {

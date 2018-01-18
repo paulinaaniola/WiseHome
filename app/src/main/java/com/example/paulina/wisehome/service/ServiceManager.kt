@@ -192,6 +192,21 @@ object ServiceManager {
                 Action0 { Timber.e("OnCompleted") })
     }
 
+    fun setAutomaticMode(receiver: SetAutomaticWorkReciever, roomId: String, automaticWork: Boolean) {
+        setupRequest(ServiceProvider
+                .lightsService
+                .setAutomaticWork(roomId, automaticWork),
+                Action1 {
+                    receiver.onSetAutomaticWorkSuccess()
+                },
+                Action1 {
+                    handleError(it)
+                    receiver.onSetAutomaticWorkSuccess()
+                },
+                Action0 { Timber.e("OnCompleted") })
+    }
+
+
     private fun setupRequest(observable: Observable<*>, onNext: Action1<Any>, onError: Action1<Throwable>, onCompleted: Action0): Subscription {
         return observable
                 .subscribeOn(Schedulers.newThread())
