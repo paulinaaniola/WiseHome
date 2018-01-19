@@ -7,12 +7,18 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.ImageView
 import com.example.paulina.wisehome.R
+import com.example.paulina.wisehome.service.ServiceProvider
+import com.github.mikephil.charting.charts.Chart
+import com.google.firebase.database.*
+import timber.log.Timber
 
 abstract class BaseActivity : AppCompatActivity(), BaseView {
 
     private var progress: ProgressDialog? = null
     private var dialogCloseButton: ImageView? = null
     private var isCloseableOnBackButton = false
+    private lateinit var mDatabase: DatabaseReference
+    private lateinit var serverIp: DatabaseReference
 
     override val activityContext: Context
         get() = this
@@ -20,6 +26,8 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
     override fun onStart() {
         super.onStart()
         initExtras(providePresenter())
+        setupDatabaseReferences()
+        setupServerIpAdressChangeListener()
     }
 
     override fun startProgressDialog(message: String?) {
@@ -68,4 +76,21 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
         this.isCloseableOnBackButton = isCloseableOnBackButton
     }
 
+    private fun setupDatabaseReferences() {
+        mDatabase = FirebaseDatabase.getInstance().getReference()
+        serverIp = mDatabase.child("serverIP")
+    }
+
+    private fun setupServerIpAdressChangeListener() {
+        serverIp.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                val ip = dataSnapshot.child("ip").value
+                ServiceProvider.BASE_URL = "http://" + ip as String + ":4000"
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                Timber.d(Chart.LOG_TAG, databaseError.message)
+            }
+        })
+    }
 }

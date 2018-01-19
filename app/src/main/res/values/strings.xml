@@ -17,7 +17,6 @@
     <string name="carbon_monoxide">Carbon monoxide</string>
     <string name="carbon_dioxide">Carbon dioxide</string>
     <string name="sth_wrong_check_internet_connection">Something went wrong. Check your internet connection and try again.</string>
-    <string name="authorization_error">Authorization problem. Try again later.</string>
     <string name="my_rooms">My Rooms</string>
     <string name="add_room">Add Room</string>
     <string name="add_device">Add device</string>
@@ -55,5 +54,7 @@
     <string name="automatic_mode">automatic mode</string>
     <string name="you_dont_have_any_rooms_yet">You don\'t have any rooms yet. \nGo to menu and lets add some!</string>
     <string name="We_havent_detect_any_unconfigured_device_in_your_area">We haven\'t detected any unconfigured device in your area. \n To configurate it you need to turn it on</string>
+    <string name="authorization_error">Wrong username or password</string>
+    <string name="username_already_exist">Username already exists</string>
 </resources>
 

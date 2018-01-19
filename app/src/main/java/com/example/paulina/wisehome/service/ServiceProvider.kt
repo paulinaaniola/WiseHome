@@ -4,17 +4,33 @@ import com.example.paulina.wisehome.service.api.*
 
 object ServiceProvider {
 
-    var BASE_URL = "http://10.0.2.2:4000"
+    var BASE_URL = "http://123:4000"
+        set(value) {
+            field = value
+            setupServices()
+        }
 
-    var roomsService: RoomsApi = ServiceFactory.createRetrofitService(RoomsApi::class.java, BASE_URL, false, false)
+    lateinit var roomsService: RoomsApi
+    lateinit var unconfigDeviceService: UnconfigDevicesApi
+    lateinit var lightsService: LightsApi
+    lateinit var blindsService: BlindsApi
+    lateinit var weatherService: WeatherApi
+    lateinit var alarmsService: AlarmsApi
+    lateinit var loginService: LoginApi
 
-    var unconfigDeviceService: UnconfigDevicesApi = ServiceFactory.createRetrofitService(UnconfigDevicesApi::class.java, BASE_URL, false, false)
+    private fun setupServices() {
+        roomsService = ServiceFactory.createRetrofitService(RoomsApi::class.java, BASE_URL, false, false)
 
-    var lightsService: LightsApi = ServiceFactory.createRetrofitService(LightsApi::class.java, BASE_URL, false, false)
+        unconfigDeviceService = ServiceFactory.createRetrofitService(UnconfigDevicesApi::class.java, BASE_URL, false, false)
 
-    var blindsService: BlindsApi = ServiceFactory.createRetrofitService(BlindsApi::class.java, BASE_URL, false, false)
+        lightsService = ServiceFactory.createRetrofitService(LightsApi::class.java, BASE_URL, false, false)
 
-    var weatherService: WeatherApi = ServiceFactory.createRetrofitService(WeatherApi::class.java, BASE_URL, false, false)
+        blindsService = ServiceFactory.createRetrofitService(BlindsApi::class.java, BASE_URL, false, false)
 
-    var alarmsService: AlarmsApi = ServiceFactory.createRetrofitService(AlarmsApi::class.java, BASE_URL, false, false)
+        weatherService = ServiceFactory.createRetrofitService(WeatherApi::class.java, BASE_URL, false, false)
+
+        alarmsService = ServiceFactory.createRetrofitService(AlarmsApi::class.java, BASE_URL, false, false)
+
+        loginService = ServiceFactory.createRetrofitService(LoginApi::class.java, BASE_URL, false, false)
+    }
 }

@@ -8,7 +8,6 @@ class LightsModel : BaseModel {
     lateinit var roomName: String
     var isAutomaticMode: Boolean = false
     lateinit var mDatabase: DatabaseReference
-    lateinit var test: DatabaseReference
     lateinit var devicesStates: DatabaseReference
     lateinit var lightBulbPower: DatabaseReference
 }

@@ -201,11 +201,24 @@ object ServiceManager {
                 },
                 Action1 {
                     handleError(it)
-                    receiver.onSetAutomaticWorkSuccess()
+                    receiver.onSetAutomaticWorkError()
                 },
                 Action0 { Timber.e("OnCompleted") })
     }
 
+    fun login(receiver: LoginReciever, credentials: Credentials) {
+        setupRequest(ServiceProvider
+                .loginService
+                .login(credentials),
+                Action1 {
+                    receiver.onLoginSuccess(it as IsAdmin)
+                },
+                Action1 {
+                    handleError(it)
+                    receiver.onLoginError()
+                },
+                Action0 { Timber.e("OnCompleted") })
+    }
 
     private fun setupRequest(observable: Observable<*>, onNext: Action1<Any>, onError: Action1<Throwable>, onCompleted: Action0): Subscription {
         return observable
@@ -221,8 +234,8 @@ object ServiceManager {
             val context = ApplicationContext.appContext
 
             if (error.code() != 401 && error.code() != 404) {
-                if (error.code() == 409 && msg != null && !msg.isEmpty()) {
-                    ToastUtil.show(context, msg, Toast.LENGTH_LONG)
+                if (error.code() == 409) {
+                    ToastUtil.show(context, ResUtil.getString(R.string.username_already_exist), Toast.LENGTH_LONG)
                 } else {
                     ToastUtil.show(context, ResUtil.getString(R.string.sth_wrong_check_internet_connection), Toast.LENGTH_LONG)
                 }

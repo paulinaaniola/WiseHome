@@ -22,8 +22,6 @@ import timber.log.Timber
 
 class LightsPresenterImpl : BaseAbstractPresenter<LightsView>(), LightsPresenter, GetLightsReciever, PostChangeLightColorReciver, PostTurnOnOffLightReciever, SetAutomaticWorkReciever {
 
-
-
     private val presentationModel: LightsModel by lazy { LightsModel() }
 
     override fun initExtras(intent: Intent) {
@@ -41,15 +39,14 @@ class LightsPresenterImpl : BaseAbstractPresenter<LightsView>(), LightsPresenter
     private fun setupDatabaseReferences() {
         val pm = presentationModel
         pm.mDatabase = FirebaseDatabase.getInstance().getReference()
-        pm.test = pm.mDatabase.child("test")
-        pm.devicesStates = pm.test.child("devicesStates")
+        pm.devicesStates = pm.mDatabase.child("devicesStates")
         pm.lightBulbPower = pm.devicesStates.child("lightBulbPower")
     }
 
     private fun getLight() {
-        //onGetLightsSuccess(createDummyLights())
         view?.startProgressDialog(ResUtil.getString(R.string.progress_loading_text))
         ServiceManager.getLights(this, presentationModel.roomId)
+        //onGetLightsSuccess(createDummyLights())
     }
 
     override fun onGetLightsSuccess(lights: Lights) {

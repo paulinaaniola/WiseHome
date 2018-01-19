@@ -21,7 +21,6 @@ class BlindsPresenterImpl : BaseAbstractPresenter<BlindsView>(), BlindsPresenter
     private val presentationModel: BlindsModel by lazy { BlindsModel() }
 
     private lateinit var mDatabase: DatabaseReference
-    private lateinit var test: DatabaseReference
     private lateinit var devicesStates: DatabaseReference
     private lateinit var blindState: DatabaseReference
 
@@ -39,8 +38,7 @@ class BlindsPresenterImpl : BaseAbstractPresenter<BlindsView>(), BlindsPresenter
 
     private fun setupDatabaseReferences() {
         mDatabase = FirebaseDatabase.getInstance().getReference()
-        test = mDatabase.child("test")
-        devicesStates = test.child("devicesStates")
+        devicesStates = mDatabase.child("devicesStates")
         blindState = devicesStates.child("blindState")
     }
 
