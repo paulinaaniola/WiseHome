@@ -3,9 +3,7 @@ package com.patientcard.access
 import android.content.Intent
 import com.example.paulina.wisehome.base.BaseAbstractPresenter
 import com.example.paulina.wisehome.model.businessobjects.AccountType
-import com.example.paulina.wisehome.model.transportobjects.Credentials
 import com.example.paulina.wisehome.model.transportobjects.IsAdmin
-import com.example.paulina.wisehome.service.ServiceManager
 import com.example.paulina.wisehome.service.receivers.LoginReciever
 
 class AccessPresenterImpl : BaseAbstractPresenter<AccessView>(), AccessPresenter, LoginReciever {
@@ -15,7 +13,8 @@ class AccessPresenterImpl : BaseAbstractPresenter<AccessView>(), AccessPresenter
     }
 
     override fun login(login: String, password: String) {
-        ServiceManager.login(this, Credentials(login, password))
+      //  ServiceManager.login(this, Credentials(login, password))
+        onLoginSuccess(IsAdmin(true))
     }
 
     override fun onLoginSuccess(isAdmin: IsAdmin) {

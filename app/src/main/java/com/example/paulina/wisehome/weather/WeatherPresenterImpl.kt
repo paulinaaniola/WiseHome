@@ -35,7 +35,7 @@ class WeatherPresenterImpl : BaseAbstractPresenter<WeatherView>(), WeatherPresen
     override fun onGetWeatherSuccess(weather: Weather) {
         view?.stopProgressDialog()
         view?.setupWeatherState(weather)
-        view?.setupFeverGraph(createDummyWeather().historicMeasurements)
+        view?.setupTemperatureChart(createDummyWeather().historicMeasurements)
     }
 
     override fun onGetWeatherError() {
@@ -58,6 +58,9 @@ class WeatherPresenterImpl : BaseAbstractPresenter<WeatherView>(), WeatherPresen
         historicMeasurements.add(WeatherMeasurements(23, 100, LocalDateTime.now().plusMinutes(330)))
         historicMeasurements.add(WeatherMeasurements(24, 100, LocalDateTime.now().plusMinutes(360)))
         historicMeasurements.add(WeatherMeasurements(250, 100, LocalDateTime.now().plusMinutes(390)))
+        historicMeasurements.add(WeatherMeasurements(250, 100, LocalDateTime.now().plusMinutes(450)))
+        historicMeasurements.add(WeatherMeasurements(250, 100, LocalDateTime.now().plusMinutes(510)))
+        historicMeasurements.add(WeatherMeasurements(250, 100, LocalDateTime.now().plusMinutes(570)))
         return NewWeather(100, 200, historicMeasurements)
     }
 }
