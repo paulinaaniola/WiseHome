@@ -6,6 +6,7 @@ import com.example.paulina.wisehome.base.NavDrawerActivity
 import com.example.paulina.wisehome.model.businessobjects.WeatherMeasurements
 import com.example.paulina.wisehome.model.transportobjects.Weather
 import com.github.mikephil.charting.components.AxisBase
+import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
@@ -13,9 +14,8 @@ import com.github.mikephil.charting.formatter.IAxisValueFormatter
 import easymvp.annotation.ActivityView
 import easymvp.annotation.Presenter
 import kotlinx.android.synthetic.main.activity_weather.*
-import java.text.SimpleDateFormat
+import org.threeten.bp.format.DateTimeFormatter
 import java.util.*
-import java.util.concurrent.TimeUnit
 
 
 @ActivityView(layout = R.layout.activity_weather, presenter = WeatherPresenterImpl::class)
@@ -38,38 +38,42 @@ class WeatherActivity : NavDrawerActivity(), WeatherView {
     }
 
     override fun setupTemperatureChart(historicMeasurements: List<WeatherMeasurements>) {
-
+        temperatureChart.setScaleEnabled(true)
+        temperatureChart.getAxisRight().setEnabled(false)
+        temperatureChart.legend.isEnabled = false
         val xAxis = temperatureChart.getXAxis()
+        val yAxis = temperatureChart.axisLeft
+        temperatureChart.x
+        xAxis.position = XAxis.XAxisPosition.BOTTOM
         xAxis.setTextColor(R.color.colorAccent)
-        val firstTime = historicMeasurements[0].date.toLocalTime()
-        val lastTime = historicMeasurements[historicMeasurements.size - 1].date.toLocalTime()
+        xAxis.setLabelCount(8, true)
 
         xAxis.valueFormatter = object : IAxisValueFormatter {
 
-            private val mFormat = SimpleDateFormat("dd MMM HH:mm")
-
             override fun getFormattedValue(value: Float, axis: AxisBase): String {
-
-                val millis = TimeUnit.HOURS.toMillis(value.toLong())
-                return mFormat.format(Date(millis))
+                val time = historicMeasurements[value.toInt()].date.toLocalTime()
+                return time.format(DateTimeFormatter.ofPattern("HH:00"))
             }
         }
+//
+//        yAxis.valueFormatter = object : IAxisValueFormatter {
+//
+//            override fun getFormattedValue(value: Float, axis: AxisBase): String {
+//                val temperature = value.toString() + " °C"
+//                return temperature
+//            }
+//        }
+
 
         val values = ArrayList<Entry>()
-        for(i in 0 until historicMeasurements.size){
-       //     values.add(Entry(historicMeasurements[0].date., historicMeasurements[0].temperature.toFloat()))
+        for (i in 0 until historicMeasurements.size) {
+            values.add(Entry(i.toFloat(), historicMeasurements[i].temperature.toFloat()))
         }
         val set1 = LineDataSet(values, "DataSet 1")
+        set1.setDrawValues(false)
+        set1.setDrawCircles(false)
+        set1.color = R.color.colorLightRed
         var data = LineData(set1)
         temperatureChart.data = data
-
-//        listOfDates.add(firstTime as AxisValue)
-//        var hoursStep = 2;
-//        while (firstTime.plusHours(hoursStep.toLong()).isBefore(lastTime)) {
-//            val newTime : LocalTime = firstTime.plusHours(hoursStep.toLong())
-//            listOfDates.add(newTime as AxisValue)
-//            hoursStep = hoursStep + 2;
-//        }
-//        listOfDates.add(lastTime as AxisValue)
     }
 }
