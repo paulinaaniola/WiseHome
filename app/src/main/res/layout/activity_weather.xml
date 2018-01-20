@@ -172,6 +172,38 @@
 
                 </LinearLayout>
 
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:id="@+id/humidityChartLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp">
+
+                        <com.example.paulina.wisehome.model.views.VerticalTextView
+                            android:id="@+id/humidityLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:text="@string/humidity_proc"
+                            android:textSize="12sp" />
+
+                        <com.github.mikephil.charting.charts.LineChart
+                            android:id="@+id/humidityChart"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/humidityChartLayout"
+                        android:layout_centerHorizontal="true"
+                        android:text="@string/time"
+                        android:textSize="12sp" />
+                </RelativeLayout>
+
             </LinearLayout>
 
         </ScrollView>

@@ -37,17 +37,20 @@ class WeatherActivity : NavDrawerActivity(), WeatherView {
         roomNameTextView.setText(roomName)
     }
 
-    override fun setupTemperatureChart(historicMeasurements: List<WeatherMeasurements>) {
+    override fun setupCharts(historicMeasurements: List<WeatherMeasurements>) {
+        setupTemperatureChart(historicMeasurements)
+        setupHumidityChart(historicMeasurements)
+    }
+
+    fun setupTemperatureChart(historicMeasurements: List<WeatherMeasurements>) {
         temperatureChart.setScaleEnabled(true)
         temperatureChart.getAxisRight().setEnabled(false)
         temperatureChart.legend.isEnabled = false
+        temperatureChart.getDescription().setEnabled(false)
         val xAxis = temperatureChart.getXAxis()
-        val yAxis = temperatureChart.axisLeft
-        temperatureChart.x
         xAxis.position = XAxis.XAxisPosition.BOTTOM
         xAxis.setTextColor(R.color.colorAccent)
         xAxis.setLabelCount(8, true)
-
         xAxis.valueFormatter = object : IAxisValueFormatter {
 
             override fun getFormattedValue(value: Float, axis: AxisBase): String {
@@ -55,25 +58,45 @@ class WeatherActivity : NavDrawerActivity(), WeatherView {
                 return time.format(DateTimeFormatter.ofPattern("HH:00"))
             }
         }
-//
-//        yAxis.valueFormatter = object : IAxisValueFormatter {
-//
-//            override fun getFormattedValue(value: Float, axis: AxisBase): String {
-//                val temperature = value.toString() + " °C"
-//                return temperature
-//            }
-//        }
-
 
         val values = ArrayList<Entry>()
         for (i in 0 until historicMeasurements.size) {
             values.add(Entry(i.toFloat(), historicMeasurements[i].temperature.toFloat()))
         }
-        val set1 = LineDataSet(values, "DataSet 1")
-        set1.setDrawValues(false)
-        set1.setDrawCircles(false)
-        set1.color = R.color.colorLightRed
-        var data = LineData(set1)
+        val set = LineDataSet(values, "")
+        set.setDrawValues(false)
+        set.setDrawCircles(false)
+        set.setColors(resources.getColor(R.color.colorLightRed))
+        var data = LineData(set)
         temperatureChart.data = data
+    }
+
+    fun setupHumidityChart(historicMeasurements: List<WeatherMeasurements>) {
+        humidityChart.setScaleEnabled(true)
+        humidityChart.getAxisRight().setEnabled(false)
+        humidityChart.legend.isEnabled = false
+        humidityChart.getDescription().setEnabled(false)
+        val xAxis = humidityChart.getXAxis()
+        xAxis.position = XAxis.XAxisPosition.BOTTOM
+        xAxis.setTextColor(R.color.colorAccent)
+        xAxis.setLabelCount(8, true)
+        xAxis.valueFormatter = object : IAxisValueFormatter {
+
+            override fun getFormattedValue(value: Float, axis: AxisBase): String {
+                val time = historicMeasurements[value.toInt()].date.toLocalTime()
+                return time.format(DateTimeFormatter.ofPattern("HH:00"))
+            }
+        }
+
+        val values = ArrayList<Entry>()
+        for (i in 0 until historicMeasurements.size) {
+            values.add(Entry(i.toFloat(), historicMeasurements[i].humidity.toFloat()))
+        }
+        val set = LineDataSet(values, "")
+        set.setDrawValues(false)
+        set.setDrawCircles(false)
+        set.setColors(resources.getColor(R.color.colorLightBlue))
+        var data = LineData(set)
+        humidityChart.data = data
     }
 }

@@ -57,6 +57,7 @@
     <string name="authorization_error">Wrong username or password</string>
     <string name="username_already_exist">Username already exists</string>
     <string name="temperature_c">Temperature [°C]</string>
+    <string name="humidity_proc">Humidity [%]</string>
     <string name="time">Time</string>
 </resources>
 

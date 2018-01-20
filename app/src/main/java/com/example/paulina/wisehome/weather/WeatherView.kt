@@ -8,5 +8,5 @@ import com.example.paulina.wisehome.model.transportobjects.Weather
 interface WeatherView : BaseView {
     fun setupWeatherState(weather: Weather)
     fun setupRoomName(roomName: String)
-    fun setupTemperatureChart(historicMeasurements : List<WeatherMeasurements>)
+    fun setupCharts(historicMeasurements : List<WeatherMeasurements>)
 }

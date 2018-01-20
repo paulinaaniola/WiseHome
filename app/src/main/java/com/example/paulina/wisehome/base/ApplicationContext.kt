@@ -5,6 +5,7 @@ import android.support.multidex.BuildConfig
 import android.support.multidex.MultiDex
 import android.support.multidex.MultiDexApplication
 import com.blankj.utilcode.util.Utils
+import com.jakewharton.threetenabp.AndroidThreeTen
 import io.paperdb.Paper
 import timber.log.Timber
 
@@ -16,6 +17,7 @@ class ApplicationContext : MultiDexApplication() {
         MultiDex.install(applicationContext)
         Utils.init(applicationContext)
         Paper.init(mAppContext)
+        AndroidThreeTen.init(this)
 //        Fabric.with(this, Crashlytics())
 
         if (BuildConfig.DEBUG) run {

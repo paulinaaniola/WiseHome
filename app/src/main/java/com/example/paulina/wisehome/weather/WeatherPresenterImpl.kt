@@ -35,7 +35,7 @@ class WeatherPresenterImpl : BaseAbstractPresenter<WeatherView>(), WeatherPresen
     override fun onGetWeatherSuccess(weather: Weather) {
         view?.stopProgressDialog()
         view?.setupWeatherState(weather)
-        view?.setupTemperatureChart(createDummyWeather().historicMeasurements)
+        view?.setupCharts(createDummyWeather().historicMeasurements)
     }
 
     override fun onGetWeatherError() {
