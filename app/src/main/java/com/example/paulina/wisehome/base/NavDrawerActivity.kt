@@ -10,6 +10,7 @@ import android.view.View
 import com.example.paulina.wisehome.R
 import com.example.paulina.wisehome.addaccount.AddAccountActivity
 import com.example.paulina.wisehome.addroom.AddRoomActivity
+import com.example.paulina.wisehome.changepassword.ChangePasswordActivity
 import com.example.paulina.wisehome.model.businessobjects.AccountType
 import com.example.paulina.wisehome.model.businessobjects.NavDrawerItemType
 import com.example.paulina.wisehome.model.database.Database
@@ -37,6 +38,8 @@ abstract class NavDrawerActivity : BaseActivity() {
 
     protected fun onCreateDrawer() {
         setSupportActionBar(toolbar.toolbar)
+        getSupportActionBar()?.setDisplayShowTitleEnabled(false)
+
         if (shouldCreateNavDrawer) {
             setDrawerToggle()
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -99,8 +102,7 @@ abstract class NavDrawerActivity : BaseActivity() {
             NavDrawerItemType.LOGOUT -> {
             }
             NavDrawerItemType.ADD_ACCOUNT -> openActivityFadeInFadeOut(AddAccountActivity::class.java)
-            NavDrawerItemType.ACCOUNT_SETTINGS -> {
-            }
+            NavDrawerItemType.CHANGE_PASSWORD -> openActivityFadeInFadeOut(ChangePasswordActivity::class.java)
         }
         drawerLayout.closeDrawer(Gravity.LEFT)
     }
@@ -119,7 +121,7 @@ abstract class NavDrawerActivity : BaseActivity() {
             items.add(NavDrawerItemType.ADD_DEVICE)
             items.add(NavDrawerItemType.ADD_ACCOUNT)
         }
-        items.add(NavDrawerItemType.ACCOUNT_SETTINGS)
+        items.add(NavDrawerItemType.CHANGE_PASSWORD)
         items.add(NavDrawerItemType.LOGOUT)
         return items
     }

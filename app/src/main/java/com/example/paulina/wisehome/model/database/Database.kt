@@ -12,4 +12,12 @@ class Database {
     fun putAccountType(accountType: AccountType) {
         Paper.book().write(DatabaseKeys.ACCOUNT_TYPE.toString(), accountType)
     }
+
+    fun putLoggedUsername(username: String) {
+        Paper.book().write(DatabaseKeys.USERNAME.toString(), username)
+    }
+
+    fun getUsername(): String {
+        return Paper.book().read(DatabaseKeys.USERNAME.toString())
+    }
 }

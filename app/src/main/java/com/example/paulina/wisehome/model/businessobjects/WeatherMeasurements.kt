@@ -1,10 +1,9 @@
 package com.example.paulina.wisehome.model.businessobjects
 
-import org.threeten.bp.LocalDateTime
+import java.io.Serializable
 
 
 class WeatherMeasurements(
-        val temperature : Int,
-        val humidity : Int,
-        val date: LocalDateTime
-)
+        val temperature: Long,
+        val humidity: Long,
+        val createdAt: Long) : Serializable

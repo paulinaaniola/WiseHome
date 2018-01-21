@@ -1,10 +1,11 @@
 package com.example.paulina.wisehome.weather
 
+import android.text.format.DateFormat
 import com.example.paulina.wisehome.R
 import com.example.paulina.wisehome.base.BasePresenter
 import com.example.paulina.wisehome.base.NavDrawerActivity
+import com.example.paulina.wisehome.model.businessobjects.NewWeather
 import com.example.paulina.wisehome.model.businessobjects.WeatherMeasurements
-import com.example.paulina.wisehome.model.transportobjects.Weather
 import com.github.mikephil.charting.components.AxisBase
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.Entry
@@ -14,7 +15,6 @@ import com.github.mikephil.charting.formatter.IAxisValueFormatter
 import easymvp.annotation.ActivityView
 import easymvp.annotation.Presenter
 import kotlinx.android.synthetic.main.activity_weather.*
-import org.threeten.bp.format.DateTimeFormatter
 import java.util.*
 
 
@@ -28,9 +28,9 @@ class WeatherActivity : NavDrawerActivity(), WeatherView {
         return presenter
     }
 
-    override fun setupWeatherState(weather: Weather) {
-        humidityTextView.setText(weather.humidity)
-        temperatureTextView.setText(weather.temperature)
+    override fun setupWeatherState(weather: NewWeather) {
+        humidityTextView.setText(weather.humidity.toString())
+        temperatureTextView.setText(weather.temperature.toString())
     }
 
     override fun setupRoomName(roomName: String) {
@@ -38,8 +38,10 @@ class WeatherActivity : NavDrawerActivity(), WeatherView {
     }
 
     override fun setupCharts(historicMeasurements: List<WeatherMeasurements>) {
-        setupTemperatureChart(historicMeasurements)
-        setupHumidityChart(historicMeasurements)
+        if (!historicMeasurements.isEmpty()) {
+            setupTemperatureChart(historicMeasurements)
+            setupHumidityChart(historicMeasurements)
+        }
     }
 
     fun setupTemperatureChart(historicMeasurements: List<WeatherMeasurements>) {
@@ -50,18 +52,20 @@ class WeatherActivity : NavDrawerActivity(), WeatherView {
         val xAxis = temperatureChart.getXAxis()
         xAxis.position = XAxis.XAxisPosition.BOTTOM
         xAxis.setTextColor(R.color.colorAccent)
-        xAxis.setLabelCount(8, true)
+       // xAxis.setLabelCount(8, true)
+        val a = Date(historicMeasurements[0].createdAt).hours
         xAxis.valueFormatter = object : IAxisValueFormatter {
 
             override fun getFormattedValue(value: Float, axis: AxisBase): String {
-                val time = historicMeasurements[value.toInt()].date.toLocalTime()
-                return time.format(DateTimeFormatter.ofPattern("HH:00"))
+                //val time = historicMeasurements[value.toInt()].createdAt
+                //return time.format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ"))
+                return getDate(value.toLong())
             }
         }
 
         val values = ArrayList<Entry>()
-        for (i in 0 until historicMeasurements.size) {
-            values.add(Entry(i.toFloat(), historicMeasurements[i].temperature.toFloat()))
+        for (i in 0 until historicMeasurements.size - 1) {
+            values.add(Entry(historicMeasurements[i].createdAt.toFloat(), historicMeasurements[i].temperature.toFloat()))
         }
         val set = LineDataSet(values, "")
         set.setDrawValues(false)
@@ -80,17 +84,17 @@ class WeatherActivity : NavDrawerActivity(), WeatherView {
         xAxis.position = XAxis.XAxisPosition.BOTTOM
         xAxis.setTextColor(R.color.colorAccent)
         xAxis.setLabelCount(8, true)
-        xAxis.valueFormatter = object : IAxisValueFormatter {
-
-            override fun getFormattedValue(value: Float, axis: AxisBase): String {
-                val time = historicMeasurements[value.toInt()].date.toLocalTime()
-                return time.format(DateTimeFormatter.ofPattern("HH:00"))
-            }
-        }
+//        xAxis.valueFormatter = object : IAxisValueFormatter {
+//
+//            override fun getFormattedValue(value: Float, axis: AxisBase): String {
+//                val time = historicMeasurements[value.toInt()].createdAt.toLocalTime()
+//                return time.format(DateTimeFormatter.ofPattern("HH:mm"))
+//            }
+//        }
 
         val values = ArrayList<Entry>()
-        for (i in 0 until historicMeasurements.size) {
-            values.add(Entry(i.toFloat(), historicMeasurements[i].humidity.toFloat()))
+        for (i in 0 until historicMeasurements.size - 1) {
+            values.add(Entry(historicMeasurements[i].createdAt.toFloat(), historicMeasurements[i].humidity.toFloat()))
         }
         val set = LineDataSet(values, "")
         set.setDrawValues(false)
@@ -98,5 +102,11 @@ class WeatherActivity : NavDrawerActivity(), WeatherView {
         set.setColors(resources.getColor(R.color.colorLightBlue))
         var data = LineData(set)
         humidityChart.data = data
+    }
+
+    private fun getDate(time: Long): String {
+        val cal = Calendar.getInstance(Locale.ENGLISH)
+        cal.timeInMillis = time
+        return DateFormat.format("HH:mm", cal).toString()
     }
 }

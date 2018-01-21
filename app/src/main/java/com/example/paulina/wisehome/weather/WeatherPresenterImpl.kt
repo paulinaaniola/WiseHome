@@ -5,11 +5,9 @@ import com.example.paulina.wisehome.R
 import com.example.paulina.wisehome.base.BaseAbstractPresenter
 import com.example.paulina.wisehome.base.IntentKeys
 import com.example.paulina.wisehome.model.businessobjects.NewWeather
-import com.example.paulina.wisehome.model.businessobjects.WeatherMeasurements
-import com.example.paulina.wisehome.model.transportobjects.Weather
 import com.example.paulina.wisehome.model.utils.ResUtil
+import com.example.paulina.wisehome.service.ServiceManager
 import com.example.paulina.wisehome.service.receivers.GetWeatherReciever
-import org.threeten.bp.LocalDateTime
 
 class WeatherPresenterImpl : BaseAbstractPresenter<WeatherView>(), WeatherPresenter, GetWeatherReciever {
 
@@ -28,42 +26,43 @@ class WeatherPresenterImpl : BaseAbstractPresenter<WeatherView>(), WeatherPresen
 
     fun getWeather() {
         view?.startProgressDialog(ResUtil.getString(R.string.progress_loading_text))
-        //ServiceManager.getWeather(this, presentationModel.roomId)
-        onGetWeatherSuccess(Weather("24", "11"))
+        ServiceManager.getWeather(this, presentationModel.roomId)
+       // onGetWeatherSuccess(Weather("24", "11"))
     }
 
-    override fun onGetWeatherSuccess(weather: Weather) {
+    override fun onGetWeatherSuccess(weather: NewWeather) {
         view?.stopProgressDialog()
         view?.setupWeatherState(weather)
-        view?.setupCharts(createDummyWeather().historicMeasurements)
+        view?.setupCharts(weather.historicMeasurements)
+       // view?.setupCharts(createDummyWeather().historicMeasurements)
     }
 
     override fun onGetWeatherError() {
         view?.stopProgressDialog()
     }
 
-    private fun createDummyWeather(): NewWeather {
-        val historicMeasurements: ArrayList<WeatherMeasurements> = arrayListOf()
-        for(i in 0..11) {
-            historicMeasurements.add(WeatherMeasurements(20, 100, LocalDateTime.now()))
-            historicMeasurements.add(WeatherMeasurements(30, 110, LocalDateTime.now().plusMinutes(30)))
-            historicMeasurements.add(WeatherMeasurements(30, 110, LocalDateTime.now().plusMinutes(45)))
-            historicMeasurements.add(WeatherMeasurements(32, 120, LocalDateTime.now().plusMinutes(60)))
-            historicMeasurements.add(WeatherMeasurements(22, 130, LocalDateTime.now().plusMinutes(90)))
-            historicMeasurements.add(WeatherMeasurements(21, 120, LocalDateTime.now().plusMinutes(120)))
-            historicMeasurements.add(WeatherMeasurements(22, 140, LocalDateTime.now().plusMinutes(150)))
-            historicMeasurements.add(WeatherMeasurements(23, 100, LocalDateTime.now().plusMinutes(180)))
-            historicMeasurements.add(WeatherMeasurements(20, 100, LocalDateTime.now().plusMinutes(210)))
-            historicMeasurements.add(WeatherMeasurements(19, 100, LocalDateTime.now().plusMinutes(240)))
-            historicMeasurements.add(WeatherMeasurements(20, 100, LocalDateTime.now().plusMinutes(270)))
-            historicMeasurements.add(WeatherMeasurements(22, 100, LocalDateTime.now().plusMinutes(300)))
-            historicMeasurements.add(WeatherMeasurements(23, 100, LocalDateTime.now().plusMinutes(330)))
-            historicMeasurements.add(WeatherMeasurements(24, 100, LocalDateTime.now().plusMinutes(360)))
-            historicMeasurements.add(WeatherMeasurements(15, 100, LocalDateTime.now().plusMinutes(390)))
-            historicMeasurements.add(WeatherMeasurements(10, 100, LocalDateTime.now().plusMinutes(450)))
-            historicMeasurements.add(WeatherMeasurements(10, 100, LocalDateTime.now().plusMinutes(510)))
-            historicMeasurements.add(WeatherMeasurements(10, 100, LocalDateTime.now().plusMinutes(570)))
-        }
-        return NewWeather(100, 200, historicMeasurements)
-    }
+//    private fun createDummyWeather(): NewWeather {
+//        val historicMeasurements: ArrayList<WeatherMeasurements> = arrayListOf()
+//        for(i in 0..11) {
+//            historicMeasurements.add(WeatherMeasurements(20, 100, LocalDateTime.now()))
+//            historicMeasurements.add(WeatherMeasurements(30, 110, LocalDateTime.now().plusMinutes(30)))
+//            historicMeasurements.add(WeatherMeasurements(30, 110, LocalDateTime.now().plusMinutes(45)))
+//            historicMeasurements.add(WeatherMeasurements(32, 120, LocalDateTime.now().plusMinutes(60)))
+//            historicMeasurements.add(WeatherMeasurements(22, 130, LocalDateTime.now().plusMinutes(90)))
+//            historicMeasurements.add(WeatherMeasurements(21, 120, LocalDateTime.now().plusMinutes(120)))
+//            historicMeasurements.add(WeatherMeasurements(22, 140, LocalDateTime.now().plusMinutes(150)))
+//            historicMeasurements.add(WeatherMeasurements(23, 100, LocalDateTime.now().plusMinutes(180)))
+//            historicMeasurements.add(WeatherMeasurements(20, 100, LocalDateTime.now().plusMinutes(210)))
+//            historicMeasurements.add(WeatherMeasurements(19, 100, LocalDateTime.now().plusMinutes(240)))
+//            historicMeasurements.add(WeatherMeasurements(20, 100, LocalDateTime.now().plusMinutes(270)))
+//            historicMeasurements.add(WeatherMeasurements(22, 100, LocalDateTime.now().plusMinutes(300)))
+//            historicMeasurements.add(WeatherMeasurements(23, 100, LocalDateTime.now().plusMinutes(330)))
+//            historicMeasurements.add(WeatherMeasurements(24, 100, LocalDateTime.now().plusMinutes(360)))
+//            historicMeasurements.add(WeatherMeasurements(15, 100, LocalDateTime.now().plusMinutes(390)))
+//            historicMeasurements.add(WeatherMeasurements(10, 100, LocalDateTime.now().plusMinutes(450)))
+//            historicMeasurements.add(WeatherMeasurements(10, 100, LocalDateTime.now().plusMinutes(510)))
+//            historicMeasurements.add(WeatherMeasurements(10, 100, LocalDateTime.now().plusMinutes(570)))
+//        }
+//        return NewWeather(100, 200, historicMeasurements)
+//    }
 }

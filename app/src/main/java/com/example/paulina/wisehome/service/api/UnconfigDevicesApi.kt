@@ -9,10 +9,10 @@ import rx.Observable
 
 interface UnconfigDevicesApi {
 
-    @GET("api/homeId/unassignedDevices")
+    @GET("api/homeId/unconfiguredDevice")
     fun getUnconfigDevices(): Observable<List<UnconfigDevice>>
 
-    @POST("api/homeId/highlightDevice")
+    @POST("api/homeId/unconfiguredDevice/highlightDevice")
     fun highlightDevice(@Query("mac") mac: String,
                         @Query("highlight") highlight: Boolean): Observable<Boolean>
 

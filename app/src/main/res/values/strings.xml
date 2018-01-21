@@ -21,7 +21,7 @@
     <string name="add_room">Add Room</string>
     <string name="add_device">Add device</string>
     <string name="logout">Logout</string>
-    <string name="account_settings">Account Settings</string>
+    <string name="change_password">Change Password</string>
     <string name="add_account">Add Account</string>
     <string name="closed">CLOSED</string>
     <string name="partly_closed">PARTLY CLOSED</string>
@@ -56,8 +56,15 @@
     <string name="We_havent_detect_any_unconfigured_device_in_your_area">We haven\'t detected any unconfigured device in your area. \n To configurate it you need to turn it on</string>
     <string name="authorization_error">Wrong username or password</string>
     <string name="username_already_exist">Username already exists</string>
+    <string name="change">change</string>
+    <string name="new_password">new password</string>
+    <string name="confirm_new_password">repeat new password</string>
+    <string name="old_password">old password</string>
     <string name="temperature_c">Temperature [°C]</string>
     <string name="humidity_proc">Humidity [%]</string>
     <string name="time">Time</string>
+    <string name="invalid_old_password">old password is invalid</string>
+    <string name="password_not_match">Password does not match the confirm password</string>
+    <string name="admin">Administrative priveleges</string>
 </resources>
 

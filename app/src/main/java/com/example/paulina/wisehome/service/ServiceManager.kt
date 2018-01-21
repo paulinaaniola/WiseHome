@@ -4,6 +4,7 @@ import android.widget.Toast
 import com.example.paulina.wisehome.R
 import com.example.paulina.wisehome.base.ApplicationContext
 import com.example.paulina.wisehome.model.businessobjects.BlindDirection
+import com.example.paulina.wisehome.model.businessobjects.NewWeather
 import com.example.paulina.wisehome.model.businessobjects.ResponseErrorMessage
 import com.example.paulina.wisehome.model.transportobjects.*
 import com.example.paulina.wisehome.model.utils.ResUtil
@@ -169,7 +170,7 @@ object ServiceManager {
                 .weatherService
                 .getWeather(roomId),
                 Action1 {
-                    receiver.onGetWeatherSuccess(it as Weather)
+                    receiver.onGetWeatherSuccess(it as NewWeather)
                 },
                 Action1 {
                     handleError(it)
@@ -211,11 +212,39 @@ object ServiceManager {
                 .loginService
                 .login(credentials),
                 Action1 {
-                    receiver.onLoginSuccess(it as IsAdmin)
+                    receiver.onLoginSuccess(it as LoggedUser)
                 },
                 Action1 {
                     handleError(it)
                     receiver.onLoginError()
+                },
+                Action0 { Timber.e("OnCompleted") })
+    }
+
+    fun changePassword(receiver: ChangePasswordReciever, newCredentials: NewCredentials) {
+        setupRequest(ServiceProvider
+                .accountService
+                .changePassword(newCredentials),
+                Action1 {
+                    receiver.onChangePasswordSuccess()
+                },
+
+                Action1 {
+                    receiver.onChangePasswordError(it)
+                },
+                Action0 { Timber.e("OnCompleted") })
+    }
+
+    fun addAccount(receiver: AddAccountReciever, newUser: NewUser) {
+        setupRequest(ServiceProvider
+                .accountService
+                .addNewUser(newUser),
+                Action1 {
+                    receiver.onAddAccountSuccess()
+                },
+                Action1 {
+                    handleError(it)
+                    receiver.onAddAccountError()
                 },
                 Action0 { Timber.e("OnCompleted") })
     }
@@ -229,7 +258,6 @@ object ServiceManager {
 
     fun handleError(error: Throwable) {
         val msg = getResponseMessage(error)
-
         if (error is HttpException) {
             val context = ApplicationContext.appContext
 

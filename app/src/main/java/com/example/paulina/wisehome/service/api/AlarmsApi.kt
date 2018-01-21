@@ -7,7 +7,7 @@ import rx.Observable
 
 
 interface AlarmsApi {
-    @GET("api/homeId/alarmSensor/{roomId}")
+    @GET("api/homeId/rooms/{roomId}/ALARM_SENSORS")
     fun getAlarms(
             @Path("roomId") roomId: String): Observable<Alarms>
 

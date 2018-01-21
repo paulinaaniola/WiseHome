@@ -25,8 +25,9 @@ class AddAccountActivity : NavDrawerActivity(), AddAccountView {
 
     private fun onAddButtonClick() {
         checkLoginAndPassword()
-        if (loginEditText.error != null && passwordEditText.error != null && repeatPasswordEditText.error != null) {
-            presenter.addAccount(loginEditText.text.toString(), passwordEditText.text.toString())
+        if (loginEditText.error == null && passwordEditText.error == null && repeatPasswordEditText.error == null) {
+            val adminPriveleges = adminPrivelegesCheckBox.isChecked
+            presenter.addAccount(loginEditText.text.toString(), passwordEditText.text.toString(), adminPriveleges)
         }
     }
 

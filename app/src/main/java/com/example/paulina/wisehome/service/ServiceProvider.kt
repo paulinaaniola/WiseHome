@@ -17,6 +17,7 @@ object ServiceProvider {
     lateinit var weatherService: WeatherApi
     lateinit var alarmsService: AlarmsApi
     lateinit var loginService: LoginApi
+    lateinit var accountService : AccountsApi
 
     private fun setupServices() {
         roomsService = ServiceFactory.createRetrofitService(RoomsApi::class.java, BASE_URL, false, false)
@@ -32,5 +33,7 @@ object ServiceProvider {
         alarmsService = ServiceFactory.createRetrofitService(AlarmsApi::class.java, BASE_URL, false, false)
 
         loginService = ServiceFactory.createRetrofitService(LoginApi::class.java, BASE_URL, false, false)
+
+        accountService = ServiceFactory.createRetrofitService(AccountsApi::class.java, BASE_URL, false, false)
     }
 }

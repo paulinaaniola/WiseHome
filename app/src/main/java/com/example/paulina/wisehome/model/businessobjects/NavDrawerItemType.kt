@@ -9,7 +9,7 @@ enum class NavDrawerItemType(var resourceId: Int) {
     ADD_DEVICE(R.string.add_device),
     LOGOUT(R.string.logout),
     ADD_ACCOUNT(R.string.add_account),
-    ACCOUNT_SETTINGS(R.string.account_settings);
+    CHANGE_PASSWORD(R.string.change_password);
 
     fun toStringLocale(): String? {
         return ResUtil.getString(resourceId)

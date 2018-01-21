@@ -11,7 +11,7 @@ interface RoomsApi {
     @GET("api/homeId/rooms")
     fun getRooms(): Observable<List<Room>>
 
-    @POST("api/homeId/newRoom")
+    @POST("api/homeId/rooms/newRoom")
     fun addNewRoom(
             @Query("name") name: String): Observable<Void>
 
