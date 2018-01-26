@@ -45,8 +45,8 @@ class LightsPresenterImpl : BaseAbstractPresenter<LightsView>(), LightsPresenter
 
     private fun getLight() {
         view?.startProgressDialog(ResUtil.getString(R.string.progress_loading_text))
-        ServiceManager.getLights(this, presentationModel.roomId)
-        //onGetLightsSuccess(createDummyLights())
+       // ServiceManager.getLights(this, presentationModel.roomId)
+        onGetLightsSuccess(createDummyLights())
     }
 
     override fun onGetLightsSuccess(lights: Lights) {
@@ -59,6 +59,16 @@ class LightsPresenterImpl : BaseAbstractPresenter<LightsView>(), LightsPresenter
 
     override fun onGetLightsError() {
         view?.stopProgressDialog()
+    }
+
+    private fun createDummyLights(): Lights {
+        val light : Lights
+        val lighBulbs : ArrayList<LightBulb> = ArrayList()
+        lighBulbs.add(LightBulb("d", "Light 1", false))
+        lighBulbs.add(LightBulb("d", "Light 2", true))
+        lighBulbs.add(LightBulb("d", "Light 3", false))
+        light = Lights(false, RGBColor("100","120","100"), lighBulbs)
+        return light
     }
 
     private fun setupLightStateChangeListener(lightBulbs: List<LightBulb>) {

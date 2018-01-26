@@ -31,18 +31,18 @@ class AccessActivity : BaseActivity(), AccessView {
     }
 
     private fun onLoginButtonClick() {
-        val login: String = login_edit_text.text.toString()
-        val password = password_edit_text.text.toString()
+        val login: String = loginEditText.text.toString()
+        val password = passwordEditText.text.toString()
         if(login.isEmpty()){
-            login_edit_text.error = ResUtil.getString(R.string.blank_edit_text_error)
+            loginEditText.error = ResUtil.getString(R.string.blank_edit_text_error)
         } else {
-            login_edit_text.clearError()
+            loginEditText.clearError()
         }
 
         if(password.isEmpty()){
-            password_edit_text.error = ResUtil.getString(R.string.blank_edit_text_error)
+            passwordEditText.error = ResUtil.getString(R.string.blank_edit_text_error)
         } else {
-            password_edit_text.clearError()
+            passwordEditText.clearError()
         }
 
         if(!login.isEmpty() && !password.isEmpty()){
@@ -52,5 +52,11 @@ class AccessActivity : BaseActivity(), AccessView {
 
     override fun navigateToRooms() {
         startActivity(Intent(this, RoomsActivity::class.java))
+    }
+
+    override fun onStop() {
+        super.onStop()
+        loginEditText.text.clear()
+        passwordEditText.text.clear()
     }
 }

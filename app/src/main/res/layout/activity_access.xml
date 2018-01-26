@@ -34,7 +34,7 @@
         android:orientation="vertical">
 
         <com.rey.material.widget.EditText
-            android:id="@+id/login_edit_text"
+            android:id="@+id/loginEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="fill"
@@ -59,7 +59,7 @@
             app:et_supportTextErrorColor="@color/colorError" />
 
         <com.rey.material.widget.EditText
-            android:id="@+id/password_edit_text"
+            android:id="@+id/passwordEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="fill"

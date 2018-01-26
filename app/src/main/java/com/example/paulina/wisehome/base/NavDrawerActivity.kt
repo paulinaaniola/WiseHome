@@ -16,6 +16,7 @@ import com.example.paulina.wisehome.model.businessobjects.NavDrawerItemType
 import com.example.paulina.wisehome.model.database.Database
 import com.example.paulina.wisehome.rooms.RoomsActivity
 import com.example.paulina.wisehome.unconfigdevices.UnconfigDevicesActivity
+import com.patientcard.access.AccessActivity
 import com.yalantis.jellytoolbar.widget.JellyToolbar
 import kotlinx.android.synthetic.main.activity_rooms.*
 import kotlinx.android.synthetic.main.toolbar.*
@@ -100,6 +101,7 @@ abstract class NavDrawerActivity : BaseActivity() {
             NavDrawerItemType.ADD_ROOM -> openActivityFadeInFadeOut(AddRoomActivity::class.java)
             NavDrawerItemType.ADD_DEVICE -> openActivityFadeInFadeOut(UnconfigDevicesActivity::class.java)
             NavDrawerItemType.LOGOUT -> {
+                openActivityFadeInFadeOut(AccessActivity::class.java)
             }
             NavDrawerItemType.ADD_ACCOUNT -> openActivityFadeInFadeOut(AddAccountActivity::class.java)
             NavDrawerItemType.CHANGE_PASSWORD -> openActivityFadeInFadeOut(ChangePasswordActivity::class.java)

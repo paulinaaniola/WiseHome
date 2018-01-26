@@ -6,7 +6,6 @@ import com.example.paulina.wisehome.base.BaseAbstractPresenter
 import com.example.paulina.wisehome.model.businessobjects.DeviceType
 import com.example.paulina.wisehome.model.transportobjects.Room
 import com.example.paulina.wisehome.model.utils.ResUtil
-import com.example.paulina.wisehome.service.ServiceManager
 import com.example.paulina.wisehome.service.receivers.GetRoomsReciever
 
 class RoomsPresenterImpl : BaseAbstractPresenter<RoomsView>(), RoomsPresenter, GetRoomsReciever {
@@ -24,8 +23,8 @@ class RoomsPresenterImpl : BaseAbstractPresenter<RoomsView>(), RoomsPresenter, G
 
     fun getRooms() {
         view?.startProgressDialog(ResUtil.getString(R.string.progress_loading_text))
-       // onGetRoomsSuccess(createDummyRooms())
-        ServiceManager.getRooms(this)
+        onGetRoomsSuccess(createDummyRooms())
+        // ServiceManager.getRooms(this)
     }
 
     override fun onGetRoomsSuccess(rooms: List<Room>) {

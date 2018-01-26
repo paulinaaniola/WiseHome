@@ -8,7 +8,6 @@ import com.example.paulina.wisehome.model.businessobjects.DeviceType
 import com.example.paulina.wisehome.model.transportobjects.Room
 import com.example.paulina.wisehome.model.transportobjects.UnconfigDevice
 import com.example.paulina.wisehome.model.utils.ResUtil
-import com.example.paulina.wisehome.service.ServiceManager
 import com.example.paulina.wisehome.service.receivers.AddDeviceToRoomReciever
 import com.example.paulina.wisehome.service.receivers.GetRoomsReciever
 
@@ -28,8 +27,8 @@ class AddDevicePresenterImpl : BaseAbstractPresenter<AddDeviceView>(), AddDevice
 
     private fun getRooms() {
         view?.startProgressDialog(ResUtil.getString(R.string.progress_loading_text))
-        ServiceManager.getRooms(this)
-        //onGetRoomsSuccess(createDummyRooms())
+        //ServiceManager.getRooms(this)
+        onGetRoomsSuccess(createDummyRooms())
     }
 
     override fun onGetRoomsSuccess(rooms: List<Room>) {
@@ -56,8 +55,8 @@ class AddDevicePresenterImpl : BaseAbstractPresenter<AddDeviceView>(), AddDevice
     override fun addDeviceToRoom() {
         view?.startProgressDialog(ResUtil.getString(R.string.progress_loading_text))
         val pm = presentationModel
-        ServiceManager.addDeviceToRoom(this, pm.selectedRoom._id, pm.newDeviceName, pm.selectedDevice.mac)
-       // onAddDeviceToRoomSuccess()
+       // ServiceManager.addDeviceToRoom(this, pm.selectedRoom._id, pm.newDeviceName, pm.selectedDevice.mac)
+        onAddDeviceToRoomSuccess()
     }
 
     override fun onAddDeviceToRoomSuccess() {

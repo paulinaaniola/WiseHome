@@ -82,4 +82,7 @@ class RoomsActivity : NavDrawerActivity(), RoomsView {
             roomsEmptyView.visibility = View.GONE
         }
     }
+
+    override fun onBackPressed() {
+    }
 }
