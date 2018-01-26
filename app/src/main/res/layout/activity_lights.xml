@@ -70,6 +70,7 @@
             android:background="@color/colorLightGray" />
 
         <ScrollView
+            android:id="@+id/lightsScrollView"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 

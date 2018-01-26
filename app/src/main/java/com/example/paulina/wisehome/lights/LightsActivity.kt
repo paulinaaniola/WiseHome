@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.widget.CompoundButton
+import android.widget.ScrollView
 import com.example.paulina.wisehome.R
 import com.example.paulina.wisehome.base.BasePresenter
 import com.example.paulina.wisehome.base.NavDrawerActivity
@@ -34,6 +35,7 @@ class LightsActivity : NavDrawerActivity(), LightsView {
         setupLightsList()
         setupColorPicker()
         setupButtons()
+        scrollLayoutToTop()
     }
 
     override fun providePresenter(): BasePresenter {
@@ -82,7 +84,7 @@ class LightsActivity : NavDrawerActivity(), LightsView {
         val colorInt1: Int = ColorUtil.rgbToInt(rgb)
     }
 
-    private fun setupAutomaticModeSwitch(automaticMode: Boolean){
+    private fun setupAutomaticModeSwitch(automaticMode: Boolean) {
         automaticModeSwitch.isChecked = automaticMode
     }
 
@@ -96,10 +98,15 @@ class LightsActivity : NavDrawerActivity(), LightsView {
         lightsAdapter.updateLightsState(id, isPoweredOn)
     }
 
-    override fun setAutomaticModeSwitch(isPoweredOn: Boolean){
+    override fun setAutomaticModeSwitch(isPoweredOn: Boolean) {
         automaticModeSwitch.isChecked = isPoweredOn
     }
+
     override fun setupRoomName(roomName: String) {
         roomNameTextView.setText(roomName)
+    }
+
+    private fun scrollLayoutToTop() {
+        lightsScrollView.post({ lightsScrollView.fullScroll(ScrollView.FOCUS_UP) })
     }
 }
