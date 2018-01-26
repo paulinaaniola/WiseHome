@@ -13,4 +13,6 @@ interface AddDeviceView : BaseView {
     fun displayDeviceConfiguratedDialog()
 
     fun navigateToRooms()
+
+    fun hideDeviceNameEditText()
 }

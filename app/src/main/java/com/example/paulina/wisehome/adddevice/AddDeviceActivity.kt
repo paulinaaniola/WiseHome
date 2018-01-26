@@ -95,4 +95,8 @@ class AddDeviceActivity : NavDrawerActivity(), AddDeviceView {
             super.onBackPressed()
         }
     }
+
+    override fun hideDeviceNameEditText() {
+        deviceNameEditText.visibility = View.GONE
+    }
 }

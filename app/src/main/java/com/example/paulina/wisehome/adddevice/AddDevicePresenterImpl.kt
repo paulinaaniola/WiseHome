@@ -23,12 +23,20 @@ class AddDevicePresenterImpl : BaseAbstractPresenter<AddDeviceView>(), AddDevice
     override fun onViewAttached(view: AddDeviceView?) {
         super.onViewAttached(view)
         getRooms()
+        checkDeviceType()
     }
 
     private fun getRooms() {
         view?.startProgressDialog(ResUtil.getString(R.string.progress_loading_text))
         //ServiceManager.getRooms(this)
         onGetRoomsSuccess(createDummyRooms())
+    }
+
+    private fun checkDeviceType() {
+        val deviceType: DeviceType = presentationModel.selectedDevice.deviceType
+        if (deviceType == DeviceType.ALARM_SENSORS || deviceType == DeviceType.WEATHER_SENSORS) {
+            view?.hideDeviceNameEditText()
+        }
     }
 
     override fun onGetRoomsSuccess(rooms: List<Room>) {
@@ -55,7 +63,7 @@ class AddDevicePresenterImpl : BaseAbstractPresenter<AddDeviceView>(), AddDevice
     override fun addDeviceToRoom() {
         view?.startProgressDialog(ResUtil.getString(R.string.progress_loading_text))
         val pm = presentationModel
-       // ServiceManager.addDeviceToRoom(this, pm.selectedRoom._id, pm.newDeviceName, pm.selectedDevice.mac)
+        // ServiceManager.addDeviceToRoom(this, pm.selectedRoom._id, pm.newDeviceName, pm.selectedDevice.mac)
         onAddDeviceToRoomSuccess()
     }
 
