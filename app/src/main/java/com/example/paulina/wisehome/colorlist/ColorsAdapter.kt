@@ -26,12 +26,16 @@ internal class ColorsAdapter(val context: Context, val colors: List<Color>) : Re
     }
 
     private fun setColorView(holder: ViewHolder, position: Int) {
-        val colorHex: String = "#" + ColorUtil.intToHex(colors[position].value)
-        holder.colorView.setBackgroundColor(android.graphics.Color.parseColor(colorHex))
+        if(colors[position].name != "Work") {
+            val colorHex: String = "#" + ColorUtil.intToHex(ColorUtil.rgbToInt(colors[position].value))
+            holder.colorView.setBackgroundColor(android.graphics.Color.parseColor(colorHex))
+        } else {
+            holder.colorView.setBackgroundColor(android.graphics.Color.parseColor("#E3F2FD"))
+        }
     }
 
     private fun onColorClick(position: Int) {
-        val rgbColor: RGBColor = ColorUtil.intToRgb(colors[position].value)
+        val rgbColor: RGBColor = colors[position].value
         (context as ColorListView).onColorClick(rgbColor)
     }
 

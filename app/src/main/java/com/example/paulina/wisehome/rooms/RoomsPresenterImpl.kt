@@ -21,10 +21,10 @@ class RoomsPresenterImpl : BaseAbstractPresenter<RoomsView>(), RoomsPresenter, G
         getRooms()
     }
 
-    fun getRooms() {
+    override fun getRooms() {
         view?.startProgressDialog(ResUtil.getString(R.string.progress_loading_text))
         onGetRoomsSuccess(createDummyRooms())
-        // ServiceManager.getRooms(this)
+        //ServiceManager.getRooms(this)
     }
 
     override fun onGetRoomsSuccess(rooms: List<Room>) {

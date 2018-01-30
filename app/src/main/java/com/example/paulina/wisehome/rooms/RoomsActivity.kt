@@ -35,6 +35,11 @@ class RoomsActivity : NavDrawerActivity(), RoomsView {
         setupRoomsList()
     }
 
+    override fun onResume() {
+        super.onResume()
+        presenter.getRooms()
+    }
+
     override fun providePresenter(): BasePresenter {
         return presenter
     }

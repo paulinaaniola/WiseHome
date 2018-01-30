@@ -4,4 +4,5 @@ import com.example.paulina.wisehome.base.BasePresenter
 
 interface RoomsPresenter : BasePresenter {
     fun getAnimDuration(): Int
+    fun getRooms()
 }

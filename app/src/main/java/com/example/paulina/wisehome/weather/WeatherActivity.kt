@@ -53,13 +53,14 @@ class WeatherActivity : NavDrawerActivity(), WeatherView {
         temperatureChart.labelFor
         val xAxis = temperatureChart.getXAxis()
         xAxis.position = XAxis.XAxisPosition.BOTTOM
+        xAxis.setLabelCount(9, true)
         xAxis.setTextColor(R.color.colorAccent)
 
-        val tenDaysAgoDate: Long = LocalDateTime.now().minusDays(10).toEpochSecond(ZoneOffset.UTC)
+        val tenDaysAgoDate: Long = LocalDateTime.now().minusDays(10).toEpochSecond(ZoneOffset.ofHours(1))
         xAxis.valueFormatter = object : IAxisValueFormatter {
             override fun getFormattedValue(value: Float, axis: AxisBase): String {
                 val correctTimeStamp = value.toLong() + tenDaysAgoDate
-                val correctDate = LocalDateTime.ofEpochSecond(correctTimeStamp, 0, ZoneOffset.UTC).toLocalTime()
+                val correctDate = LocalDateTime.ofEpochSecond(correctTimeStamp, 0, ZoneOffset.ofHours(1)).toLocalTime()
                 return correctDate.format(DateTimeFormatter.ofPattern("HH:mm"))
             }
         }
@@ -88,13 +89,14 @@ class WeatherActivity : NavDrawerActivity(), WeatherView {
         humidityChart.labelFor
         val xAxis = humidityChart.getXAxis()
         xAxis.position = XAxis.XAxisPosition.BOTTOM
+        xAxis.setLabelCount(9, true)
         xAxis.setTextColor(R.color.colorAccent)
 
-        val tenDaysAgoDate: Long = LocalDateTime.now().minusDays(10).toEpochSecond(ZoneOffset.UTC)
+        val tenDaysAgoDate: Long = LocalDateTime.now().minusDays(10).toEpochSecond(ZoneOffset.ofHours(1))
         xAxis.valueFormatter = object : IAxisValueFormatter {
             override fun getFormattedValue(value: Float, axis: AxisBase): String {
                 val correctTimeStamp = value.toLong() + tenDaysAgoDate
-                val correctDate = LocalDateTime.ofEpochSecond(correctTimeStamp, 0, ZoneOffset.UTC).toLocalTime()
+                val correctDate = LocalDateTime.ofEpochSecond(correctTimeStamp, 0, ZoneOffset.ofHours(1)).toLocalTime()
                 return correctDate.format(DateTimeFormatter.ofPattern("HH:mm"))
             }
         }

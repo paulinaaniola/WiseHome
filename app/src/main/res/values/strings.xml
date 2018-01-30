@@ -15,7 +15,7 @@
     <string name="humidity">Humidity</string>
     <string name="alarm_sensors">Alarm sensors</string>
     <string name="carbon_monoxide">Carbon monoxide</string>
-    <string name="carbon_dioxide">Carbon dioxide</string>
+    <string name="gases">Highly flammable gases</string>
     <string name="sth_wrong_check_internet_connection">Something went wrong. Check your internet connection and try again.</string>
     <string name="my_rooms">My Rooms</string>
     <string name="add_room">Add Room</string>
@@ -34,8 +34,8 @@
     <string name="alarm_sensor">Alarm sensor</string>
     <string name="weather_sensor">Weather sensor</string>
     <string name="check_if_you_chose_right_device">Check if you chose right device</string>
-    <string name="selected_light_was_turned_on">Selected light was turned on</string>
-    <string name="red_diode_on_selected_device_is_blinking">Red diode on selected device is blinking</string>
+    <string name="selected_light_was_turned_on">Selected light is blinking</string>
+    <string name="red_diode_on_selected_device_is_blinking">Diode on selected device is blinking</string>
     <string name="cancel">cancel</string>
     <string name="continue_word">continue</string>
     <string name="device_name">Device name</string>
@@ -50,9 +50,9 @@
     <string name="room_name">Room name</string>
     <string name="blank_edit_text_error">This field can not be blank</string>
     <string name="repeat_password">Repeat password</string>
-    <string name="password_error_message">Password does not match the confirm password.</string>
+    <string name="password_error_message">Password does not match to the confirm password.</string>
     <string name="automatic_mode">automatic mode</string>
-    <string name="you_dont_have_any_rooms_yet">You don\'t have any rooms yet. \nGo to menu and lets add some!</string>
+    <string name="you_dont_have_any_rooms_yet">You don\'t have any rooms yet. \n Let's go to menu and add some!</string>
     <string name="We_havent_detect_any_unconfigured_device_in_your_area">We haven\'t detected any unconfigured device in your area. \n To configurate it you need to turn it on</string>
     <string name="authorization_error">Wrong username or password</string>
     <string name="username_already_exist">Username already exists</string>
@@ -64,7 +64,9 @@
     <string name="humidity_proc">Humidity [%]</string>
     <string name="time">Time</string>
     <string name="invalid_old_password">old password is invalid</string>
-    <string name="password_not_match">Password does not match the confirm password</string>
+    <string name="password_not_match">Password does not match to the confirm password</string>
     <string name="admin">Administrative priveleges</string>
+    <string name="celsjusz">°C</string>
+    <string name="percent">%</string>
 </resources>
 

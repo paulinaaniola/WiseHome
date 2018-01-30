@@ -20,9 +20,10 @@ class ColorListPresenterImpl : BaseAbstractPresenter<ColorListView>(), ColorList
 
     override fun createColorsList(): List<Color> {
         var colors: MutableList<Color> = mutableListOf()
-        colors.add(presentationModel.colorStudy)
         colors.add(presentationModel.colorRelax)
         colors.add(presentationModel.colorWork)
+        colors.add(presentationModel.colorOcean)
+        colors.add(presentationModel.colorRomantic)
         return colors
     }
 

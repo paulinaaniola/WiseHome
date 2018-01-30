@@ -3,10 +3,12 @@ package com.example.paulina.wisehome.weather
 import android.content.Intent
 import com.example.paulina.wisehome.R
 import com.example.paulina.wisehome.base.BaseAbstractPresenter
+import com.example.paulina.wisehome.base.IntentKeys
 import com.example.paulina.wisehome.model.businessobjects.NewWeather
 import com.example.paulina.wisehome.model.businessobjects.WeatherMeasurements
 import com.example.paulina.wisehome.model.utils.ResUtil
 import com.example.paulina.wisehome.service.receivers.GetWeatherReciever
+import org.threeten.bp.LocalDateTime
 import org.threeten.bp.ZoneOffset
 
 class WeatherPresenterImpl : BaseAbstractPresenter<WeatherView>(), WeatherPresenter, GetWeatherReciever {
@@ -14,9 +16,8 @@ class WeatherPresenterImpl : BaseAbstractPresenter<WeatherView>(), WeatherPresen
     private val presentationModel: WeatherModel by lazy { WeatherModel() }
 
     override fun initExtras(intent: Intent) {
-        // presentationModel.roomId = intent.getStringExtra(IntentKeys.ROOM_ID)
-        //presentationModel.roomName = intent.getStringExtra(IntentKeys.ROOM_NAME)
-        presentationModel.roomName = "kds"
+        presentationModel.roomId = intent.getStringExtra(IntentKeys.ROOM_ID)
+        presentationModel.roomName = intent.getStringExtra(IntentKeys.ROOM_NAME)
     }
 
     override fun onViewAttached(view: WeatherView?) {
@@ -27,7 +28,7 @@ class WeatherPresenterImpl : BaseAbstractPresenter<WeatherView>(), WeatherPresen
 
     fun getWeather() {
         view?.startProgressDialog(ResUtil.getString(R.string.progress_loading_text))
-        //ServiceManager.getWeather(this, presentationModel.roomId)
+        // ServiceManager.getWeather(this, presentationModel.roomId)
         onGetWeatherSuccess(createDummyWeathet())
     }
 
@@ -43,35 +44,32 @@ class WeatherPresenterImpl : BaseAbstractPresenter<WeatherView>(), WeatherPresen
 
     private fun createDummyWeathet(): NewWeather {
         val historicMeasurements: ArrayList<WeatherMeasurements> = arrayListOf()
-        historicMeasurements.add(WeatherMeasurements(20, 80, org.threeten.bp.LocalDateTime.now().toEpochSecond(ZoneOffset.UTC)))
-        historicMeasurements.add(WeatherMeasurements(10, 90, org.threeten.bp.LocalDateTime.now().plusMinutes(15).toEpochSecond(ZoneOffset.UTC)))
-        historicMeasurements.add(WeatherMeasurements(30, 80, org.threeten.bp.LocalDateTime.now().plusMinutes(20).toEpochSecond(ZoneOffset.UTC)))
-        historicMeasurements.add(WeatherMeasurements(0, 80, org.threeten.bp.LocalDateTime.now().plusMinutes(30).toEpochSecond(ZoneOffset.UTC)))
-        historicMeasurements.add(WeatherMeasurements(5, 70, org.threeten.bp.LocalDateTime.now().plusMinutes(40).toEpochSecond(ZoneOffset.UTC)))
-        historicMeasurements.add(WeatherMeasurements(10, 86, org.threeten.bp.LocalDateTime.now().plusMinutes(45).toEpochSecond(ZoneOffset.UTC)))
-        historicMeasurements.add(WeatherMeasurements(3, 80, org.threeten.bp.LocalDateTime.now().plusMinutes(60).toEpochSecond(ZoneOffset.UTC)))
-        historicMeasurements.add(WeatherMeasurements(0, 80, org.threeten.bp.LocalDateTime.now().plusMinutes(70).toEpochSecond(ZoneOffset.UTC)))
-        historicMeasurements.add(WeatherMeasurements(2, 80, org.threeten.bp.LocalDateTime.now().plusMinutes(85).toEpochSecond(ZoneOffset.UTC)))
-        historicMeasurements.add(WeatherMeasurements(0, 80, org.threeten.bp.LocalDateTime.now().plusMinutes(110).toEpochSecond(ZoneOffset.UTC)))
-        historicMeasurements.add(WeatherMeasurements(19, 110, org.threeten.bp.LocalDateTime.now().plusMinutes(200).toEpochSecond(ZoneOffset.UTC)))
-        historicMeasurements.add(WeatherMeasurements(0, 80, org.threeten.bp.LocalDateTime.now().plusMinutes(300).toEpochSecond(ZoneOffset.UTC)))
-        historicMeasurements.add(WeatherMeasurements(20, 80, org.threeten.bp.LocalDateTime.now().plusMinutes(310).toEpochSecond(ZoneOffset.UTC)))
-        historicMeasurements.add(WeatherMeasurements(24, 180, org.threeten.bp.LocalDateTime.now().plusMinutes(320).toEpochSecond(ZoneOffset.UTC)))
-        historicMeasurements.add(WeatherMeasurements(0, 80, org.threeten.bp.LocalDateTime.now().plusMinutes(360).toEpochSecond(ZoneOffset.UTC)))
-        historicMeasurements.add(WeatherMeasurements(0, 80, org.threeten.bp.LocalDateTime.now().plusMinutes(400).toEpochSecond(ZoneOffset.UTC)))
-        historicMeasurements.add(WeatherMeasurements(13, 90, org.threeten.bp.LocalDateTime.now().plusMinutes(500).toEpochSecond(ZoneOffset.UTC)))
-        historicMeasurements.add(WeatherMeasurements(0, 80, org.threeten.bp.LocalDateTime.now().plusMinutes(600).toEpochSecond(ZoneOffset.UTC)))
-        historicMeasurements.add(WeatherMeasurements(13, 30, org.threeten.bp.LocalDateTime.now().plusMinutes(700).toEpochSecond(ZoneOffset.UTC)))
-        historicMeasurements.add(WeatherMeasurements(0, 80, org.threeten.bp.LocalDateTime.now().plusMinutes(800).toEpochSecond(ZoneOffset.UTC)))
-        historicMeasurements.add(WeatherMeasurements(0, 80, org.threeten.bp.LocalDateTime.now().plusMinutes(900).toEpochSecond(ZoneOffset.UTC)))
-        historicMeasurements.add(WeatherMeasurements(22, 20, org.threeten.bp.LocalDateTime.now().plusMinutes(1000).toEpochSecond(ZoneOffset.UTC)))
-        historicMeasurements.add(WeatherMeasurements(23, 80, org.threeten.bp.LocalDateTime.now().plusMinutes(1200).toEpochSecond(ZoneOffset.UTC)))
-        historicMeasurements.add(WeatherMeasurements(20, 80, org.threeten.bp.LocalDateTime.now().plusMinutes(1230).toEpochSecond(ZoneOffset.UTC)))
-        historicMeasurements.add(WeatherMeasurements(21, 0, org.threeten.bp.LocalDateTime.now().plusMinutes(1235).toEpochSecond(ZoneOffset.UTC)))
-        historicMeasurements.add(WeatherMeasurements(22, 80, org.threeten.bp.LocalDateTime.now().plusMinutes(1240).toEpochSecond(ZoneOffset.UTC)))
-        historicMeasurements.add(WeatherMeasurements(20, 80, org.threeten.bp.LocalDateTime.now().plusMinutes(1250).toEpochSecond(ZoneOffset.UTC)))
-        historicMeasurements.add(WeatherMeasurements(20, 50, org.threeten.bp.LocalDateTime.now().plusMinutes(1255).toEpochSecond(ZoneOffset.UTC)))
-        historicMeasurements.add(WeatherMeasurements(21, 50, org.threeten.bp.LocalDateTime.now().plusMinutes(1270).toEpochSecond(ZoneOffset.UTC)))
-        return NewWeather(historicMeasurements, 100, 100)
+        val minutes: Long = LocalDateTime.now().minute.toLong()
+        historicMeasurements.add(WeatherMeasurements(20, 32, org.threeten.bp.LocalDateTime.now().minusMinutes(minutes).toEpochSecond(ZoneOffset.ofHours(1))))
+        historicMeasurements.add(WeatherMeasurements(21, 35, org.threeten.bp.LocalDateTime.now().plusHours(1).minusMinutes(minutes).toEpochSecond(ZoneOffset.ofHours(1))))
+        historicMeasurements.add(WeatherMeasurements(19, 30, org.threeten.bp.LocalDateTime.now().plusHours(2).minusMinutes(minutes).toEpochSecond(ZoneOffset.ofHours(1))))
+        historicMeasurements.add(WeatherMeasurements(18, 30, org.threeten.bp.LocalDateTime.now().plusHours(3).minusMinutes(minutes).toEpochSecond(ZoneOffset.ofHours(1))))
+        historicMeasurements.add(WeatherMeasurements(20, 28, org.threeten.bp.LocalDateTime.now().plusHours(4).minusMinutes(minutes).toEpochSecond(ZoneOffset.ofHours(1))))
+        historicMeasurements.add(WeatherMeasurements(21, 30, org.threeten.bp.LocalDateTime.now().plusHours(5).minusMinutes(minutes).toEpochSecond(ZoneOffset.ofHours(1))))
+        historicMeasurements.add(WeatherMeasurements(21, 25, org.threeten.bp.LocalDateTime.now().plusHours(6).minusMinutes(minutes).toEpochSecond(ZoneOffset.ofHours(1))))
+        historicMeasurements.add(WeatherMeasurements(21, 25, org.threeten.bp.LocalDateTime.now().plusHours(7).minusMinutes(minutes).toEpochSecond(ZoneOffset.ofHours(1))))
+        historicMeasurements.add(WeatherMeasurements(19, 24, org.threeten.bp.LocalDateTime.now().plusHours(8).minusMinutes(minutes).toEpochSecond(ZoneOffset.ofHours(1))))
+        historicMeasurements.add(WeatherMeasurements(19, 30, org.threeten.bp.LocalDateTime.now().plusHours(9).minusMinutes(minutes).toEpochSecond(ZoneOffset.ofHours(1))))
+        historicMeasurements.add(WeatherMeasurements(19, 33, org.threeten.bp.LocalDateTime.now().plusHours(10).minusMinutes(minutes).toEpochSecond(ZoneOffset.ofHours(1))))
+        historicMeasurements.add(WeatherMeasurements(20, 32, org.threeten.bp.LocalDateTime.now().plusHours(11).minusMinutes(minutes).toEpochSecond(ZoneOffset.ofHours(1))))
+        historicMeasurements.add(WeatherMeasurements(20, 35, org.threeten.bp.LocalDateTime.now().plusHours(12).minusMinutes(minutes).toEpochSecond(ZoneOffset.ofHours(1))))
+        historicMeasurements.add(WeatherMeasurements(21, 37, org.threeten.bp.LocalDateTime.now().plusHours(13).minusMinutes(minutes).toEpochSecond(ZoneOffset.ofHours(1))))
+        historicMeasurements.add(WeatherMeasurements(20, 35, org.threeten.bp.LocalDateTime.now().plusHours(14).minusMinutes(minutes).toEpochSecond(ZoneOffset.ofHours(1))))
+        historicMeasurements.add(WeatherMeasurements(19, 34, org.threeten.bp.LocalDateTime.now().plusHours(15).minusMinutes(minutes).toEpochSecond(ZoneOffset.ofHours(1))))
+        historicMeasurements.add(WeatherMeasurements(21, 34, org.threeten.bp.LocalDateTime.now().plusHours(16).minusMinutes(minutes).toEpochSecond(ZoneOffset.ofHours(1))))
+        historicMeasurements.add(WeatherMeasurements(22, 33, org.threeten.bp.LocalDateTime.now().plusHours(17).minusMinutes(minutes).toEpochSecond(ZoneOffset.ofHours(1))))
+        historicMeasurements.add(WeatherMeasurements(21, 33, org.threeten.bp.LocalDateTime.now().plusHours(18).minusMinutes(minutes).toEpochSecond(ZoneOffset.ofHours(1))))
+        historicMeasurements.add(WeatherMeasurements(22, 32, org.threeten.bp.LocalDateTime.now().plusHours(19).minusMinutes(minutes).toEpochSecond(ZoneOffset.ofHours(1))))
+        historicMeasurements.add(WeatherMeasurements(22, 33, org.threeten.bp.LocalDateTime.now().plusHours(20).minusMinutes(minutes).toEpochSecond(ZoneOffset.ofHours(1))))
+        historicMeasurements.add(WeatherMeasurements(21, 35, org.threeten.bp.LocalDateTime.now().plusHours(21).minusMinutes(minutes).toEpochSecond(ZoneOffset.ofHours(1))))
+        historicMeasurements.add(WeatherMeasurements(21, 33, org.threeten.bp.LocalDateTime.now().plusHours(22).minusMinutes(minutes).toEpochSecond(ZoneOffset.ofHours(1))))
+        historicMeasurements.add(WeatherMeasurements(22, 37, org.threeten.bp.LocalDateTime.now().plusHours(23).minusMinutes(minutes).toEpochSecond(ZoneOffset.ofHours(1))))
+        historicMeasurements.add(WeatherMeasurements(21, 35, org.threeten.bp.LocalDateTime.now().plusHours(24).minusMinutes(minutes).toEpochSecond(ZoneOffset.ofHours(1))))
+        return NewWeather(historicMeasurements, 21, 35)
     }
 }

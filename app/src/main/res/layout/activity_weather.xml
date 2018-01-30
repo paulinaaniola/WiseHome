@@ -93,6 +93,13 @@
                             android:textSize="40sp"
                             android:textStyle="bold" />
 
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="@string/celsjusz"
+                            android:textSize="40sp" />
+
                     </LinearLayout>
 
                 </LinearLayout>
@@ -167,6 +174,13 @@
                             android:gravity="center"
                             android:textSize="40sp"
                             android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="@string/percent"
+                            android:textSize="40sp" />
 
                     </LinearLayout>
 
