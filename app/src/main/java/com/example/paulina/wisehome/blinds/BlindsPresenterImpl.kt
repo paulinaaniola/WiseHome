@@ -5,7 +5,6 @@ import com.example.paulina.wisehome.R
 import com.example.paulina.wisehome.base.BaseAbstractPresenter
 import com.example.paulina.wisehome.base.IntentKeys
 import com.example.paulina.wisehome.model.businessobjects.BlindDirection
-import com.example.paulina.wisehome.model.businessobjects.BlindState
 import com.example.paulina.wisehome.model.transportobjects.Blind
 import com.example.paulina.wisehome.model.utils.ResUtil
 import com.example.paulina.wisehome.service.ServiceManager
@@ -45,7 +44,6 @@ class BlindsPresenterImpl : BaseAbstractPresenter<BlindsView>(), BlindsPresenter
     private fun getBlinds() {
         view?.startProgressDialog(ResUtil.getString(R.string.progress_loading_text))
         ServiceManager.getBlinds(this, presentationModel.roomId)
-        //  onGetBlindsSuccess(createDummyBlinds())
     }
 
     override fun onGetBlindsSuccess(blinds: List<Blind>) {
@@ -85,15 +83,5 @@ class BlindsPresenterImpl : BaseAbstractPresenter<BlindsView>(), BlindsPresenter
 
     override fun onChangeBlindsStateError() {
         view?.stopProgressDialog()
-    }
-
-    private fun createDummyBlinds(): List<Blind> {
-        var blinds: MutableList<Blind> = mutableListOf()
-        blinds.add(Blind("1", "Blind1", BlindState.CLOSED))
-        blinds.add(Blind("2", "Blind2", BlindState.OPENED))
-        blinds.add(Blind("3", "Blind3", BlindState.MOVING))
-        blinds.add(Blind("4", "Blind4", BlindState.PARTLY_CLOSED))
-        blinds.add(Blind("5", "Blind5", BlindState.CLOSED))
-        return blinds
     }
 }

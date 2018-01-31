@@ -17,7 +17,6 @@ class AddRoomPresenterImpl : BaseAbstractPresenter<AddRoomView>(), AddRoomPresen
     override fun addRoom(roomName: String) {
         view?.startProgressDialog(ResUtil.getString(R.string.progress_loading_text))
         ServiceManager.addNewRoom(this, roomName)
-        //onAddRoomSuccess()
     }
 
     override fun onAddRoomSuccess() {

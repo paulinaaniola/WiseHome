@@ -8,6 +8,7 @@ import com.example.paulina.wisehome.model.businessobjects.DeviceType
 import com.example.paulina.wisehome.model.transportobjects.Room
 import com.example.paulina.wisehome.model.transportobjects.UnconfigDevice
 import com.example.paulina.wisehome.model.utils.ResUtil
+import com.example.paulina.wisehome.service.ServiceManager
 import com.example.paulina.wisehome.service.receivers.AddDeviceToRoomReciever
 import com.example.paulina.wisehome.service.receivers.GetRoomsReciever
 
@@ -28,8 +29,7 @@ class AddDevicePresenterImpl : BaseAbstractPresenter<AddDeviceView>(), AddDevice
 
     private fun getRooms() {
         view?.startProgressDialog(ResUtil.getString(R.string.progress_loading_text))
-        //ServiceManager.getRooms(this)
-        onGetRoomsSuccess(createDummyRooms())
+        ServiceManager.getRooms(this)
     }
 
     private fun checkDeviceType() {
@@ -63,8 +63,7 @@ class AddDevicePresenterImpl : BaseAbstractPresenter<AddDeviceView>(), AddDevice
     override fun addDeviceToRoom() {
         view?.startProgressDialog(ResUtil.getString(R.string.progress_loading_text))
         val pm = presentationModel
-        // ServiceManager.addDeviceToRoom(this, pm.selectedRoom._id, pm.newDeviceName, pm.selectedDevice.mac)
-        onAddDeviceToRoomSuccess()
+         ServiceManager.addDeviceToRoom(this, pm.selectedRoom._id, pm.newDeviceName, pm.selectedDevice.mac)
     }
 
     override fun onAddDeviceToRoomSuccess() {
@@ -78,23 +77,5 @@ class AddDevicePresenterImpl : BaseAbstractPresenter<AddDeviceView>(), AddDevice
 
     override fun onAddDeviceToRoomError() {
         view?.stopProgressDialog()
-    }
-
-    fun createDummyRooms(): List<Room> {
-        val rooms: MutableList<Room> = ArrayList<Room>()
-        val deviceGroupTypes1: MutableList<DeviceType> = ArrayList<DeviceType>()
-        val deviceGroupTypes2: MutableList<DeviceType> = ArrayList<DeviceType>()
-        deviceGroupTypes1.add(DeviceType.BLINDS)
-        deviceGroupTypes1.add(DeviceType.LIGHTS)
-        deviceGroupTypes1.add(DeviceType.ALARM_SENSORS)
-        deviceGroupTypes1.add(DeviceType.WEATHER_SENSORS)
-        deviceGroupTypes2.add(DeviceType.LIGHTS)
-        deviceGroupTypes2.add(DeviceType.BLINDS)
-        rooms.add(Room(1.toString(), "Living Room", deviceGroupTypes1))
-        rooms.add(Room(2.toString(), "Kitchen", deviceGroupTypes2))
-        rooms.add(Room(3.toString(), "Bedroom", deviceGroupTypes1))
-        rooms.add(Room(4.toString(), "Bathroom1", deviceGroupTypes1))
-        rooms.add(Room(5.toString(), "Bathroom2", deviceGroupTypes1))
-        return rooms
     }
 }

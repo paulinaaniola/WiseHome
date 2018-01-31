@@ -53,21 +53,20 @@ class WeatherActivity : NavDrawerActivity(), WeatherView {
         temperatureChart.labelFor
         val xAxis = temperatureChart.getXAxis()
         xAxis.position = XAxis.XAxisPosition.BOTTOM
-        xAxis.setLabelCount(9, true)
         xAxis.setTextColor(R.color.colorAccent)
 
-        val tenDaysAgoDate: Long = LocalDateTime.now().minusDays(10).toEpochSecond(ZoneOffset.ofHours(1))
+        val tenDaysAgoDate: Long = LocalDateTime.now().minusDays(10).toEpochSecond(ZoneOffset.ofHours(0))
         xAxis.valueFormatter = object : IAxisValueFormatter {
             override fun getFormattedValue(value: Float, axis: AxisBase): String {
                 val correctTimeStamp = value.toLong() + tenDaysAgoDate
-                val correctDate = LocalDateTime.ofEpochSecond(correctTimeStamp, 0, ZoneOffset.ofHours(1)).toLocalTime()
+                val correctDate = LocalDateTime.ofEpochSecond(correctTimeStamp, 0, ZoneOffset.ofHours(0)).toLocalTime()
                 return correctDate.format(DateTimeFormatter.ofPattern("HH:mm"))
             }
         }
 
         val values = ArrayList<Entry>()
         for (i in 0 until historicMeasurements.size) {
-            val timeDifference = historicMeasurements[i].createdAt - tenDaysAgoDate
+            val timeDifference = historicMeasurements[i].createdAt.toLong() - tenDaysAgoDate
             values.add(Entry(timeDifference.toFloat(), historicMeasurements[i].temperature.toFloat()))
         }
 
@@ -89,20 +88,19 @@ class WeatherActivity : NavDrawerActivity(), WeatherView {
         humidityChart.labelFor
         val xAxis = humidityChart.getXAxis()
         xAxis.position = XAxis.XAxisPosition.BOTTOM
-        xAxis.setLabelCount(9, true)
         xAxis.setTextColor(R.color.colorAccent)
 
-        val tenDaysAgoDate: Long = LocalDateTime.now().minusDays(10).toEpochSecond(ZoneOffset.ofHours(1))
+        val tenDaysAgoDate: Long = LocalDateTime.now().minusDays(10).toEpochSecond(ZoneOffset.ofHours(0))
         xAxis.valueFormatter = object : IAxisValueFormatter {
             override fun getFormattedValue(value: Float, axis: AxisBase): String {
                 val correctTimeStamp = value.toLong() + tenDaysAgoDate
-                val correctDate = LocalDateTime.ofEpochSecond(correctTimeStamp, 0, ZoneOffset.ofHours(1)).toLocalTime()
+                val correctDate = LocalDateTime.ofEpochSecond(correctTimeStamp, 0, ZoneOffset.ofHours(0)).toLocalTime()
                 return correctDate.format(DateTimeFormatter.ofPattern("HH:mm"))
             }
         }
         val values = ArrayList<Entry>()
         for (i in 0 until historicMeasurements.size) {
-            val timeDifference = historicMeasurements[i].createdAt - tenDaysAgoDate
+            val timeDifference = historicMeasurements[i].createdAt.toLong() - tenDaysAgoDate
             values.add(Entry(timeDifference.toFloat(), historicMeasurements[i].humidity.toFloat()))
         }
 

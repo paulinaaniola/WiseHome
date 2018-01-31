@@ -17,7 +17,6 @@ class AddAccountPresenterImpl : BaseAbstractPresenter<AddAccountView>(), AddAcco
     override fun addAccount(login: String, password: String, isAdmin: Boolean) {
         view?.startProgressDialog(ResUtil.getString(R.string.progress_loading_text))
         ServiceManager.addAccount(this, NewUser(login, password, isAdmin))
-        onAddAccountSuccess()
     }
 
     override fun onAddAccountSuccess() {
