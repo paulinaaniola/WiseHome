@@ -51,6 +51,8 @@ class WeatherActivity : NavDrawerActivity(), WeatherView {
         temperatureChart.legend.isEnabled = false
         temperatureChart.getDescription().setEnabled(false)
         temperatureChart.labelFor
+        val yAxis = temperatureChart.axisLeft
+        yAxis.granularity = 1f
         val xAxis = temperatureChart.getXAxis()
         xAxis.position = XAxis.XAxisPosition.BOTTOM
         xAxis.setLabelCount(9, true)
